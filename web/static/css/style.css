@@ -1,4 +1,4 @@
-/* OK Crisis - Premium News Satire Site */
+/* The Satire Standard - Luxury News & Satire Site */
 
 /* Reset and Base Styles */
 * {
@@ -8,87 +8,188 @@
 }
 
 :root {
-    /* Premium News Site Color Palette */
-    --primary-black: #000000;
-    --soft-black: #1a1a1a;
-    --medium-gray: #666666;
-    --light-gray: #e5e5e5;
-    --off-white: #f8f8f8;
-    --pure-white: #ffffff;
-    
-    /* Accent Colors */
-    --gold-accent: #d4af37;
-    --silver-accent: #c0c0c0;
-    --red-accent: #cc0000;
-    --blue-accent: #0066cc;
-    
-    /* Typography */
-    --font-serif: 'Playfair Display', 'Cormorant Garamond', serif;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 2rem;
-    --spacing-lg: 3rem;
-    --spacing-xl: 4rem;
-    
-    /* Border Radius */
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 16px;
-    
-    /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
-    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.25);
+    /* Luxury Color Palette */
+    --primary-gold: #D4AF37;
+    --dark-gold: #B8941F;
+    --light-gold: #F4E5C2;
+    --deep-black: #0A0A0A;
+    --rich-black: #1A1A1A;
+    --soft-gray: #F5F5F5;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --accent-red: #8B0000;
 }
 
 body {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--primary-black);
-    background-color: var(--pure-white);
+    font-family: 'Crimson Text', serif;
+    background: var(--deep-black);
+    color: var(--text-primary);
+    line-height: 1.7;
     overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--primary-gold);
+}
+
+h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Navigation */
+nav {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+}
+
+.nav-menu a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-gold);
 }
 
 /* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 2rem;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--primary-black);
-}
-
-h1 { font-size: 3.5rem; font-weight: 900; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 1.875rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1.125rem; }
-
-p {
-    margin-bottom: var(--spacing-sm);
-    color: var(--soft-black);
-}
-
-a {
-    color: var(--primary-black);
+/* Buttons */
+.luxury-btn {
+    background: var(--primary-gold);
+    color: var(--deep-black);
+    border: none;
+    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
     text-decoration: none;
-    transition: color 0.3s ease;
+    display: inline-block;
+    border-radius: 0;
 }
 
-a:hover {
-    color: var(--red-accent);
+.luxury-btn:hover {
+    background: var(--dark-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Cards */
+.article-card, .product-card, .related-card {
+    background: var(--rich-black);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.3s ease;
+}
+
+.article-card:hover, .product-card:hover, .related-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Sections */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.section-divider {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+    margin: 2rem auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 1rem;
+    }
+    
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
 }
 
 /* Header */
