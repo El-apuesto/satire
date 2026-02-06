@@ -18,16 +18,13 @@
     <!-- Open Graph -->
     <meta property="og:title" content="{% block og_title %}The Satire Standard{% endblock %}">
     <meta property="og:description" content="{% block og_description %}The premier destination for sophisticated satire and elegant absurdity in modern journalism.{% endblock %}">
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
     <meta property="og:url" content="{{ request.url }}">
     
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
-
-        {% block extra_css %}{% endblock %}
-
-        {% block extra_css %}{% endblock %}
+    {% block extra_css %}{% endblock %}
+</head>
 
         .article-excerpt {
             font-size: 1.1rem;
@@ -193,6 +190,7 @@
     </style>
     {% block extra_css %}{% endblock %}
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="luxury-nav">
