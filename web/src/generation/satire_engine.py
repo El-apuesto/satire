@@ -53,6 +53,27 @@ class SatireEngine:
                 "Global leaders gathered today to discuss potentially addressing issues that might need consideration at some point in the future, sources confirmed.",
                 "International organizations announced a comprehensive initiative to possibly consider thinking about maybe forming a committee to explore global challenges.",
                 "Experts revealed that world events are, in fact, occurring in various locations simultaneously, in findings that have stunned observers."
+            ],
+            'advice': [
+                "DEAR ABBY: My boyfriend keeps leaving his socks everywhere. Is this a cry for help or just poor laundry skills? - SOCKLESS IN SEATTLE",
+                "DEAR ABBY: My neighbor's dog only barks when I'm home. Should I be flattered or concerned? - BARKING MAD IN BOSTON",
+                "DEAR ABBY: My coworker brings a cactus to every meeting. Is this normal office behavior or am I missing something? - PRICKLY SITUATION IN PHOENIX",
+                "DEAR ABBY: My husband thinks 'Netflix and chill' means watching documentaries about streaming services. How do I fix this? - DOCUMENTARY DISASTER IN DENVER",
+                "DEAR ABBY: My roommate organizes their spice rack alphabetically. Is this genius or madness? - SPICE GIRL IN AUSTIN"
+            ],
+            'mens_dating': [
+                "DEAR ABBY: Women keep telling me they want a 'sensitive guy' but then date guys who treat them terribly. What's the deal? - CONFUSED IN CHICAGO",
+                "DEAR ABBY: My girlfriend says I don't listen, but I literally just heard her say she wanted tacos for dinner and I ordered pizza. Am I wrong? - TACO TUESDAY IN MIAMI",
+                "DEAR ABBY: Why do women say 'nothing's wrong' when something is clearly wrong? I've been studying this for years and still can't crack the code. - RESEARCHER IN ATLANTA",
+                "DEAR ABBY: My date spent 45 minutes taking selfies of our food. Should I be impressed or concerned about her priorities? - FILTER FREE IN SEATTLE",
+                "DEAR ABBY: Women complain men don't communicate, but when I try to talk about feelings, they suddenly remember they have to check their phone. - SILENT TREATMENT IN BOSTON"
+            ],
+            'womens_dating': [
+                "DEAR ABBY: Why do men think 'I'm fine' means 'please tell me what's wrong'? It literally means I'm fine. - FINE REALLY IN DALLAS",
+                "DEAR ABBY: My boyfriend showed up to our anniversary with a gas station bouquet. Should I be touched or start looking for apartments? - PUMPED UP IN HOUSTON",
+                "DEAR ABBY: Men say they want an 'independent woman' but get intimidated when I make more money than them. Make it make sense. - INDEPENDENTLY WEALTHY IN LA",
+                "DEAR ABBY: Why do guys think fixing a leaky faucet makes them marriage material? I hired a plumber. - DRIPPING WITH sarcasm IN CHICAGO",
+                "DEAR ABBY: My date spent the whole dinner talking about his ex. Is this a red flag or just a really long story? - EX FILES IN NEW YORK"
             ]
         }
     
@@ -105,6 +126,36 @@ class SatireEngine:
                 "Study Finds People Who Read Studies Are More Likely To Be In Studies",
                 "Research Reveals Shocking Correlation Between Obvious Things And Other Obvious Things",
                 "Scientists Discover That Things Are, In Fact, The Way They Appear To Be"
+            ],
+            'sports': [
+                "Athletes Announce Plans To Possibly Consider Maybe Competing In Upcoming Games",
+                "Sports Study Reveals Teams Who Practice More Tend To Win More Games",
+                "League Officials Confirm Balls Are Round, Despite Earlier Speculation"
+            ],
+            'music': [
+                "Artists Planning To Possibly Consider Releasing Music At Some Point In Future",
+                "Music Industry Announces Technology That Revolutionizes How People Experience Songs",
+                "Silence Praised As Revolutionary Creative Element In Latest Album"
+            ],
+            'world': [
+                "Global Leaders Gather To Discuss Potentially Addressing Issues Someday",
+                "International Organizations Announce Initiative To Consider Forming Committees",
+                "Experts Reveal World Events Occurring In Multiple Locations Simultaneously"
+            ],
+            'advice': [
+                "Dear Abby Columnist Announces Plans To Actually Consider Answering Questions",
+                "Advice Column Reveals People Have Problems That Could Be Solved With Common Sense",
+                "Readers Write In With Questions That Could Be Answered By Simply Thinking"
+            ],
+            'mens_dating': [
+                "Study Finds Men Who Listen To Women Still Don't Understand What They Said",
+                "Research Reveals Men Think 'Nothing's Wrong' Means Something Is Actually Wrong",
+                "Scientists Discover Men Who Try To Fix Things Often Make Them Worse"
+            ],
+            'womens_dating': [
+                "Women Announce They're Fine When They're Actually Not Fine, Study Confirms",
+                "Research Shows Men Who Think They're Right Usually Aren't, Scientists Say",
+                "Dating Experts Confirm Women Always Right, Men Always Wrong"
             ]
         }
         
@@ -153,8 +204,8 @@ class SatireEngine:
         
         if category == 'politics':
             quotes.append({
-                'expert': 'Dr. Michael Roberts',
-                'affiliation': 'University of Public Policy Studies',
+                'expert': 'Dr. Patricia Roberts',
+                'affiliation': 'Institute for Political Satire Studies',
                 'quote': 'This represents a paradigm shift in governmental procrastination. We\'re moving from ignoring problems to actively ignoring them in a more structured way.'
             })
             quotes.append({
@@ -162,10 +213,31 @@ class SatireEngine:
                 'affiliation': 'Municipal Governance Institute',
                 'quote': 'The formation of a committee to consider discussing issues is truly groundbreaking. It\'s like democracy, but with more meetings.'
             })
-            
+        elif category == 'technology':
+            quotes.append({
+                'expert': 'Dr. Christopher Chen',
+                'affiliation': 'Silicon Valley Analyst',
+                'quote': 'This is exactly what the market was missing - a way to monetize simplicity by making it feel exclusive and complicated.'
+            })
+            quotes.append({
+                'expert': 'Mark Stevens',
+                'affiliation': 'Tech Innovation Lab',
+                'quote': 'The beauty of this solution is that it creates problems that only it can solve, which is the essence of disruptive innovation.'
+            })
+        elif category == 'science':
+            quotes.append({
+                'expert': 'Dr. Emily Watson',
+                'affiliation': 'Institute of Obvious Conclusions',
+                'quote': 'This research confirms what we suspected All along - things are, in fact, the way they are. The implications are staggering.'
+            })
+            quotes.append({
+                'expert': 'Dr. Robert Miller',
+                'affiliation': 'Center for Academic Research',
+                'quote': 'Our findings suggest a self-perpetuating cycle of study-reading that could revolutionize how we conduct future studies about study-reading patterns.'
+            })
         elif category == 'sports':
             quotes.append({
-                'expert': 'Tom Richardson',
+                'expert': 'Coach Michael Richardson',
                 'affiliation': 'Sports Analytics Institute',
                 'quote': 'This represents a paradigm shift in athletic performance analysis. We\'re moving from simply watching games to actually understanding why athletes win by not winning at all.'
             })
@@ -174,10 +246,9 @@ class SatireEngine:
                 'affiliation': 'Athletic Performance Journal',
                 'quote': 'The data shows that teams who practice less tend to have better injury outcomes, in findings that have stunned the sports medicine community.'
             })
-            
         elif category == 'music':
             quotes.append({
-                'expert': 'David Chen',
+                'expert': 'Dr. David Chen',
                 'affiliation': 'Music Industry Weekly',
                 'quote': 'The trend toward silence in music production reflects a fundamental shift in how artists express creativity, or rather, the lack thereof.'
             })
@@ -186,29 +257,16 @@ class SatireEngine:
                 'affiliation': 'Audio Engineering Magazine',
                 'quote': 'Artists are increasingly using technology to create sounds that never existed, which is either revolutionary or deeply confusing to everyone involved.'
             })
-            
-        elif category == 'technology':
-            quotes.append({
-                'expert': 'Jennifer Walsh',
-                'affiliation': 'Sil Valley Analyst',
-                'quote': 'This is exactly what the market was missing - a way to monetize simplicity by making it feel exclusive and complicated.'
-            })
-            quotes.append({
-                'expert': 'Mark Chen',
-                'affiliation': 'Tech Innovation Lab',
-                'quote': 'The beauty of this solution is that it creates problems that only it can solve, which is the essence of disruptive innovation.'
-            })
-            
-        else:  # world/general
+        elif category == 'world':
             quotes.append({
                 'expert': 'Dr. James Wilson',
                 'affiliation': 'Global Affairs Institute',
                 'quote': 'International diplomacy increasingly resembles a reality show where everyone knows the script but pretends to be improvising.'
             })
             quotes.append({
-                'expert': 'Sarah Thompson',
+                'expert': 'Dr. Sarah Thompson',
                 'affiliation': 'World Policy Forum',
-                'quote': 'Global events are, in fact, occurring in multiple locations simultaneously, which suggests either unprecedented coordination or widespread coincidence.'
+                'quote': 'Global events are, in fact, occurring in various locations simultaneously, which suggests either unprecedented coordination or widespread coincidence.'
             })
         
         return quotes
@@ -216,11 +274,11 @@ class SatireEngine:
     def generate_byline(self, category: str) -> str:
         """Generate satirical author names"""
         authors = {
-            'politics': ['Sarah Johnson', 'Michael Thompson', 'Jennifer Davis', 'Tom Harris'],
-            'technology': ['Mark Chen', 'Alex Kumar', 'Sarah Williams', 'Lisa Chang'],
+            'politics': ['Patricia Roberts', 'Jennifer Walsh', 'Tom Harris'],
+            'technology': ['Dr. Christopher Chen', 'Mark Stevens', 'Lisa Chang'],
             'science': ['Dr. Emily Watson', 'Dr. Robert Miller', 'Dr. Jennifer Lee', 'Dr. Richard Kim'],
-            'sports': ['Tom Harris', 'Jessica Lee', 'Michael Brown', 'Chris Johnson'],
-            'music': ['David Kim', 'Maria Rodriguez', 'Emily Taylor', 'Justin Timberlake'],
+            'sports': ['Coach Michael Richardson', 'Jessica Martinez', 'Chris Johnson'],
+            'music': ['Dr. David Chen', 'Maria Rodriguez', 'Emily Taylor', 'Justin Timberlake'],
             'world': ['Dr. James Wilson', 'Sarah Thompson', 'Michael Davis', 'Anna Petrova']
         }
         
