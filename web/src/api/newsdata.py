@@ -5,7 +5,7 @@ import os
 
 class NewsDataAPI:
     def __init__(self):
-        self.api_key = os.getenv('NEWSDATA_API_KEY', 'demo-key')
+        self.api_key = 'pub_39e106ccf96046c5bfe5d6dd1d9f6bed'
         self.base_url = 'https://newsdata.io/api/1/news'
     
     def fetch_latest_news(self, category=None, country='us', limit=10):
@@ -27,6 +27,7 @@ class NewsDataAPI:
                 data = response.json()
                 return self.format_articles(data.get('results', []))
             else:
+                print(f"API Error: {response.status_code}")
                 return []
                 
         except Exception as e:
