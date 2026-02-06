@@ -38,6 +38,21 @@ class SatireEngine:
                 "Groundbreaking research from the Institute of Obvious Conclusions reveals a strong correlation between things that are obviously related.",
                 "Scientists were shocked to discover that water is, in fact, wet, according to a five-year study that cost approximately $3.2 million.",
                 "Researchers noted that participants who breathe air tend to live longer than those who don't, in findings that have stunned the scientific community."
+            ],
+            'sports': [
+                "Professional athletes announced today that they will consider potentially thinking about maybe possibly competing in upcoming games, according to sources familiar with their thinking patterns.",
+                "Sports analysts revealed that teams who practice more tend to win more games, in a study that confirmed what fans already suspected.",
+                "League officials confirmed that balls used in competition are, in fact, round, despite earlier speculation that they might be slightly oval."
+            ],
+            'music': [
+                "Music industry insiders revealed that artists are planning to possibly consider releasing new music at some point in the future, according to sources familiar with their creative process.",
+                "Record producers announced a groundbreaking new technology that promises to revolutionize how listeners experience songs they already enjoy.",
+                "Music critics praised the bold decision to use silence as a creative element in the latest album, calling it 'a revolutionary approach to not making noise.'"
+            ],
+            'world': [
+                "Global leaders gathered today to discuss potentially addressing issues that might need consideration at some point in the future, sources confirmed.",
+                "International organizations announced a comprehensive initiative to possibly consider thinking about maybe forming a committee to explore global challenges.",
+                "Experts revealed that world events are, in fact, occurring in various locations simultaneously, in findings that have stunned observers."
             ]
         }
     
@@ -148,6 +163,30 @@ class SatireEngine:
                 'quote': 'The formation of a committee to consider discussing issues is truly groundbreaking. It\'s like democracy, but with more meetings.'
             })
             
+        elif category == 'sports':
+            quotes.append({
+                'expert': 'Tom Richardson',
+                'affiliation': 'Sports Analytics Institute',
+                'quote': 'This represents a paradigm shift in athletic performance analysis. We\'re moving from simply watching games to actually understanding why athletes win by not winning at all.'
+            })
+            quotes.append({
+                'expert': 'Jessica Martinez',
+                'affiliation': 'Athletic Performance Journal',
+                'quote': 'The data shows that teams who practice less tend to have better injury outcomes, in findings that have stunned the sports medicine community.'
+            })
+            
+        elif category == 'music':
+            quotes.append({
+                'expert': 'David Chen',
+                'affiliation': 'Music Industry Weekly',
+                'quote': 'The trend toward silence in music production reflects a fundamental shift in how artists express creativity, or rather, the lack thereof.'
+            })
+            quotes.append({
+                'expert': 'Maria Rodriguez',
+                'affiliation': 'Audio Engineering Magazine',
+                'quote': 'Artists are increasingly using technology to create sounds that never existed, which is either revolutionary or deeply confusing to everyone involved.'
+            })
+            
         elif category == 'technology':
             quotes.append({
                 'expert': 'Jennifer Walsh',
@@ -160,16 +199,16 @@ class SatireEngine:
                 'quote': 'The beauty of this solution is that it creates problems that only it can solve, which is the essence of disruptive innovation.'
             })
             
-        else:  # science/general
+        else:  # world/general
             quotes.append({
-                'expert': 'Dr. Robert Miller',
-                'affiliation': 'Center for Academic Research',
-                'quote': 'Our findings suggest a self-perpetuating cycle of study-reading that could revolutionize how we conduct future studies about study-reading patterns.'
+                'expert': 'Dr. James Wilson',
+                'affiliation': 'Global Affairs Institute',
+                'quote': 'International diplomacy increasingly resembles a reality show where everyone knows the script but pretends to be improvising.'
             })
             quotes.append({
-                'expert': 'Dr. Emily Watson',
-                'affiliation': 'Institute of Obvious Conclusions',
-                'quote': 'This research confirms what we suspected all along - things are, in fact, the way they are. The implications are staggering.'
+                'expert': 'Sarah Thompson',
+                'affiliation': 'World Policy Forum',
+                'quote': 'Global events are, in fact, occurring in multiple locations simultaneously, which suggests either unprecedented coordination or widespread coincidence.'
             })
         
         return quotes
@@ -177,9 +216,12 @@ class SatireEngine:
     def generate_byline(self, category: str) -> str:
         """Generate satirical author names"""
         authors = {
-            'politics': ['Sarah Johnson', 'Michael Thompson', 'Jennifer Davis'],
-            'technology': ['Mark Chen', 'Alex Kumar', 'Sarah Williams'],
-            'science': ['Dr. Emily Watson', 'Dr. Robert Miller', 'Dr. Jennifer Lee']
+            'politics': ['Sarah Johnson', 'Michael Thompson', 'Jennifer Davis', 'Tom Harris'],
+            'technology': ['Mark Chen', 'Alex Kumar', 'Sarah Williams', 'Lisa Chang'],
+            'science': ['Dr. Emily Watson', 'Dr. Robert Miller', 'Dr. Jennifer Lee', 'Dr. Richard Kim'],
+            'sports': ['Tom Harris', 'Jessica Lee', 'Michael Brown', 'Chris Johnson'],
+            'music': ['David Kim', 'Maria Rodriguez', 'Emily Taylor', 'Justin Timberlake'],
+            'world': ['Dr. James Wilson', 'Sarah Thompson', 'Michael Davis', 'Anna Petrova']
         }
         
         category_authors = authors.get(category, authors['science'])
