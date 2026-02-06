@@ -6,9 +6,9 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 try:
-    from src.storage.archive import ArchiveManager
-    from src.generation.satire_engine import SatireEngine
-    from src.api.newsdata import NewsDataAPI
+    from storage.archive import ArchiveManager
+    from generation.satire_engine import SatireEngine
+    from api.newsdata import NewsDataAPI
     
     # Initialize components
     archive_manager = ArchiveManager()
