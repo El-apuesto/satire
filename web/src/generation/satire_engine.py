@@ -55,25 +55,25 @@ class SatireEngine:
                 "Experts revealed that world events are, in fact, occurring in various locations simultaneously, in findings that have stunned observers."
             ],
             'advice': [
-                "DEAR ABBY: My boyfriend keeps leaving his socks everywhere. Is this a cry for help or just poor laundry skills? - SOCKLESS IN SEATTLE",
-                "DEAR ABBY: My neighbor's dog only barks when I'm home. Should I be flattered or concerned? - BARKING MAD IN BOSTON",
-                "DEAR ABBY: My coworker brings a cactus to every meeting. Is this normal office behavior or am I missing something? - PRICKLY SITUATION IN PHOENIX",
-                "DEAR ABBY: My husband thinks 'Netflix and chill' means watching documentaries about streaming services. How do I fix this? - DOCUMENTARY DISASTER IN DENVER",
-                "DEAR ABBY: My roommate organizes their spice rack alphabetically. Is this genius or madness? - SPICE GIRL IN AUSTIN"
+                "DEAR GABBY: My boyfriend keeps leaving his socks everywhere. Is this a cry for help or just poor laundry skills? - SOCKLESS IN SEATTLE",
+                "DEAR GABBY: My neighbor's dog only barks when I'm home. Should I be flattered or concerned? - BARKING MAD IN BOSTON",
+                "DEAR GABBY: My coworker brings a cactus to every meeting. Is this normal office behavior or am I missing something? - PRICKLY SITUATION IN PHOENIX",
+                "DEAR GABBY: My husband thinks 'Netflix and chill' means watching documentaries about streaming services. How do I fix this? - DOCUMENTARY DISASTER IN DENVER",
+                "DEAR GABBY: My roommate organizes their spice rack alphabetically. Is this genius or madness? - SPICE GIRL IN AUSTIN"
             ],
             'mens_dating': [
-                "DEAR ABBY: Women keep telling me they want a 'sensitive guy' but then date guys who treat them terribly. What's the deal? - CONFUSED IN CHICAGO",
-                "DEAR ABBY: My girlfriend says I don't listen, but I literally just heard her say she wanted tacos for dinner and I ordered pizza. Am I wrong? - TACO TUESDAY IN MIAMI",
-                "DEAR ABBY: Why do women say 'nothing's wrong' when something is clearly wrong? I've been studying this for years and still can't crack the code. - RESEARCHER IN ATLANTA",
-                "DEAR ABBY: My date spent 45 minutes taking selfies of our food. Should I be impressed or concerned about her priorities? - FILTER FREE IN SEATTLE",
-                "DEAR ABBY: Women complain men don't communicate, but when I try to talk about feelings, they suddenly remember they have to check their phone. - SILENT TREATMENT IN BOSTON"
+                "DEAR GABBY: Women keep telling me they want a 'sensitive guy' but then date guys who treat them terribly. What's the deal? - CONFUSED IN CHICAGO",
+                "DEAR GABBY: My girlfriend says I don't listen, but I literally just heard her say she wanted tacos for dinner and I ordered pizza. Am I wrong? - TACO TUESDAY IN MIAMI",
+                "DEAR GABBY: Why do women say 'nothing's wrong' when something is clearly wrong? I've been studying this for years and still can't crack the code. - RESEARCHER IN ATLANTA",
+                "DEAR GABBY: My date spent 45 minutes taking selfies of our food. Should I be impressed or concerned about her priorities? - FILTER FREE IN SEATTLE",
+                "DEAR GABBY: Women complain men don't communicate, but when I try to talk about feelings, they suddenly remember they have to check their phone. - SILENT TREATMENT IN BOSTON"
             ],
             'womens_dating': [
-                "DEAR ABBY: Why do men think 'I'm fine' means 'please tell me what's wrong'? It literally means I'm fine. - FINE REALLY IN DALLAS",
-                "DEAR ABBY: My boyfriend showed up to our anniversary with a gas station bouquet. Should I be touched or start looking for apartments? - PUMPED UP IN HOUSTON",
-                "DEAR ABBY: Men say they want an 'independent woman' but get intimidated when I make more money than them. Make it make sense. - INDEPENDENTLY WEALTHY IN LA",
-                "DEAR ABBY: Why do guys think fixing a leaky faucet makes them marriage material? I hired a plumber. - DRIPPING WITH sarcasm IN CHICAGO",
-                "DEAR ABBY: My date spent the whole dinner talking about his ex. Is this a red flag or just a really long story? - EX FILES IN NEW YORK"
+                "DEAR GABBY: Why do men think 'I'm fine' means 'please tell me what's wrong'? It literally means I'm fine. - FINE REALLY IN DALLAS",
+                "DEAR GABBY: My boyfriend showed up to our anniversary with a gas station bouquet. Should I be touched or start looking for apartments? - PUMPED UP IN HOUSTON",
+                "DEAR GABBY: Men say they want an 'independent woman' but get intimidated when I make more money than them. Make it make sense. - INDEPENDENTLY WEALTHY IN LA",
+                "DEAR GABBY: Why do guys think fixing a leaky faucet makes them marriage material? I hired a plumber. - DRIPPING WITH sarcasm IN CHICAGO",
+                "DEAR GABBY: My date spent the whole dinner talking about his ex. Is this a red flag or just a really long story? - EX FILES IN NEW YORK"
             ]
         }
     
@@ -279,7 +279,10 @@ class SatireEngine:
             'science': ['Dr. Emily Watson', 'Dr. Robert Miller', 'Dr. Jennifer Lee', 'Dr. Richard Kim'],
             'sports': ['Coach Michael Richardson', 'Jessica Martinez', 'Chris Johnson'],
             'music': ['Dr. David Chen', 'Maria Rodriguez', 'Emily Taylor', 'Justin Timberlake'],
-            'world': ['Dr. James Wilson', 'Sarah Thompson', 'Michael Davis', 'Anna Petrova']
+            'world': ['Dr. James Wilson', 'Sarah Thompson', 'Michael Davis', 'Anna Petrova'],
+            'advice': ['Gabby Thompson'],
+            'mens_dating': ['Guy Breux'],
+            'womens_dating': ['Gabby Thompson']
         }
         
         category_authors = authors.get(category, authors['science'])
