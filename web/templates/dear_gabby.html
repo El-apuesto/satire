@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+
+{% block title %}Dear Gabby - OK Crisis{% endblock %}
+
+{% block content %}
+<section class="advice-section">
+    <div class="container">
+        <div class="advice-header">
+            <h1 class="advice-title">Dear Gabby</h1>
+            <p class="advice-subtitle">Deadpan advice for people who should know better</p>
+        </div>
+        
+        <div class="advice-columns">
+            <div class="advice-column">
+                <div class="advice-item">
+                    <div class="question">
+                        <h3 class="question-title">Dear Gabby,</h3>
+                        <p class="question-text">My boyfriend keeps leaving his socks everywhere. On the couch, in the kitchen, sometimes in the refrigerator. I've tried everything - buying sock organizers, leaving notes, even throwing them away. He just buys more socks. What should I do?</p>
+                        <p class="question-signature">- Sockless in Seattle</p>
+                    </div>
+                    <div class="answer">
+                        <h4 class="answer-title">Dear Sockless,</h4>
+                        <p class="answer-text">Have you considered that your boyfriend is conducting a sophisticated behavioral experiment? The refrigerator socks suggest he's testing temperature effects on cotton blends. The couch socks are clearly studying fabric decay rates. This isn't a relationship problem - it's groundbreaking domestic science. Support his research and maybe co-author the paper.</p>
+                        <p class="answer-signature">- Gabby</p>
+                    </div>
+                </div>
+                
+                <div class="advice-item">
+                    <div class="question">
+                        <h3 class="question-title">Dear Gabby,</h3>
+                        <p class="question-text">My coworker keeps bringing in "healthy" snacks and leaving them in the break room. Yesterday it was kale chips. Last week it was cauliflower popcorn. Nobody eats them. They just sit there judging our regular chips. How do I make this stop?</p>
+                        <p class="question-signature">- Just Want Doritos</p>
+                    </div>
+                    <div class="answer">
+                        <h4 class="answer-title">Dear Just Want,</h4>
+                        <p class="answer-text">This is clearly a performance art piece about workplace wellness culture. The uneaten snacks represent society's rejection of performative health consciousness. Your coworker is making a powerful statement about consumer choice and authenticity. You should write an art review and display it next to the snacks.</p>
+                        <p class="answer-signature">- Gabby</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="advice-column">
+                <div class="advice-item">
+                    <div class="question">
+                        <h3 class="question-title">Dear Gabby,</h3>
+                        <p class="question-text">My cat has started watching political news channels and now has strong opinions about fiscal policy. He meows aggressively during tax discussions and refuses to eat unless you acknowledge his position on infrastructure spending. Is this normal?</p>
+                        <p class="question-signature">- Concerned Cat Parent</p>
+                    </div>
+                    <div class="answer">
+                        <h4 class="answer-title">Dear Concerned,</h4>
+                        <p class="answer-text">Your cat is obviously preparing for a career in economics or political commentary. The meowing during fiscal policy discussions is sophisticated economic analysis. The hunger strike is a legitimate protest mechanism. You should set up a tiny podium and start recording his policy positions. This could be the next big political commentator.</p>
+                        <p class="answer-signature">- Gabby</p>
+                    </div>
+                </div>
+                
+                <div class="advice-item">
+                    <div class="question">
+                        <h3 class="question-title">Dear Gabby,</h3>
+                        <p class="question-text">My neighbor keeps leaving anonymous notes on my car about my parking. They're getting increasingly passive-aggressive. Yesterday's note just said "Your alignment challenges traditional concepts of space-time." What does that even mean?</p>
+                        <p class="question-signature">- Confused Parker</p>
+                    </div>
+                    <div class="answer">
+                        <h4 class="answer-title">Dear Confused,</h4>
+                        <p class="answer-text">Your neighbor is obviously a philosophy major conducting real-world experiments on existential parking theory. Your car is their canvas, your parking choices are their data points. This isn't about parking anymore - it's about the fundamental nature of existence. Start leaving philosophical notes back about their lawn mowing patterns.</p>
+                        <p class="answer-signature">- Gabby</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="submit-question">
+            <h2 class="submit-title">Have a Crisis?</h2>
+            <p class="submit-text">Send your problems to Gabby. She probably won't help, but it's entertaining.</p>
+            <button class="submit-btn">Submit Your Crisis</button>
+        </div>
+    </div>
+</section>
+
+<style>
+.advice-section {
+    padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+    background: var(--light-gray);
+}
+
+.advice-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.advice-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--red-accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.advice-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-xl);
+}
+
+.advice-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.advice-item {
+    background: var(--pure-white);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.question-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--soft-black);
+    margin-bottom: var(--spacing-md);
+}
+
+.question-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.question-signature {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--red-accent);
+    font-weight: 600;
+    text-align: right;
+}
+
+.answer {
+    margin-bottom: var(--spacing-lg);
+}
+
+.answer-title {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--soft-black);
+    margin-bottom: var(--spacing-md);
+}
+
+.answer-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.answer-signature {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--dark-gray);
+    font-weight: 600;
+    text-align: right;
+}
+
+.submit-question {
+    text-align: center;
+    background: var(--pure-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.submit-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--red-accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.submit-text {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-lg);
+}
+
+.submit-btn {
+    background: var(--red-accent);
+    color: var(--pure-white);
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: var(--soft-black);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .advice-columns {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .advice-title {
+        font-size: 2rem;
+    }
+    
+    .advice-item {
+        padding: var(--spacing-lg);
+    }
+}
+</style>
+{% endblock %}

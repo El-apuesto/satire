@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}Romance & Dating - OK Crisis{% endblock %}
+
+{% block content %}
+<section class="category-section">
+    <div class="container">
+        <div class="category-header">
+            <h1 class="category-title">Romance & Dating</h1>
+            <p class="category-subtitle">Because modern love is a crisis</p>
+        </div>
+        
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="article-image">
+                    <img src="/static/1.jpeg" alt="Romance article">
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">Romance</span>
+                        <span class="article-date">Today</span>
+                    </div>
+                    <h3 class="article-title">
+                        <a href="#">Study Finds Men Who Actually Listen to Women 300% More Likely to Be Called 'Nice Guys' and Finish Last</a>
+                    </h3>
+                    <p class="article-excerpt">Groundbreaking research reveals that men who genuinely listen to their partners are significantly more likely to be described as "really sweet" while being systematically excluded from exciting dating opportunities.</p>
+                    <div class="article-author">
+                        <span class="author-name">By Relationship Analyst</span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image">
+                    <img src="/static/2.jpg" alt="Dating advice">
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">Dating</span>
+                        <span class="article-date">Today</span>
+                    </div>
+                    <h3 class="article-title">
+                        <a href="#">Woman Reveals She's Been 'Taking It Slow' for Three Years, Still Not Ready to Define Relationship</a>
+                    </h3>
+                    <p class="article-excerpt">Local woman Sarah Mitchell announced today that while she values the connection she shares with boyfriend Mark, she's not ready to rush into anything serious, despite having lived together since 2021.</p>
+                    <div class="article-author">
+                        <span class="author-name">By Dating Correspondent</span>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="article-card">
+                <div class="article-image">
+                    <img src="/static/3.jpg" alt="Modern dating">
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">Modern Love</span>
+                        <span class="article-date">Today</span>
+                    </div>
+                    <h3 class="article-title">
+                        <a href="#">Dating App Introduces 'Ghosting' Feature That Automatically Matches You with People Who Will Disappear After One Date</a>
+                    </h3>
+                    <p class="article-excerpt">Innovation Labs unveiled groundbreaking new dating technology today that streamlines the ghosting process by automatically matching users with partners who will vanish without explanation after exactly one date.</p>
+                    <div class="article-author">
+                        <span class="author-name">By Tech Reporter</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<style>
+.category-section {
+    padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.category-title {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--red-accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.category-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-xl);
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.article-card {
+    background: var(--pure-white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.article-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article-content {
+    padding: var(--spacing-lg);
+}
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.category-tag {
+    background: var(--red-accent);
+    color: var(--pure-white);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.article-date {
+    color: var(--medium-gray);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+}
+
+.article-title {
+    margin-bottom: var(--spacing-md);
+}
+
+.article-title a {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--soft-black);
+    text-decoration: none;
+    line-height: 1.3;
+}
+
+.article-title a:hover {
+    color: var(--red-accent);
+}
+
+.article-excerpt {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.article-author {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+}
+
+@media (max-width: 768px) {
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .category-title {
+        font-size: 2rem;
+    }
+}
+</style>
+{% endblock %}

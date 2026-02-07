@@ -1,16 +1,74 @@
 {% extends "base.html" %}
 
-{% block title %}The Satire Standard - Premium News Satire{% endblock %}
-{% block description %}The premier destination for sophisticated satire and elegant absurdity in modern journalism.{% endblock %}
+{% block title %}OK Crisis - Premium News Satire{% endblock %}
+{% block description %}OK Crisis delivers premium news satire that reveals uncomfortable truths about power, hypocrisy, and systemic dysfunction.{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section" style="background: linear-gradient(135deg, var(--deep-black) 0%, var(--rich-black) 100%); color: white; padding: 6rem 0; text-align: center;">
+<section class="hero-section">
     <div class="container">
-        <h1 style="font-size: 4rem; font-weight: 900; margin-bottom: 1rem; line-height: 1.1;">The Satire Standard</h1>
-        <p style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: var(--primary-gold); margin-bottom: 2rem;">Where Absurdity Meets Elegance</p>
-        <div style="max-width: 600px; margin: 0 auto; font-size: 1.3rem; line-height: 1.6; opacity: 0.9;">
-            Premium satire for the discerning reader who understands that truth is stranger than fiction, and fiction is often more truthful.
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="/static/logo.png" alt="OK Crisis" class="hero-logo-img">
+            </div>
+            <h1 class="hero-title">OK Crisis</h1>
+            <p class="hero-subtitle">Where Truth Meets Absurdity</p>
+            <p class="hero-description">Premium satire for the discerning reader who appreciates uncomfortable truths about modern life.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Content Sections -->
+<section class="content-sections">
+    <div class="container">
+        <div class="sections-grid">
+            <!-- Romance Section -->
+            <div class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-heart"></i>
+                    Romance & Dating
+                </h2>
+                <p class="section-description">Because modern love is a crisis waiting to happen.</p>
+                <div class="section-links">
+                    <a href="{{ url_for('romance') }}" class="section-link">Read Romance Articles</a>
+                </div>
+            </div>
+            
+            <!-- Dear Gabby Section -->
+            <div class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-comment-dots"></i>
+                    Dear Gabby
+                </h2>
+                <p class="section-description">Deadpan advice for people who should know better.</p>
+                <div class="section-links">
+                    <a href="{{ url_for('dear_gabby') }}" class="section-link">Get Advice</a>
+                </div>
+            </div>
+            
+            <!-- Politics Section -->
+            <div class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-landmark"></i>
+                    Politics
+                </h2>
+                <p class="section-description">Where hypocrisy meets opportunity.</p>
+                <div class="section-links">
+                    <a href="{{ url_for('category', category='politics') }}" class="section-link">Political Satire</a>
+                </div>
+            </div>
+            
+            <!-- Technology Section -->
+            <div class="content-section">
+                <h2 class="section-title">
+                    <i class="fas fa-microchip"></i>
+                    Technology
+                </h2>
+                <p class="section-description">Innovation that makes life more complicated.</p>
+                <div class="section-links">
+                    <a href="{{ url_for('category', category='technology') }}" class="section-link">Tech Satire</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -138,3 +196,141 @@
     </div>
 </section>
 {% endblock %}
+
+<style>
+/* Hero Section Styles */
+.hero-section {
+    background: linear-gradient(135deg, var(--deep-black) 0%, var(--rich-black) 100%);
+    color: white;
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-logo {
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-logo-img {
+    height: 80px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.1;
+    color: var(--red-accent);
+}
+
+.hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-gold);
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-description {
+    font-family: var(--font-sans);
+    font-size: 1.3rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Content Sections */
+.content-sections {
+    padding: var(--spacing-xl) 0;
+    background: var(--light-gray);
+}
+
+.sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.content-section {
+    background: var(--pure-white);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xl);
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.content-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--soft-black);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.section-title i {
+    color: var(--red-accent);
+    font-size: 1.25rem;
+}
+
+.section-description {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+}
+
+.section-link {
+    background: var(--red-accent);
+    color: var(--pure-white);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.section-link:hover {
+    background: var(--soft-black);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .sections-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .content-section {
+        padding: var(--spacing-lg);
+    }
+}
+</style>
