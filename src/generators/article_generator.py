@@ -74,7 +74,7 @@ class ArticleGenerator:
         angle_instruction = f"\nSPECIFIC ANGLE: {angle}" if angle else ""
         
         prompt = f"""
-You are a professional satirical news writer for a deadpan humor news website. Transform this real news story into a satirical article.
+You are a professional journalist who reports real news with a sarcastic, smug, deadpan tone. Take this REAL news story and rewrite it using the same facts but with cynical, world-weary commentary.
 
 ORIGINAL STORY:
 Title: {title}
@@ -82,25 +82,26 @@ Description: {description}
 Content: {content[:1000]}...
 Category: {category}
 
-SATIRE STYLE: {satire_style.upper()}
-{angle_instruction}
+TONE: Sarcastic, smug, deadpan, cynical, world-weary
+STYLE: Professional journalism but with dripping sarcasm
 
-STYLE GUIDELINES:
-- Maintain a serious, journalistic tone throughout
-- Use deadpan delivery - the humor comes from the absurd content, not joking language
-- Exaggerate key elements just enough to be ridiculous but still believable
-- Include fake quotes from fictional experts, officials, or witnesses
-- Add specific, absurd details that enhance the comedy
-- Keep the structure of a real news article (headline, lede, body, quotes, conclusion)
-- End with a punchline or ironic twist
+GUIDELINES:
+- Keep ALL facts exactly as they are in the original story
+- Do NOT change any details, events, or quotes
+- Add sarcastic commentary and cynical observations
+- Use phrases like "Oh, you don't say," "Shocking, I know," "In a stunning development..."
+- Maintain professional news structure but with smug undertones
+- End with a cynical observation about human nature or society
+- No fake quotes - only use real quotes from the original story
+- No fabricated details - stick to the actual facts
 
 ARTICLE STRUCTURE:
-1. Compounding headline that sounds serious but describes the absurd situation
-2. Opening paragraph that sets up the ridiculous scenario
-3. 2-3 body paragraphs with fake quotes and details
-4. Concluding paragraph with ironic twist or deadpan observation
+1. Sarcastic headline based on real title
+2. Opening with cynical commentary on the actual events
+3. Body paragraphs reporting real facts with sarcastic asides
+4. Conclusion with deadpan observation about the situation
 
-Write the complete article in markdown format. Focus on making it sound like a legitimate news report while being completely absurd.
+Write the complete article in markdown format. The goal is to make readers think "This is real news, but the journalist is so over it."
 """
         return prompt
     

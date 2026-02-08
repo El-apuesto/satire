@@ -83,7 +83,7 @@ class ComicGenerator:
         content_sample = content[:800]  # First 800 chars for context
         
         prompt = f"""
-Create a 3-panel comic strip dialogue based on this satirical news article:
+Create a 3-panel comic strip dialogue based on this REAL news story, but with sarcastic, cynical commentary.
 
 Title: {title}
 Content: {content_sample}
@@ -93,9 +93,10 @@ REQUIREMENTS:
 - Use these characters: Reporter (Skip McGee), Expert (Dr. Winklestein), Official (Bartholomew Puddington), or Citizen (Mildred Henderson)
 - Each panel should have: [CHARACTER]: [dialogue]
 - Keep dialogue short and punchy (1-2 sentences per panel)
-- Build to a punchline in panel 3
-- Maintain deadpan, absurd humor style
-- Dialogue should reflect the satirical nature of the article
+- Build to a cynical punchline in panel 3
+- Maintain sarcastic, world-weary tone
+- Reference the actual news events but with cynical commentary
+- No fake scenarios - stick to the real news context
 
 Format your response exactly like this:
 PANEL 1:
@@ -107,7 +108,7 @@ PANEL 2:
 PANEL 3:
 [CHARACTER NAME]: [dialogue]
 
-Choose 2-3 different characters and create a mini-story that relates to the article's theme.
+Choose 2-3 different characters and create a mini-story that comments sarcastically on the real news situation.
 """
         
         try:

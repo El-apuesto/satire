@@ -95,7 +95,7 @@ class StoryEvaluator:
         """Create the evaluation prompt for the AI."""
         
         prompt = f"""
-Evaluate this news story for satirical potential on a scale of 0-10.
+Evaluate this REAL news story for sarcastic reporting potential on a scale of 0-10.
 
 STORY DETAILS:
 Title: {title}
@@ -104,17 +104,17 @@ Content: {content[:500]}...
 Category: {category}
 
 EVALUATION CRITERIA:
-- Absurdity factor (0-2): How inherently ridiculous or unbelievable is the situation?
-- Irony potential (0-2): How much dramatic irony or situational irony exists?
-- Exaggeration potential (0-2): How easily can the elements be exaggerated for comedic effect?
-- Social commentary value (0-2): Does it touch on relatable social issues or human behavior?
-- Parody possibilities (0-2): How well does it lend itself to parodying news tropes or genres?
+- Irony factor (0-2): How much inherent irony or absurdity exists in the real situation?
+- Commentary potential (0-2): How much room for cynical observations about human behavior?
+- Smug reporting value (0-2): How well does it lend itself to world-weary commentary?
+- Social relevance (0-2): Does it touch on relatable societal patterns or hypocrisies?
+- Deadpan delivery potential (0-2): How effectively can sarcasm be delivered with a straight face?
 
 SCORING:
-0-2: Low satirical potential (very serious, straightforward news)
-3-5: Moderate potential (some unusual elements but mostly factual)
-6-8: Good potential (clear absurd or ironic elements)
-9-10: Excellent potential (highly satirizable, perfect for comedy)
+0-2: Low sarcastic potential (straightforward, factual news)
+3-5: Moderate potential (some ironic elements but mostly serious)
+6-8: Good potential (clear opportunities for cynical commentary)
+9-10: Excellent potential (perfect for sarcastic, smug reporting)
 
 Please analyze the story and provide:
 1. A numeric score from 0-10

@@ -48,8 +48,8 @@ class Config:
     # News Categories
     NEWS_CATEGORIES = ['world', 'politics', 'business', 'sports', 'entertainment', 'lifestyle']
     
-    # Satire Styles
-    SATIRE_STYLES = ['deadpan', 'absurdist', 'ironic', 'parody', 'exaggeration']
+    # Satire Styles (now Sarcastic Reporting Styles)
+    SARCASTIC_STYLES = ['sarcastic', 'smug', 'deadpan', 'cynical', 'world-weary']
     
     # Image Dimensions
     ARTICLE_IMAGE_WIDTH = 800
