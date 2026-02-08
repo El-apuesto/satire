@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}All Articles - The Daily Absurdity{% endblock %}
+
+{% block content %}
+<div class="text-center mb-3">
+    <h1>All Articles</h1>
+    <p>Every fabricated story we've ever published</p>
+</div>
+
+{% if articles %}
+<div class="grid grid-2">
+    {% for article in articles %}
+    <div class="article-card">
+        {% if article.image_path %}
+        <img src="{{ article.image_path }}" alt="{{ article.title }}" class="article-image">
+        {% endif %}
+        <div class="article-content">
+            <h2 class="article-title">
+                <a href="/article/{{ loop.index0 }}">{{ article.title }}</a>
+            </h2>
+            <div class="article-meta">
+                By {{ article.byline }} | {{ article.category.title() if article.category else 'News' }} | 
+                {{ article.created_at[:10] if article.created_at else 'Today' }} | 
+                {{ article.word_count if article.word_count else 0 }} words
+            </div>
+            <div class="article-excerpt">
+                {{ article.content[:200] }}{% if article.content|length > 200 %}...{% endif %}
+            </div>
+            <a href="/article/{{ loop.index0 }}" class="read-more">Read More</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center">
+    <h2>No Articles Yet</h2>
+    <p>Our automated satire system hasn't generated any articles yet.</p>
+    <p>This is either because:</p>
+    <ul style="text-align: left; max-width: 500px; margin: 20px auto;">
+        <li>The system hasn't run yet</li>
+        <li>All API keys are not configured</li>
+        <li>The news today was too boring to satirize</li>
+        <li>Our AI is currently contemplating the absurdity of existence</li>
+    </ul>
+    <p>Check back later for completely fabricated news!</p>
+</div>
+{% endif %}
+{% endblock %}

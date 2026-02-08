@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}The Daily Absurdity - Satire News{% endblock %}
+
+{% block content %}
+<div class="text-center mb-3">
+    <h1>Welcome to The Daily Absurdity</h1>
+    <p>Your trusted source for completely fabricated news since yesterday</p>
+</div>
+
+{% if articles %}
+<div class="grid grid-2">
+    {% for article in articles[:2] %}
+    <div class="article-card">
+        {% if article.image_path %}
+        <img src="{{ article.image_path }}" alt="{{ article.title }}" class="article-image">
+        {% endif %}
+        <div class="article-content">
+            <h2 class="article-title">
+                <a href="/article/{{ loop.index0 }}">{{ article.title }}</a>
+            </h2>
+            <div class="article-meta">
+                By {{ article.byline }} | {{ article.category.title() if article.category else 'News' }} | 
+                {{ article.created_at[:10] if article.created_at else 'Today' }}
+            </div>
+            <div class="article-excerpt">
+                {{ article.content[:200] }}{% if article.content|length > 200 %}...{% endif %}
+            </div>
+            <a href="/article/{{ loop.index0 }}" class="read-more">Read More</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if articles[2:] %}
+<div class="grid grid-3 mt-3">
+    {% for article in articles[2:] %}
+    <div class="article-card">
+        {% if article.image_path %}
+        <img src="{{ article.image_path }}" alt="{{ article.title }}" class="article-image">
+        {% endif %}
+        <div class="article-content">
+            <h3 class="article-title">
+                <a href="/article/{{ loop.index0 + 2 }}">{{ article.title }}</a>
+            </h3>
+            <div class="article-meta">
+                {{ article.category.title() if article.category else 'News' }} | 
+                {{ article.created_at[:10] if article.created_at else 'Today' }}
+            </div>
+            <div class="article-excerpt">
+                {{ article.content[:150] }}{% if article.content|length > 150 %}...{% endif %}
+            </div>
+            <a href="/article/{{ loop.index0 + 2 }}" class="read-more">Read More</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% else %}
+<div class="text-center">
+    <h2>No Articles Yet</h2>
+    <p>Our automated satire system is currently fabricating news. Check back soon!</p>
+    <p>In the meantime, please enjoy this blank space where fake news should be.</p>
+</div>
+{% endif %}
+
+{% if comics %}
+<div class="mt-3">
+    <h2 class="text-center mb-3">Latest Comics</h2>
+    <div class="grid grid-3">
+        {% for comic in comics %}
+        <div class="comic-strip">
+            <h3 class="comic-title">{{ comic.title if comic.title else 'Daily Comic' }}</h3>
+            {% if comic.image_path %}
+            <img src="{{ comic.image_path }}" alt="{{ comic.title if comic.title else 'Comic' }}">
+            {% else %}
+            <div class="article-content">
+                <p>Comic coming soon...</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-3">
+        <a href="/comics" class="btn">View All Comics</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
