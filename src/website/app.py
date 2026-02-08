@@ -50,8 +50,9 @@ class Website:
         articles = self.load_articles()
         articles.append(article)
         
-        # Keep only the most recent 50 articles
-        articles = articles[-50:]
+        # Keep only the most recent articles (configurable)
+        from config.settings import Config
+        articles = articles[-Config.MAX_ARTICLES_STORED:]
         
         with open(self.articles_file, 'w') as f:
             json.dump(articles, f, indent=2)
@@ -61,8 +62,9 @@ class Website:
         comics = self.load_comics()
         comics.append(comic)
         
-        # Keep only the most recent 20 comics
-        comics = comics[-20:]
+        # Keep only the most recent comics (configurable)
+        from config.settings import Config
+        comics = comics[-Config.MAX_COMICS_STORED:]
         
         with open(self.comics_file, 'w') as f:
             json.dump(comics, f, indent=2)

@@ -297,11 +297,46 @@ class AutomationScheduler:
                                 os.remove(filepath)
                                 logger.info(f"Cleaned up old file: {filepath}")
             
+            # Clean up old images (keep last configured amounts)
+            self._cleanup_old_images()
+            
             # Log system status
             logger.info("System cleanup completed")
             
         except Exception as e:
             logger.error(f"Error during cleanup: {e}")
+    
+    def _cleanup_old_images(self):
+        """Clean up old image files to prevent storage overflow."""
+        try:
+            from config.settings import Config
+            
+            # Clean up article images (keep last configured amount)
+            images_dir = "static/images"
+            if os.path.exists(images_dir):
+                image_files = [f for f in os.listdir(images_dir) if f.endswith(('.jpg', '.png', '.jpeg'))]
+                image_files.sort(key=lambda x: os.path.getmtime(os.path.join(images_dir, x)), reverse=True)
+                
+                # Remove oldest images beyond limit
+                for old_image in image_files[Config.MAX_IMAGES_STORED:]:
+                    old_path = os.path.join(images_dir, old_image)
+                    os.remove(old_path)
+                    logger.info(f"Removed old image: {old_path}")
+            
+            # Clean up comic images (keep last configured amount)
+            comics_dir = "static/comics"
+            if os.path.exists(comics_dir):
+                comic_files = [f for f in os.listdir(comics_dir) if f.endswith(('.jpg', '.png', '.jpeg'))]
+                comic_files.sort(key=lambda x: os.path.getmtime(os.path.join(comics_dir, x)), reverse=True)
+                
+                # Remove oldest comics beyond limit
+                for old_comic in comic_files[Config.MAX_COMIC_IMAGES_STORED:]:
+                    old_path = os.path.join(comics_dir, old_comic)
+                    os.remove(old_path)
+                    logger.info(f"Removed old comic: {old_comic}")
+                    
+        except Exception as e:
+            logger.error(f"Error cleaning up images: {e}")
     
     def start_scheduler(self):
         """Start the automated scheduler."""

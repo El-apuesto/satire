@@ -38,6 +38,12 @@ class Config:
     COMICS_PER_CYCLE = int(os.getenv('COMICS_PER_CYCLE', 2))
     MAX_NEWS_STORIES = int(os.getenv('MAX_NEWS_STORIES', 30))  # Increased to 30 (5 per category x 6 categories)
     
+    # Storage Limits
+    MAX_ARTICLES_STORED = int(os.getenv('MAX_ARTICLES_STORED', 50))
+    MAX_COMICS_STORED = int(os.getenv('MAX_COMICS_STORED', 20))
+    MAX_IMAGES_STORED = int(os.getenv('MAX_IMAGES_STORED', 100))
+    MAX_COMIC_IMAGES_STORED = int(os.getenv('MAX_COMIC_IMAGES_STORED', 50))
+    
     # News Categories
     NEWS_CATEGORIES = ['world', 'politics', 'business', 'sports', 'entertainment', 'lifestyle']
     
