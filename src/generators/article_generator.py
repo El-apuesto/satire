@@ -11,6 +11,7 @@ class ArticleGenerator:
     
     def __init__(self):
         if Config.GEMINI_API_KEY:
+            import google.generativeai as genai
             genai.configure(api_key=Config.GEMINI_API_KEY)
             self.model = genai.GenerativeModel(Config.GEMINI_MODEL)
         else:

@@ -13,6 +13,7 @@ class Config:
     # Gemini AI Configuration
     GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
     GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.0-flash')
+    GEMINI_API_URL = os.getenv('GEMINI_API_URL', 'https://generativelanguage.googleapis.com/v1beta/models')
     
     # Image Generation Configuration
     REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')

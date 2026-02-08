@@ -4,7 +4,11 @@ import os
 from datetime import datetime
 from config.settings import Config
 
-app = Flask(__name__)
+# Get the project root directory (3 levels up from this file)
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+template_dir = os.path.join(project_root, 'templates')
+
+app = Flask(__name__, template_folder=template_dir)
 app.config['DEBUG'] = Config.WEBSITE_DEBUG
 
 class Website:
