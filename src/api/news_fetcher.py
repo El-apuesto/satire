@@ -44,7 +44,7 @@ class NewsFetcher:
                     'category': category,
                     'from_date': start_date.strftime('%Y-%m-%d'),
                     'to_date': end_date.strftime('%Y-%m-%d'),
-                    'size': min(10, max_stories // len(self.categories) + 5)
+                    'size': 5  # Get 5 stories per category
                 }
                 
                 logger.info(f"Fetching {category} news from {start_date} to {end_date}")

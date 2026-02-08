@@ -34,9 +34,9 @@ class Config:
     LOG_FILE = os.getenv('LOG_FILE', 'logs/satire_news.log')
     
     # Content Configuration
-    ARTICLES_PER_CYCLE = int(os.getenv('ARTICLES_PER_CYCLE', 3))
+    ARTICLES_PER_CYCLE = int(os.getenv('ARTICLES_PER_CYCLE', 8))  # Increased to 8 for 2-5 per category
     COMICS_PER_CYCLE = int(os.getenv('COMICS_PER_CYCLE', 2))
-    MAX_NEWS_STORIES = int(os.getenv('MAX_NEWS_STORIES', 25))
+    MAX_NEWS_STORIES = int(os.getenv('MAX_NEWS_STORIES', 30))  # Increased to 30 (5 per category x 6 categories)
     
     # News Categories
     NEWS_CATEGORIES = ['world', 'politics', 'business', 'sports', 'entertainment', 'lifestyle']
