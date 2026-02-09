@@ -1,6 +1,9 @@
-flask==2.3.3
-python-dotenv==1.0.0
-requests==2.31.0
-groq==0.11.0
-Pillow==10.4.0
+flask
+requests
+python-dotenv
+groq
+google-generativeai
+replicate
+Pillow
+schedule
 gunicorn==21.2.0
