@@ -4,6 +4,6 @@ python-dotenv
 groq
 google-generativeai
 replicate
-Pillow
+Pillow==10.0.0
 schedule
 gunicorn==21.2.0
