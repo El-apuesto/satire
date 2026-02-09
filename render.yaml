@@ -7,9 +7,9 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn pythonanywhere_app:app
     envVars:
-      - key: GROQ_API_KEY
-        sync: false
       - key: NEWSDATA_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
         sync: false
       - key: GEMINI_API_KEY
         sync: false
@@ -30,9 +30,9 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py scheduler
     envVars:
-      - key: GROQ_API_KEY
-        sync: false
       - key: NEWSDATA_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
         sync: false
       - key: GEMINI_API_KEY
         sync: false
