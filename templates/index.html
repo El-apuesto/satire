@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}OK Crisis - News{% endblock %}
+
+{% block content %}
+<div class="text-center mb-3">
+    <!-- Main content will go here -->
+</div>
+
+{% if articles %}
+<div class="grid grid-2">
+    {% for article in articles[:2] %}
+    <div class="article-card">
+        {% if article.image_path %}
+        <img src="{{ article.image_path }}" alt="{{ article.title }}" class="article-image">
+        {% endif %}
+        <div class="article-content">
+            <h2 class="article-title">
+                <a href="/article/{{ loop.index0 }}">{{ article.title }}</a>
+            </h2>
+            <p class="article-meta">{{ article.byline }} | {{ article.published_at }}</p>
+            <p class="article-excerpt">{{ article.content[:150] }}...</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if comics %}
+<div class="comics-section">
+    <h2>Latest Comics</h2>
+    <div class="grid grid-3">
+        {% for comic in comics[:3] %}
+        <div class="comic-card">
+            {% if comic.image_path %}
+                <img src="{{ comic.image_path }}" alt="{{ comic.title }}" class="comic-image">
+            {% endif %}
+            <h3 class="comic-title">{{ comic.title }}</h3>
+            <p class="comic-description">{{ comic.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if not articles and not comics %}
+<div class="text-center">
+    <h2>No Articles Yet</h2>
+    <p>Run <code>python main.py test</code> to generate some articles!</p>
+</div>
+{% endif %}
+
+{% endblock %}
