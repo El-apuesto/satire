@@ -89,6 +89,28 @@ def article_detail(article_id):
     else:
         return "Article not found", 404
 
+@app.route('/run-cycle', methods=['POST'])
+def run_cycle():
+    """Trigger manual news cycle via webhook."""
+    import subprocess
+    import json
+    
+    try:
+        # Run the automation
+        result = subprocess.run(['python', 'main.py', 'manual'], 
+                              capture_output=True, text=True, timeout=300)
+        
+        return jsonify({
+            'success': True,
+            'output': result.stdout,
+            'error': result.stderr
+        })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
 @app.route('/api/articles')
 def api_articles():
     """API endpoint for articles."""
