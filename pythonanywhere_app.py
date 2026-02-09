@@ -9,43 +9,10 @@ app = Flask(__name__)
 # Set template path to current directory
 app.template_folder = 'templates'
 
-class Website:
-    def __init__(self):
-        self.data_dir = "data"
-        self.articles_file = os.path.join(self.data_dir, "articles.json")
-        self.comics_file = os.path.join(self.data_dir, "comics.json")
-        
-        # Ensure data directory exists
-        os.makedirs(self.data_dir, exist_ok=True)
-        
-        # Initialize data files if they don't exist
-        self._init_data_files()
-    
-    def _init_data_files(self):
-        """Initialize empty data files if they don't exist."""
-        if not os.path.exists(self.articles_file):
-            with open(self.articles_file, 'w') as f:
-                json.dump([], f)
-        
-        if not os.path.exists(self.comics_file):
-            with open(self.comics_file, 'w') as f:
-                json.dump([], f)
-    
-    def load_articles(self):
-        """Load articles from JSON file."""
-        try:
-            with open(self.articles_file, 'r') as f:
-                return json.load(f)
-        except:
-            return []
-    
-    def load_comics(self):
-        """Load comics from JSON file."""
-        try:
-            with open(self.comics_file, 'r') as f:
-                return json.load(f)
-        except:
-            return []
+# Import the same Website class used by automation
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from src.website.app import Website
 
 website = Website()
 
