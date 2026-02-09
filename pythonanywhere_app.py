@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 import json
 import os
 from datetime import datetime
@@ -89,11 +89,20 @@ def article_detail(article_id):
     else:
         return "Article not found", 404
 
-@app.route('/run-cycle', methods=['POST'])
+@app.route('/run-cycle', methods=['GET', 'POST'])
 def run_cycle():
     """Trigger manual news cycle via webhook."""
     import subprocess
     import json
+    
+    if request.method == 'GET':
+        return '''
+        <h1>OK Crisis Manual Cycle Trigger</h1>
+        <p>Use POST request to run cycle, or click the button below:</p>
+        <form method="POST">
+            <button type="submit">Run News Cycle</button>
+        </form>
+        '''
     
     try:
         # Run the automation
