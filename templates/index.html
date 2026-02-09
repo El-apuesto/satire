@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}OK Crisis - News{% endblock %}
+{% block title %}LUXE - Home{% endblock %}
 
 {% block content %}
 <div class="text-center mb-3">
@@ -44,9 +44,9 @@
 {% endif %}
 
 {% if not articles and not comics %}
-<div class="text-center">
-    <h2>No Articles Yet</h2>
-    <p>Run <code>python main.py test</code> to generate some articles!</p>
+<div class="text-center" style="padding: 80px 0;">
+    <h2 style="font-size: 2em; font-weight: 300; margin-bottom: 20px; color: #1a1a1a;">No Articles Yet</h2>
+    <p style="color: #888; font-size: 1.1em;">Visit <a href="/run-cycle" style="color: #1a1a1a; text-decoration: underline;">Run Cycle</a> to generate premium content</p>
 </div>
 {% endif %}
 
