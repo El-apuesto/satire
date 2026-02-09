@@ -89,7 +89,7 @@ def article_detail(article_id):
     else:
         return "Article not found", 404
 
-@app.route('/run-cycle', methods=['GET', 'POST'])
+@app.route('/run-cycle')
 def run_cycle():
     """Trigger manual news cycle via webhook."""
     import subprocess
