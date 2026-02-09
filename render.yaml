@@ -20,7 +20,7 @@ services:
       - key: UNSPLASH_API_KEY
         sync: false
       - key: PYTHON_VERSION
-        value: 3.9.7
+        value: 3.9.16
 
   # Background Worker for Automation
   - type: worker
@@ -43,4 +43,4 @@ services:
       - key: UNSPLASH_API_KEY
         sync: false
       - key: PYTHON_VERSION
-        value: 3.9.7
+        value: 3.9.16
