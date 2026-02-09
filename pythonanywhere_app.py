@@ -98,8 +98,8 @@ def run_cycle():
     if request.method == 'GET':
         return '''
         <h1>OK Crisis Manual Cycle Trigger</h1>
-        <p>Use POST request to run cycle, or click the button below:</p>
-        <form method="POST">
+        <p>Click the button below to run a news cycle:</p>
+        <form method="GET" action="/run-cycle-now">
             <button type="submit">Run News Cycle</button>
         </form>
         '''
@@ -119,6 +119,29 @@ def run_cycle():
             'success': False,
             'error': str(e)
         }), 500
+
+@app.route('/run-cycle-now')
+def run_cycle_now():
+    """Actually run the cycle."""
+    import subprocess
+    import json
+    
+    try:
+        result = subprocess.run(['python', 'main.py', 'manual'], 
+                              capture_output=True, text=True, timeout=300)
+        
+        return f'''
+        <h1>News Cycle Complete!</h1>
+        <h2>Output:</h2>
+        <pre>{result.stdout}</pre>
+        <a href="/run-cycle">Run Another Cycle</a>
+        '''
+    except Exception as e:
+        return f'''
+        <h1>Error Running Cycle</h1>
+        <pre>{str(e)}</pre>
+        <a href="/run-cycle">Try Again</a>
+        '''
 
 @app.route('/api/articles')
 def api_articles():
