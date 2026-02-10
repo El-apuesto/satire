@@ -16,12 +16,12 @@ class ArticleGenerator:
     def __init__(self):
         if Config.GROQ_API_KEY:
             try:
-                # Try new API first
+                # Try minimal parameters
                 self.client = Groq(api_key=Config.GROQ_API_KEY)
             except TypeError as e:
                 if 'proxies' in str(e):
-                    # Fallback to older API if proxies error
-                    self.client = Groq(api_key=Config.GROQ_API_KEY, http_client=None)
+                    # Try without any extra parameters
+                    self.client = Groq(Config.GROQ_API_KEY)
                 else:
                     # Re-raise if different error
                     raise e
