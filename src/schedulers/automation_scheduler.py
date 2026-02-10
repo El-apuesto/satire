@@ -6,33 +6,17 @@ import os
 from datetime import datetime
 from typing import List, Dict, Optional
 
-# Import config separately to ensure it's available
-try:
-    from config.settings import Config
-    config_imported = True
-except ImportError as e:
-    print(f"Config import error: {e}")
-    Config = None
-    config_imported = False
+# Direct imports - no fallbacks needed
+from config.settings import Config
+from src.fetchers.news_fetcher import NewsFetcher
+from src.evaluators.story_evaluator import StoryEvaluator
+from src.generators.article_generator import ArticleGenerator
+from src.generators.image_generator import ImageGenerator
+from src.generators.comic_generator import ComicGenerator
+from src.website.app import Website
 
-# Import our modules - fix path issues
-try:
-    from src.fetchers.news_fetcher import NewsFetcher
-    from src.evaluators.story_evaluator import StoryEvaluator
-    from src.generators.article_generator import ArticleGenerator
-    from src.generators.image_generator import ImageGenerator
-    from src.generators.comic_generator import ComicGenerator
-    from src.website.app import Website
-    
-    # Create website instance
-    website = Website()
-    modules_imported = True
-except ImportError as e:
-    logger = logging.getLogger(__name__)
-    logger.error(f"Import error: {e}")
-    # Fallback for basic functionality
-    website = None
-    modules_imported = False
+# Create website instance
+website = Website()
 
 logger = logging.getLogger(__name__)
 
@@ -40,19 +24,11 @@ class AutomationScheduler:
     """Main automation system that runs the twice-daily news publishing cycle."""
     
     def __init__(self):
-        try:
-            self.news_fetcher = NewsFetcher()
-            self.story_evaluator = StoryEvaluator()
-            self.article_generator = ArticleGenerator()
-            self.image_generator = ImageGenerator()
-            self.comic_generator = ComicGenerator()
-        except Exception as e:
-            logger.error(f"Failed to initialize components: {e}")
-            self.news_fetcher = None
-            self.story_evaluator = None
-            self.article_generator = None
-            self.image_generator = None
-            self.comic_generator = None
+        self.news_fetcher = NewsFetcher()
+        self.story_evaluator = StoryEvaluator()
+        self.article_generator = ArticleGenerator()
+        self.image_generator = ImageGenerator()
+        self.comic_generator = ComicGenerator()
         
         # Ensure directories exist
         os.makedirs('logs', exist_ok=True)
