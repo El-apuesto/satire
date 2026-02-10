@@ -64,7 +64,7 @@ class ComicGenerator:
             Path to generated comic strip or None if failed
         """
         if not self.client:
-            logger.error("Groq model not available for comic generation")
+            logger.error("AI model not available for comic generation")
             return self._create_placeholder_comic(article_title)
         
         try:
