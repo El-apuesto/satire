@@ -4,7 +4,7 @@ import time
 import random
 from typing import List, Dict, Tuple
 from datetime import datetime
-from groq import Groq
+from anthropic import Anthropic
 from config.settings import Config
 
 logger = logging.getLogger(__name__)
@@ -14,8 +14,8 @@ class StoryEvaluator:
     
     def __init__(self):
         if Config.GROQ_API_KEY:
-            self.client = Groq(api_key=Config.GROQ_API_KEY)
-            self.model = "llama-3.1-8b-instant"
+            self.client = Anthropic(api_key=Config.GROQ_API_KEY)
+            self.model = "claude-3-5-sonnet-20241022"
             self.last_request_time = 0
             self.min_delay = 0.5  # 0.5 seconds between requests
         else:

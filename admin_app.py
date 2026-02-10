@@ -176,35 +176,22 @@ def api_comics():
     comics = website.load_comics()
     return jsonify(comics)
 
-@app.route('/debug_groq')
-def debug_groq():
-    """Debug Groq module contents."""
+@app.route('/debug_anthropic')
+def debug_anthropic():
+    """Debug Anthropic module contents."""
     try:
-        import groq
-        import os
-        
+        import anthropic
         debug_info = {
-            "groq_dir": dir(groq),
-            "groq_version": getattr(groq, '__version__', 'unknown'),
-            "groq_file": groq.__file__ if hasattr(groq, '__file__') else 'no file'
+            "anthropic_dir": dir(anthropic),
+            "anthropic_version": getattr(anthropic, '__version__', 'unknown'),
+            "anthropic_file": anthropic.__file__ if hasattr(anthropic, '__file__') else 'no file'
         }
-        
-        # Check what files are in groq package directory
-        groq_path = os.path.dirname(groq.__file__)
-        package_files = []
-        if os.path.exists(groq_path):
-            for file in os.listdir(groq_path):
-                if file.endswith('.py'):
-                    package_files.append(file)
-        
-        debug_info["package_files"] = package_files
-        debug_info["package_path"] = groq_path
         
         # Try to find what's available
         available_classes = []
-        for name in dir(groq):
-            obj = getattr(groq, name)
-            if hasattr(obj, '__call__') and ('Client' in name or 'Groq' in name):
+        for name in dir(anthropic):
+            obj = getattr(anthropic, name)
+            if hasattr(obj, '__call__') and ('Client' in name or 'Anthropic' in name):
                 available_classes.append({
                     "name": name,
                     "type": type(obj).__name__,
@@ -213,23 +200,13 @@ def debug_groq():
         
         debug_info["available_classes"] = available_classes
         
-        # Check if there are submodules
-        submodules = []
-        for name in dir(groq):
-            if not name.startswith('_'):
-                obj = getattr(groq, name)
-                if hasattr(obj, '__file__') and obj.__file__.endswith('__init__.py'):
-                    submodules.append(name)
-        
-        debug_info["submodules"] = submodules
-        
-        # Try importing from groq.resources or other common patterns
+        # Test Anthropic client
         try:
-            from groq.resources import Chat
-            debug_info["resources_import"] = "success"
-            debug_info["chat_class"] = str(Chat)
-        except ImportError as e:
-            debug_info["resources_import"] = str(e)
+            if Config.GROQ_API_KEY:
+                client = anthropic.Anthropic(api_key=Config.GROQ_API_KEY)
+                debug_info["anthropic_client"] = True
+        except Exception as e:
+            debug_info["anthropic_error"] = str(e)
         
         return jsonify(debug_info)
         
