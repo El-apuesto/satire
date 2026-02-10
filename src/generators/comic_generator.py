@@ -8,35 +8,14 @@ from config.settings import Config
 logger = logging.getLogger(__name__)
 
 def create_ai_client():
-    """Create AI client with Groq primary, OpenAI fallback."""
+    """Create AI client with Anthropic Claude."""
     if Config.GROQ_API_KEY:
-        # Disable proxy for OpenAI
-        import os
-        old_env = {}
-        proxy_vars = ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']
-        for key in proxy_vars:
-            if key in os.environ:
-                old_env[key] = os.environ.pop(key)
-        
-        # Set OpenAI to ignore proxies
-        os.environ['OPENAI_DISABLE_PROXY'] = 'true'
-        
         try:
-            # Try Groq first (better rate limits)
-            from groq import Groq
-            return Groq(api_key=Config.GROQ_API_KEY)
-        except (ImportError, TypeError) as e:
-            # Fallback to OpenAI if Groq fails
-            try:
-                from openai import OpenAI
-                return OpenAI(api_key=Config.GROQ_API_KEY)
-            except ImportError:
-                logger.error(f"Both Groq and OpenAI failed: {e}")
-                return None
-        finally:
-            # Restore environment variables
-            os.environ['OPENAI_DISABLE_PROXY'] = 'false'
-            os.environ.update(old_env)
+            from anthropic import Anthropic
+            return Anthropic(api_key=Config.GROQ_API_KEY)
+        except ImportError as e:
+            logger.error(f"Failed to import Anthropic: {e}")
+            return None
     return None
 
 class ComicGenerator:
@@ -45,7 +24,7 @@ class ComicGenerator:
     def __init__(self):
         if Config.GROQ_API_KEY:
             self.client = create_ai_client()
-            self.model = "gpt-3.5-turbo"
+            self.model = "claude-3-5-sonnet-20241022"
             self.last_request_time = 0
             self.min_delay = 0.5
         else:
