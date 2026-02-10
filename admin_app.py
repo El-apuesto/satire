@@ -191,7 +191,7 @@ def debug_groq():
         available_classes = []
         for name in dir(groq):
             obj = getattr(groq, name)
-            if hasattr(obj, '__call__') and 'Client' in name or 'Groq' in name:
+            if hasattr(obj, '__call__') and ('Client' in name or 'Groq' in name):
                 available_classes.append({
                     "name": name,
                     "type": type(obj).__name__,
@@ -199,6 +199,25 @@ def debug_groq():
                 })
         
         debug_info["available_classes"] = available_classes
+        
+        # Check if there are submodules
+        submodules = []
+        for name in dir(groq):
+            if not name.startswith('_'):
+                obj = getattr(groq, name)
+                if hasattr(obj, '__file__') and obj.__file__.endswith('__init__.py'):
+                    submodules.append(name)
+        
+        debug_info["submodules"] = submodules
+        
+        # Try importing from groq.resources or other common patterns
+        try:
+            from groq.resources import Chat
+            debug_info["resources_import"] = "success"
+            debug_info["chat_class"] = str(Chat)
+        except ImportError as e:
+            debug_info["resources_import"] = str(e)
+        
         return jsonify(debug_info)
         
     except Exception as e:
