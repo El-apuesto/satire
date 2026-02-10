@@ -181,11 +181,24 @@ def debug_groq():
     """Debug Groq module contents."""
     try:
         import groq
+        import os
+        
         debug_info = {
             "groq_dir": dir(groq),
             "groq_version": getattr(groq, '__version__', 'unknown'),
             "groq_file": groq.__file__ if hasattr(groq, '__file__') else 'no file'
         }
+        
+        # Check what files are in groq package directory
+        groq_path = os.path.dirname(groq.__file__)
+        package_files = []
+        if os.path.exists(groq_path):
+            for file in os.listdir(groq_path):
+                if file.endswith('.py'):
+                    package_files.append(file)
+        
+        debug_info["package_files"] = package_files
+        debug_info["package_path"] = groq_path
         
         # Try to find what's available
         available_classes = []
