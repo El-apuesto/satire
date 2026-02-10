@@ -19,9 +19,13 @@ class ComicGenerator:
             try:
                 # Try new API first
                 self.client = Groq(api_key=Config.GROQ_API_KEY)
-            except TypeError:
-                # Fallback to older API if new one fails
-                self.client = Groq(api_key=Config.GROQ_API_KEY, timeout=30)
+            except TypeError as e:
+                if 'proxies' in str(e):
+                    # Fallback to older API if proxies error
+                    self.client = Groq(api_key=Config.GROQ_API_KEY, http_client=None)
+                else:
+                    # Re-raise if different error
+                    raise e
             self.model = "llama-3.1-8b-instant"
             self.last_request_time = 0
             self.min_delay = 0.5
