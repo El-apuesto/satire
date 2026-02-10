@@ -11,8 +11,19 @@ def create_ai_client():
     """Create AI client with OpenAI instead of Groq."""
     if Config.GROQ_API_KEY:
         # Use OpenAI as fallback since Groq is broken
-        from openai import OpenAI
-        return OpenAI(api_key=Config.GROQ_API_KEY)
+        # Remove proxy environment variables that cause issues
+        import os
+        old_env = {}
+        for key in ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']:
+            if key in os.environ:
+                old_env[key] = os.environ.pop(key)
+        
+        try:
+            from openai import OpenAI
+            return OpenAI(api_key=Config.GROQ_API_KEY)
+        finally:
+            # Restore environment variables
+            os.environ.update(old_env)
     return None
 
 class ArticleGenerator:
