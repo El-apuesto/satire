@@ -176,6 +176,45 @@ def api_comics():
     comics = website.load_comics()
     return jsonify(comics)
 
+@app.route('/debug')
+def debug():
+    """Debug endpoint to check what's failing."""
+    try:
+        import sys
+        import os
+        from config.settings import Config
+        
+        debug_info = {
+            "python_version": sys.version,
+            "working_dir": os.getcwd(),
+            "env_vars": {
+                "NEWSDATA_API_KEY": bool(os.getenv('NEWSDATA_API_KEY')),
+                "GROQ_API_KEY": bool(os.getenv('GROQ_API_KEY')),
+                "PEXELS_API_KEY": bool(os.getenv('PEXELS_API_KEY')),
+                "REPLICATE_API_TOKEN": bool(os.getenv('REPLICATE_API_TOKEN'))
+            },
+            "config_loaded": bool(Config),
+            "groq_import": False,
+            "groq_client": False
+        }
+        
+        # Test Groq import
+        try:
+            from groq import Groq
+            debug_info["groq_import"] = True
+            
+            # Test Groq client
+            if Config.GROQ_API_KEY:
+                client = Groq(api_key=Config.GROQ_API_KEY)
+                debug_info["groq_client"] = True
+        except Exception as e:
+            debug_info["groq_error"] = str(e)
+        
+        return jsonify(debug_info)
+        
+    except Exception as e:
+        return jsonify({"error": str(e), "type": type(e).__name__})
+
 @app.route('/test')
 def test():
     """Simple test endpoint."""
