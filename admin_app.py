@@ -176,6 +176,22 @@ def api_comics():
     comics = website.load_comics()
     return jsonify(comics)
 
+@app.route('/test')
+def test():
+    """Simple test endpoint."""
+    return jsonify({"success": True, "message": "App is working!"})
+
+@app.route('/test_env')
+def test_env():
+    """Test environment variables."""
+    import os
+    return jsonify({
+        "newsdata": bool(os.getenv('NEWSDATA_API_KEY')),
+        "groq": bool(os.getenv('GROQ_API_KEY')),
+        "pexels": bool(os.getenv('PEXELS_API_KEY')),
+        "replicate": bool(os.getenv('REPLICATE_API_TOKEN'))
+    })
+
 @app.route('/run_cycle')
 def run_cycle():
     """Manually trigger a news generation cycle."""
