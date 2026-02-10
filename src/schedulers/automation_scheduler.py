@@ -118,9 +118,23 @@ class AutomationScheduler:
             
             logger.info(f"{cycle_name.title()} cycle completed successfully")
             
+            # Return results for admin app
+            return {
+                "articles": generated_articles,
+                "comics": generated_comics,
+                "editorial": editorial,
+                "success": True
+            }
+            
         except Exception as e:
             logger.error(f"Error in {cycle_name} cycle: {e}")
-            raise
+            return {
+                "articles": [],
+                "comics": [],
+                "editorial": None,
+                "success": False,
+                "error": str(e)
+            }
     
     def fetch_news_stories(self) -> List[Dict]:
         """Fetch news stories from various sources."""
