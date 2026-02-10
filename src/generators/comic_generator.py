@@ -8,9 +8,8 @@ from config.settings import Config
 logger = logging.getLogger(__name__)
 
 def create_ai_client():
-    """Create AI client with OpenAI instead of Groq."""
+    """Create AI client with Groq primary, OpenAI fallback."""
     if Config.GROQ_API_KEY:
-        # Use OpenAI as fallback since Groq is broken
         # Remove proxy environment variables that cause issues
         import os
         old_env = {}
@@ -19,8 +18,17 @@ def create_ai_client():
                 old_env[key] = os.environ.pop(key)
         
         try:
-            from openai import OpenAI
-            return OpenAI(api_key=Config.GROQ_API_KEY)
+            # Try Groq first (better rate limits)
+            from groq import Groq
+            return Groq(api_key=Config.GROQ_API_KEY)
+        except (ImportError, TypeError) as e:
+            # Fallback to OpenAI if Groq fails
+            try:
+                from openai import OpenAI
+                return OpenAI(api_key=Config.GROQ_API_KEY)
+            except ImportError:
+                logger.error(f"Both Groq and OpenAI failed: {e}")
+                return None
         finally:
             # Restore environment variables
             os.environ.update(old_env)
