@@ -11,19 +11,8 @@ def create_groq_client():
     """Create Groq client with proper error handling."""
     try:
         from groq import Groq
-        # Remove any proxy environment variables that might interfere
-        old_env = {}
-        for key in ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']:
-            if key in os.environ:
-                old_env[key] = os.environ.pop(key)
-        
-        try:
-            return Groq(api_key=Config.GROQ_API_KEY)
-        finally:
-            # Restore environment variables
-            os.environ.update(old_env)
+        return Groq(api_key=Config.GROQ_API_KEY)
     except ImportError:
-        # Try different import patterns for different Groq versions
         try:
             from groq import Client as Groq
             return Groq(api_key=Config.GROQ_API_KEY)
