@@ -10,12 +10,16 @@ logger = logging.getLogger(__name__)
 def create_ai_client():
     """Create AI client with Groq primary, OpenAI fallback."""
     if Config.GROQ_API_KEY:
-        # Remove proxy environment variables that cause issues
+        # Disable proxy for OpenAI
         import os
         old_env = {}
-        for key in ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']:
+        proxy_vars = ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']
+        for key in proxy_vars:
             if key in os.environ:
                 old_env[key] = os.environ.pop(key)
+        
+        # Set OpenAI to ignore proxies
+        os.environ['OPENAI_DISABLE_PROXY'] = 'true'
         
         try:
             # Try Groq first (better rate limits)
@@ -31,6 +35,7 @@ def create_ai_client():
                 return None
         finally:
             # Restore environment variables
+            os.environ['OPENAI_DISABLE_PROXY'] = 'false'
             os.environ.update(old_env)
     return None
 
