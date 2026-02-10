@@ -3,7 +3,10 @@ import random
 import os
 from typing import Dict, List, Optional
 from PIL import Image, ImageDraw, ImageFont
-from groq import Groq
+try:
+    from groq import Groq
+except ImportError:
+    from groq import Client as Groq
 from config.settings import Config
 
 logger = logging.getLogger(__name__)

@@ -2,7 +2,10 @@ import logging
 import time
 import random
 from typing import Dict, List, Optional
-from groq import Groq
+try:
+    from groq import Groq
+except ImportError:
+    from groq import Client as Groq
 from config.settings import Config
 
 logger = logging.getLogger(__name__)
