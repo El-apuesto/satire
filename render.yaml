@@ -2,7 +2,7 @@ services:
   # Web Service
   - type: web
     name: okcrisis
-    env: python
+    runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn admin_app:app
@@ -19,13 +19,11 @@ services:
         sync: false
       - key: UNSPLASH_API_KEY
         sync: false
-      - key: PYTHON_VERSION
-        value: 3.9.16
 
   # Background Worker for Automation
   - type: worker
     name: okcrisis-scheduler
-    env: python
+    runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py scheduler
@@ -42,5 +40,3 @@ services:
         sync: false
       - key: UNSPLASH_API_KEY
         sync: false
-      - key: PYTHON_VERSION
-        value: 3.9.16
