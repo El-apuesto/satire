@@ -254,21 +254,21 @@ def debug():
                 "REPLICATE_API_TOKEN": bool(os.getenv('REPLICATE_API_TOKEN'))
             },
             "config_loaded": bool(Config),
-            "groq_import": False,
-            "groq_client": False
+            "openai_import": False,
+            "openai_client": False
         }
         
-        # Test Groq import
+        # Test OpenAI import
         try:
-            from groq import Groq
-            debug_info["groq_import"] = True
+            from openai import OpenAI
+            debug_info["openai_import"] = True
             
-            # Test Groq client
+            # Test OpenAI client
             if Config.GROQ_API_KEY:
-                client = Groq(api_key=Config.GROQ_API_KEY)
-                debug_info["groq_client"] = True
+                client = OpenAI(api_key=Config.GROQ_API_KEY)
+                debug_info["openai_client"] = True
         except Exception as e:
-            debug_info["groq_error"] = str(e)
+            debug_info["openai_error"] = str(e)
         
         return jsonify(debug_info)
         
