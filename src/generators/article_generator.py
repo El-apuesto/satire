@@ -1,30 +1,37 @@
 import logging
 import time
 import random
+import os
 from typing import Dict, List, Optional
-try:
-    from groq import Groq
-except ImportError:
-    from groq import Client as Groq
 from config.settings import Config
 
 logger = logging.getLogger(__name__)
+
+def create_groq_client():
+    """Create Groq client with proper error handling."""
+    try:
+        from groq import Groq
+        # Remove any proxy environment variables that might interfere
+        old_env = {}
+        for key in ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']:
+            if key in os.environ:
+                old_env[key] = os.environ.pop(key)
+        
+        try:
+            return Groq(api_key=Config.GROQ_API_KEY)
+        finally:
+            # Restore environment variables
+            os.environ.update(old_env)
+    except ImportError:
+        from groq import Client as Groq
+        return Groq(api_key=Config.GROQ_API_KEY)
 
 class ArticleGenerator:
     """Generates satirical articles from news stories using AI."""
     
     def __init__(self):
         if Config.GROQ_API_KEY:
-            try:
-                # Try minimal parameters
-                self.client = Groq(api_key=Config.GROQ_API_KEY)
-            except TypeError as e:
-                if 'proxies' in str(e):
-                    # Try without any extra parameters
-                    self.client = Groq(Config.GROQ_API_KEY)
-                else:
-                    # Re-raise if different error
-                    raise e
+            self.client = create_groq_client()
             self.model = "llama-3.1-8b-instant"
             self.last_request_time = 0
             self.min_delay = 0.5
