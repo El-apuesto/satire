@@ -6,6 +6,15 @@ import os
 from datetime import datetime
 from typing import List, Dict, Optional
 
+# Import config separately to ensure it's available
+try:
+    from config.settings import Config
+    config_imported = True
+except ImportError as e:
+    print(f"Config import error: {e}")
+    Config = None
+    config_imported = False
+
 # Import our modules - fix path issues
 try:
     from src.fetchers.news_fetcher import NewsFetcher
@@ -14,15 +23,16 @@ try:
     from src.generators.image_generator import ImageGenerator
     from src.generators.comic_generator import ComicGenerator
     from src.website.app import Website
-    from config.settings import Config
     
     # Create website instance
     website = Website()
+    modules_imported = True
 except ImportError as e:
     logger = logging.getLogger(__name__)
     logger.error(f"Import error: {e}")
     # Fallback for basic functionality
     website = None
+    modules_imported = False
 
 logger = logging.getLogger(__name__)
 
@@ -72,6 +82,15 @@ class AutomationScheduler:
         logger.info("=== STARTING EVENING NEWS CYCLE ===")
         self.run_publishing_cycle("evening")
         logger.info("=== EVENING NEWS CYCLE COMPLETED ===")
+    
+    def run_cycle(self):
+        """Run a complete publishing cycle (called by admin app)."""
+        if not config_imported:
+            return {"error": "Config not imported", "articles": [], "comics": []}
+        if not modules_imported:
+            return {"error": "Modules not imported", "articles": [], "comics": []}
+        
+        return self.run_publishing_cycle("manual")
     
     def run_publishing_cycle(self, cycle_name: str):
         """
