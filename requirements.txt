@@ -4,3 +4,4 @@ requests==2.31.0
 groq==0.11.0
 schedule
 gunicorn==21.2.0
+Pillow==10.0.0
