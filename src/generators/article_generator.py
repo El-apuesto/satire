@@ -15,7 +15,12 @@ class ArticleGenerator:
     
     def __init__(self):
         if Config.GROQ_API_KEY:
-            self.client = Groq(api_key=Config.GROQ_API_KEY)
+            try:
+                # Try new API first
+                self.client = Groq(api_key=Config.GROQ_API_KEY)
+            except TypeError:
+                # Fallback to older API if new one fails
+                self.client = Groq(api_key=Config.GROQ_API_KEY, timeout=30)
             self.model = "llama-3.1-8b-instant"
             self.last_request_time = 0
             self.min_delay = 0.5
