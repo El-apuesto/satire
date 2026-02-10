@@ -7,35 +7,25 @@ from config.settings import Config
 
 logger = logging.getLogger(__name__)
 
-def create_groq_client():
-    """Create Groq client with proper error handling."""
-    try:
-        from groq import Groq
-        return Groq(api_key=Config.GROQ_API_KEY)
-    except ImportError:
-        try:
-            from groq import Client as Groq
-            return Groq(api_key=Config.GROQ_API_KEY)
-        except ImportError:
-            try:
-                from groq import GroqClient as Groq
-                return Groq(api_key=Config.GROQ_API_KEY)
-            except ImportError:
-                # Last resort - try direct import
-                import groq
-                return groq.Groq(api_key=Config.GROQ_API_KEY)
+def create_ai_client():
+    """Create AI client with OpenAI instead of Groq."""
+    if Config.GROQ_API_KEY:
+        # Use OpenAI as fallback since Groq is broken
+        from openai import OpenAI
+        return OpenAI(api_key=Config.GROQ_API_KEY)
+    return None
 
 class ArticleGenerator:
     """Generates satirical articles from news stories using AI."""
     
     def __init__(self):
         if Config.GROQ_API_KEY:
-            self.client = create_groq_client()
-            self.model = "llama-3.1-8b-instant"
+            self.client = create_ai_client()
+            self.model = "gpt-3.5-turbo"
             self.last_request_time = 0
             self.min_delay = 0.5
         else:
-            logger.warning("Groq API key not configured")
+            logger.warning("AI API key not configured")
             self.client = None
             self.last_request_time = 0
             self.min_delay = 0.5
