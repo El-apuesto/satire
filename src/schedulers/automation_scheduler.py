@@ -8,7 +8,7 @@ from typing import List, Dict, Optional
 
 # Direct imports - no fallbacks needed
 from config.settings import Config
-from src.fetchers.news_fetcher import NewsFetcher
+from src.api.news_fetcher import NewsFetcher
 from src.evaluators.story_evaluator import StoryEvaluator
 from src.generators.article_generator import ArticleGenerator
 from src.generators.image_generator import ImageGenerator
