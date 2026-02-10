@@ -23,8 +23,18 @@ def create_groq_client():
             # Restore environment variables
             os.environ.update(old_env)
     except ImportError:
-        from groq import Client as Groq
-        return Groq(api_key=Config.GROQ_API_KEY)
+        # Try different import patterns for different Groq versions
+        try:
+            from groq import Client as Groq
+            return Groq(api_key=Config.GROQ_API_KEY)
+        except ImportError:
+            try:
+                from groq import GroqClient as Groq
+                return Groq(api_key=Config.GROQ_API_KEY)
+            except ImportError:
+                # Last resort - try direct import
+                import groq
+                return groq.Groq(api_key=Config.GROQ_API_KEY)
 
 class ArticleGenerator:
     """Generates satirical articles from news stories using AI."""
