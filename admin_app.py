@@ -231,21 +231,21 @@ def debug():
                 "REPLICATE_API_TOKEN": bool(os.getenv('REPLICATE_API_TOKEN'))
             },
             "config_loaded": bool(Config),
-            "openai_import": False,
-            "openai_client": False
+            "anthropic_import": False,
+            "anthropic_client": False
         }
         
-        # Test OpenAI import
+        # Test Anthropic import
         try:
-            from openai import OpenAI
-            debug_info["openai_import"] = True
+            from anthropic import Anthropic
+            debug_info["anthropic_import"] = True
             
-            # Test OpenAI client
+            # Test Anthropic client
             if Config.GROQ_API_KEY:
-                client = OpenAI(api_key=Config.GROQ_API_KEY)
-                debug_info["openai_client"] = True
+                client = Anthropic(api_key=Config.GROQ_API_KEY)
+                debug_info["anthropic_client"] = True
         except Exception as e:
-            debug_info["openai_error"] = str(e)
+            debug_info["anthropic_error"] = str(e)
         
         return jsonify(debug_info)
         

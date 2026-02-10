@@ -13,7 +13,7 @@ from src.evaluators.story_evaluator import StoryEvaluator
 from src.generators.article_generator import ArticleGenerator
 from src.generators.image_generator import ImageGenerator
 from src.generators.comic_generator import ComicGenerator
-from src.website.app import Website
+from src.website.app import Website 
 
 # Create website instance
 website = Website()
