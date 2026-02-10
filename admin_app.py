@@ -176,6 +176,34 @@ def api_comics():
     comics = website.load_comics()
     return jsonify(comics)
 
+@app.route('/debug_groq')
+def debug_groq():
+    """Debug Groq module contents."""
+    try:
+        import groq
+        debug_info = {
+            "groq_dir": dir(groq),
+            "groq_version": getattr(groq, '__version__', 'unknown'),
+            "groq_file": groq.__file__ if hasattr(groq, '__file__') else 'no file'
+        }
+        
+        # Try to find what's available
+        available_classes = []
+        for name in dir(groq):
+            obj = getattr(groq, name)
+            if hasattr(obj, '__call__') and 'Client' in name or 'Groq' in name:
+                available_classes.append({
+                    "name": name,
+                    "type": type(obj).__name__,
+                    "doc": obj.__doc__[:100] if obj.__doc__ else 'no doc'
+                })
+        
+        debug_info["available_classes"] = available_classes
+        return jsonify(debug_info)
+        
+    except Exception as e:
+        return jsonify({"error": str(e), "type": type(e).__name__})
+
 @app.route('/debug')
 def debug():
     """Debug endpoint to check what's failing."""
