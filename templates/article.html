@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - OK Crisis{% endblock %}
+
+{% block content %}
+<article class="article-card">
+    {% if article.image_path %}
+    <img src="{{ article.image_path }}" alt="{{ article.title }}" class="article-image">
+    {% endif %}
+    
+    <div class="article-content">
+        <header>
+            <h1 class="article-title">{{ article.title }}</h1>
+            <div class="article-meta">
+                By {{ article.byline }} | 
+                {{ article.category.title() if article.category else 'News' }} | 
+                {{ article.created_at[:10] if article.created_at else 'Today' }} | 
+                {{ article.word_count if article.word_count else 0 }} words
+            </div>
+            </div>
+        </header>
+        
+        <div class="article-body" style="margin-top: 30px; font-size: 1.1em; line-height: 1.8;">
+            {{ article.content|nl2br }}
+        </div>
+        
+        {% if article.original_title %}
+        <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #666;">
+            <p><strong>Source:</strong> {{ article.original_title }}</p>
+            {% if article.original_source %}
+            <p><strong>Source:</strong> {{ article.original_source }}</p>
+            {% endif %}
+        </footer>
+        {% endif %}
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="/articles" class="btn">← Back to All Articles</a>
+        </div>
+    </div>
+</article>
+
+<style>
+.article-body {
+    white-space: pre-line;
+}
+</style>
+{% endblock %}

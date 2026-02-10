@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OK Crisis - News{% endblock %}</title>
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            max-height: 50px;
+            margin-right: 20px;
+        }
+        
+        .site-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: #fff;
+            border-bottom: 3px solid #000;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2em;
+            color: #666;
+            font-style: italic;
+        }
+        
+        nav {
+            background: #000;
+            padding: 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 25px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #333;
+        }
+        
+        main {
+            padding: 40px 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        .article-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .article-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .article-content {
+            padding: 25px;
+        }
+        
+        .article-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .article-title a {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .article-title a:hover {
+            color: #666;
+        }
+        
+        .article-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .article-excerpt {
+            color: #444;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .read-more:hover {
+            background: #333;
+        }
+        
+        .comic-strip {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 30px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .comic-strip img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+        
+        .comic-title {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #000;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background: #333;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-3 {
+            margin-bottom: 30px;
+        }
+        
+        .mt-3 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="/logo.png" alt="OK Crisis" class="logo">
+            <div class="site-title">OK Crisis</div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/articles">Articles</a></li>
+                <li><a href="/comics">Comics</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 OK Crisis. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Comics - OK Crisis{% endblock %}
+
+{% block content %}
+<div class="text-center mb-3">
+    <h1>Comics</h1>
+</div>
+
+{% if comics %}
+<div class="grid grid-2">
+    {% for comic in comics %}
+    <div class="comic-strip">
+        <h3 class="comic-title">{{ comic.title if comic.title else 'Comic Strip #' + loop.index|string }}</h3>
+        {% if comic.image_path %}
+        <img src="{{ comic.image_path }}" alt="{{ comic.title if comic.title else 'Comic' }}">
+        {% if comic.description %}
+        <div class="article-content">
+            <p>{{ comic.description }}</p>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="article-content">
+            <p>Comic image could not be generated.</p>
+            <p>Our cartoonist is currently on strike for more punchlines.</p>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center">
+    <h2>No Comics Yet</h2>
+    <p>Our automated comic generation system hasn't produced any strips yet.</p>
+    <p>This could be because:</p>
+    <ul style="text-align: left; max-width: 500px; margin: 20px auto;">
+        <li>The comic generator is still learning to draw stick figures</li>
+        <li>Our AI humor module is recalibrating its punchline algorithm</li>
+        <li>The cartoon characters are refusing to work without better dialogue</li>
+        <li>We're experiencing technical difficulties with the funny</li>
+    </ul>
+    <p>Check back soon for hand-crafted digital comedy!</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}All Articles - OK Crisis{% endblock %}
+
+{% block content %}
+<div class="text-center mb-3">
+    <h1>All Articles</h1>
+</div>
+
+{% if articles %}
+<div class="grid grid-2">
+    {% for article in articles %}
+    <div class="article-card">
+        {% if article.image_path %}
+        <img src="{{ article.image_path }}" alt="{{ article.title }}" class="article-image">
+        {% endif %}
+        <div class="article-content">
+            <h2 class="article-title">
+                <a href="/article/{{ loop.index0 }}">{{ article.title }}</a>
+            </h2>
+            <div class="article-meta">
+                By {{ article.byline }} | {{ article.category.title() if article.category else 'News' }} | 
+                {{ article.created_at[:10] if article.created_at else 'Today' }} | 
+                {{ article.word_count if article.word_count else 0 }} words
+            </div>
+            <div class="article-excerpt">
+                {{ article.content[:200] }}{% if article.content|length > 200 %}...{% endif %}
+            </div>
+            <a href="/article/{{ loop.index0 }}" class="read-more">Read More</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center">
+    <h2>No Articles Yet</h2>
+    <p>Run <code>python main.py manual</code> to generate articles!</p>
+</div>
+{% endif %}
+{% endblock %}

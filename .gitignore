@@ -1,0 +1,69 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Logs
+logs/*.log
+*.log
+
+# Data files
+data/*.json
+data/
+
+# Generated content
+static/images/*.jpg
+static/images/*.png
+static/comics/*.jpg
+static/comics/*.png
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+temp/
+cache/
+tmp/
+
+# Test files
+test_*
+*.test
+
+# Backup files
+*.bak
+*.backup
+*.old
