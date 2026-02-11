@@ -296,11 +296,13 @@ def run_cycle():
             "results": results
         })
     except ImportError as e:
+        logger.error(f"Import error in run_cycle: {str(e)}")
         return jsonify({
             "success": False,
             "error": f"Import error: {str(e)}. Missing dependencies."
         }), 500
     except Exception as e:
+        logger.error(f"Generation error in run_cycle: {str(e)}")
         return jsonify({
             "success": False,
             "error": f"Generation error: {str(e)}"
