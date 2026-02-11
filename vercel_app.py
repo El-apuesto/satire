@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, request, jsonify, render_template
 import json
 import os
 from datetime import datetime
@@ -11,36 +11,129 @@ template_dir = os.path.join(project_root, 'templates')
 app = Flask(__name__, template_folder=template_dir)
 app.config['DEBUG'] = Config.WEBSITE_DEBUG
 
-class CloudWebsite:
-    """Website class for cloud deployment without file system writes."""
+# Vercel KV configuration
+KV_URL = os.environ.get('KV_URL')
+KV_REST_API_TOKEN = os.environ.get('KV_REST_API_TOKEN')
+
+class VercelWebsite:
+    """Website class using Vercel KV for persistent storage."""
     
     def __init__(self):
-        # Use in-memory storage for cloud deployment
         self.articles = []
         self.comics = []
     
     def load_articles(self):
-        """Load articles from memory storage."""
-        return self.articles
+        """Load articles from Vercel KV."""
+        try:
+            import requests
+            response = requests.get(
+                f"{KV_URL}/kv/article:*",
+                headers={
+                    "Authorization": f"Bearer {KV_REST_API_TOKEN}",
+                    "Content-Type": "application/json"
+                }
+            )
+            
+            if response.status_code == 200:
+                articles_data = response.json()
+                self.articles = []
+                
+                # Parse KV response to get articles
+                for key, value in articles_data.items():
+                    if key.startswith('article:'):
+                        article = json.loads(value)
+                        self.articles.append(article)
+                
+                # Sort by date (newest first)
+                self.articles.sort(key=lambda x: x.get('published_at', ''), reverse=True)
+                
+            return self.articles
+        except Exception as e:
+            print(f"Error loading articles: {e}")
+            return []
     
     def load_comics(self):
-        """Load comics from memory storage."""
-        return self.comics
+        """Load comics from Vercel KV."""
+        try:
+            import requests
+            response = requests.get(
+                f"{KV_URL}/kv/comic:*",
+                headers={
+                    "Authorization": f"Bearer {KV_REST_API_TOKEN}",
+                    "Content-Type": "application/json"
+                }
+            )
+            
+            if response.status_code == 200:
+                comics_data = response.json()
+                self.comics = []
+                
+                # Parse KV response to get comics
+                for key, value in comics_data.items():
+                    if key.startswith('comic:'):
+                        comic = json.loads(value)
+                        self.comics.append(comic)
+                
+                # Sort by date (newest first)
+                self.comics.sort(key=lambda x: x.get('created_at', ''), reverse=True)
+                
+            return self.comics
+        except Exception as e:
+            print(f"Error loading comics: {e}")
+            return []
     
     def save_article(self, article):
-        """Save article to memory storage."""
-        self.articles.append(article)
-        # Keep only the most recent articles
-        self.articles = self.articles[-Config.MAX_ARTICLES_STORED:]
+        """Save article to Vercel KV."""
+        try:
+            import requests
+            article_key = f"article:{article.get('id', datetime.now().isoformat())}"
+            
+            response = requests.put(
+                f"{KV_URL}/kv/{article_key}",
+                headers={
+                    "Authorization": f"Bearer {KV_REST_API_TOKEN}",
+                    "Content-Type": "application/json"
+                },
+                data=json.dumps(article)
+            )
+            
+            if response.status_code == 200:
+                self.articles.append(article)
+                # Keep only most recent articles
+                self.articles = self.articles[-Config.MAX_ARTICLES_STORED:]
+                
+            return response.status_code == 200
+        except Exception as e:
+            print(f"Error saving article: {e}")
+            return False
     
     def save_comic(self, comic):
-        """Save comic to memory storage."""
-        self.comics.append(comic)
-        # Keep only the most recent comics
-        self.comics = self.comics[-Config.MAX_COMICS_STORED:]
+        """Save comic to Vercel KV."""
+        try:
+            import requests
+            comic_key = f"comic:{comic.get('id', datetime.now().isoformat())}"
+            
+            response = requests.put(
+                f"{KV_URL}/kv/{comic_key}",
+                headers={
+                    "Authorization": f"Bearer {KV_REST_API_TOKEN}",
+                    "Content-Type": "application/json"
+                },
+                data=json.dumps(comic)
+            )
+            
+            if response.status_code == 200:
+                self.comics.append(comic)
+                # Keep only most recent comics
+                self.comics = self.comics[-Config.MAX_COMICS_STORED:]
+                
+            return response.status_code == 200
+        except Exception as e:
+            print(f"Error saving comic: {e}")
+            return False
 
-# Initialize cloud website
-website = CloudWebsite()
+# Initialize Vercel website
+website = VercelWebsite()
 
 @app.route('/')
 def home():
@@ -79,6 +172,39 @@ def article_detail(article_id):
     else:
         return "Article not found", 404
 
+@app.route('/admin')
+def admin():
+    """Admin dashboard."""
+    return render_template('admin_dashboard.html')
+
+@app.route('/run_cycle', methods=['GET'])
+def run_cycle():
+    """Trigger news generation cycle."""
+    try:
+        # Import and run automation
+        from src.schedulers.automation_scheduler import AutomationScheduler
+        scheduler = AutomationScheduler()
+        results = scheduler.run_cycle()
+        
+        # Store results in Vercel KV
+        for article in results.get('articles', []):
+            website.save_article(article)
+        
+        for comic in results.get('comics', []):
+            website.save_comic(comic)
+        
+        return jsonify({
+            "success": True,
+            "message": f"Generated {len(results.get('articles', []))} articles and {len(results.get('comics', []))} comics",
+            "results": results
+        })
+        
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": f"Generation error: {str(e)}"
+        }), 500
+
 @app.route('/api/articles')
 def api_articles():
     """API endpoint for articles."""
@@ -90,45 +216,6 @@ def api_comics():
     """API endpoint for comics."""
     comics = website.load_comics()
     return jsonify(comics)
-
-# Add some sample content for demonstration
-def add_sample_content():
-    """Add sample content for cloud deployment demonstration."""
-    sample_article = {
-        'title': 'Local Man Discovers Weather Changes Seasonally, Scientists Baffled',
-        'byline': 'Skip McGee, Staff Writer',
-        'content': '''In a stunning development that has meteorologists scratching their heads, local resident Barry Thompson, 47, reportedly noticed that the weather tends to change with the seasons.
-
-"Oh, you don't say," said Thompson from his porch, where he was observing what experts now confirm is called "winter." "It's cold in December and warm in July. Groundbreaking stuff, really."
-
-Scientists at the National Weather Service, when informed of Thompson's discovery, were reportedly shocked. "We had no idea," said Dr. Patricia Winklestein, lead climatologist. "All our sophisticated equipment and decades of research, and it turns out some guy just figured it out by looking outside."
-
-The revelation has prompted calls for a complete overhaul of weather forecasting methodology. "Why spend millions on satellites when we could just ask Barry what he thinks?" questioned one congressional representative.
-
-Thompson, for his part, remains humble about his contribution to atmospheric science. "I'm just a regular guy who noticed it gets cold when the days get shorter. I'm sure someone would have figured it out eventually."
-
-In related news, water has been confirmed to be wet, and fire has been found to be hot. More at 11.''',
-        'satire_style': 'sarcastic',
-        'original_title': 'Seasonal Weather Patterns Continue as Expected',
-        'original_source': 'Local Weather Service',
-        'category': 'lifestyle',
-        'published_at': '2024-02-07',
-        'word_count': 156,
-        'created_at': datetime.now().isoformat()
-    }
-    
-    sample_comic = {
-        'title': 'Weather Discovery Comic',
-        'image_path': None,
-        'description': 'Barry Thompson discovers seasons exist',
-        'created_at': datetime.now().isoformat()
-    }
-    
-    website.save_article(sample_article)
-    website.save_comic(sample_comic)
-
-# Add sample content on startup
-add_sample_content()
 
 if __name__ == '__main__':
     app.run(host=Config.WEBSITE_HOST, port=Config.WEBSITE_PORT, debug=Config.WEBSITE_DEBUG)
