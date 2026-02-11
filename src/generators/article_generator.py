@@ -5,6 +5,12 @@ import os
 from typing import Dict, List, Optional
 from config.settings import Config
 
+# Force disable proxies before any imports
+os.environ['NO_PROXY'] = '*'
+os.environ['no_proxy'] = '*'
+os.environ['HTTP_PROXY'] = ''
+os.environ['HTTPS_PROXY'] = ''
+
 logger = logging.getLogger(__name__)
 
 def create_ai_client():

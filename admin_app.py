@@ -221,6 +221,12 @@ def debug():
         import os
         from config.settings import Config
         
+        # Force disable proxies before any imports
+        os.environ['NO_PROXY'] = '*'
+        os.environ['no_proxy'] = '*'
+        os.environ['HTTP_PROXY'] = ''
+        os.environ['HTTPS_PROXY'] = ''
+
         debug_info = {
             "python_version": sys.version,
             "working_dir": os.getcwd(),
