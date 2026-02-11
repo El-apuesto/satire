@@ -6,7 +6,7 @@ import os
 from datetime import datetime
 from typing import List, Dict, Optional
 
-# Force disable proxies before any imports
+# Force disable proxies AND set environment variables before any imports
 os.environ['NO_PROXY'] = '*'
 os.environ['no_proxy'] = '*'
 os.environ['HTTP_PROXY'] = ''

@@ -14,21 +14,40 @@ os.environ['HTTPS_PROXY'] = ''
 logger = logging.getLogger(__name__)
 
 def create_ai_client():
-    """Create AI client with Groq."""
+    """Create AI client with direct HTTP requests to bypass proxy issues."""
     if Config.GROQ_API_KEY:
-        try:
-            from groq import Groq
-            # Monkey patch to remove proxies argument
-            original_init = Groq.__init__
-            def patched_init(self, *args, **kwargs):
-                if 'proxies' in kwargs:
-                    del kwargs['proxies']
-                return original_init(self, *args, **kwargs)
-            Groq.__init__ = patched_init
-            return Groq(api_key=Config.GROQ_API_KEY)
-        except ImportError as e:
-            logger.error(f"Failed to import Groq: {e}")
-            return None
+        # Use direct HTTP requests instead of Groq library
+        import requests
+        import json
+        
+        class DirectGroqClient:
+            def __init__(self, api_key):
+                self.api_key = api_key
+                self.base_url = "https://api.groq.com/openai/v1"
+                self.headers = {
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                }
+            
+            def chat(self, messages, model="llama-3.1-8b-instant"):
+                data = {
+                    "model": model,
+                    "messages": messages,
+                    "temperature": 0.7
+                }
+                
+                response = requests.post(
+                    f"{self.base_url}/chat/completions",
+                    headers=self.headers,
+                    json=data
+                )
+                
+                if response.status_code == 200:
+                    return response.json()
+                else:
+                    raise Exception(f"Groq API error: {response.status_code} - {response.text}")
+        
+        return DirectGroqClient(api_key=Config.GROQ_API_KEY)
     return None
 
 class ArticleGenerator:

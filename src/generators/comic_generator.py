@@ -14,21 +14,50 @@ os.environ['HTTPS_PROXY'] = ''
 logger = logging.getLogger(__name__)
 
 def create_ai_client():
-    """Create AI client with Groq."""
+    """Create AI client with Hugging Face - no proxy issues."""
     if Config.GROQ_API_KEY:
-        try:
-            from groq import Groq
-            # Monkey patch to remove proxies argument
-            original_init = Groq.__init__
-            def patched_init(self, *args, **kwargs):
-                if 'proxies' in kwargs:
-                    del kwargs['proxies']
-                return original_init(self, *args, **kwargs)
-            Groq.__init__ = patched_init
-            return Groq(api_key=Config.GROQ_API_KEY)
-        except ImportError as e:
-            logger.error(f"Failed to import Groq: {e}")
-            return None
+        # Use Hugging Face Inference API
+        import requests
+        import json
+        
+        class HuggingFaceClient:
+            def __init__(self, api_key):
+                self.api_key = api_key
+                self.headers = {
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                }
+            
+            def chat(self, messages, model="microsoft/DialoGPT-large"):
+                # Convert messages to Hugging Face format
+                prompt = messages[-1]["content"] if messages else ""
+                
+                data = {
+                    "inputs": prompt,
+                    "parameters": {
+                        "max_new_tokens": 500,
+                        "temperature": 0.7,
+                        "return_full_text": False
+                    }
+                }
+                
+                response = requests.post(
+                    f"https://api-inference.huggingface.co/models/{model}",
+                    headers=self.headers,
+                    json=data
+                )
+                
+                if response.status_code == 200:
+                    result = response.json()
+                    return {
+                        "choices": [{
+                            "message": {"content": result[0]["generated_text"]}
+                        }]
+                    }
+                else:
+                    raise Exception(f"Hugging Face API error: {response.status_code} - {response.text}")
+        
+        return HuggingFaceClient(api_key=Config.GROQ_API_KEY)
     return None
 
 class ComicGenerator:
@@ -37,7 +66,7 @@ class ComicGenerator:
     def __init__(self):
         if Config.GROQ_API_KEY:
             self.client = create_ai_client()
-            self.model = "llama-3.1-8b-instant"
+            self.model = "microsoft/DialoGPT-large"
             self.last_request_time = 0
             self.min_delay = 0.5
         else:
