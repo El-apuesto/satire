@@ -237,22 +237,18 @@ def debug():
         
         # Test Anthropic import
         try:
+            # Disable proxies at HTTP level
+            import os
+            os.environ['NO_PROXY'] = '*'
+            os.environ['no_proxy'] = '*'
+            
             from anthropic import Anthropic
             debug_info["anthropic_import"] = True
             
-            # Test Anthropic client - remove proxy vars first
+            # Test Anthropic client
             if Config.GROQ_API_KEY:
-                import os
-                old_env = {}
-                for key in ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy']:
-                    if key in os.environ:
-                        old_env[key] = os.environ.pop(key)
-                
-                try:
-                    client = Anthropic(api_key=Config.GROQ_API_KEY)
-                    debug_info["anthropic_client"] = True
-                finally:
-                    os.environ.update(old_env)
+                client = Anthropic(api_key=Config.GROQ_API_KEY)
+                debug_info["anthropic_client"] = True
         except Exception as e:
             debug_info["anthropic_error"] = str(e)
         
