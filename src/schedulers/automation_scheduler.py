@@ -6,12 +6,6 @@ import os
 from datetime import datetime
 from typing import List, Dict, Optional
 
-# Set environment variables directly
-os.environ['NEWSDATA_API_KEY'] = 'pub_3993838f7c8b4d8b8f8a8d8e8f8a8d8e'
-os.environ['GROQ_API_KEY'] = 'gsk_2t8r8e8f8a8d8e8f8a8d8e8f8a8d8e8f8a8d8e'
-os.environ['PEXELS_API_KEY'] = 'A8d8e8f8a8d8e8f8a8d8e8f8a8d8e8f8a8d8e'
-os.environ['REPLICATE_API_TOKEN'] = 'r8_8f8a8d8e8f8a8d8e8f8a8d8e8f8a8d8e8f8a8d8e'
-
 # Direct imports - no fallbacks needed
 from config.settings import Config
 from src.api.news_fetcher import NewsFetcher
