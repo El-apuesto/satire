@@ -244,13 +244,16 @@ def debug():
         
         # Test Groq import
         try:
-            # Disable proxies at HTTP level
-            import os
-            os.environ['NO_PROXY'] = '*'
-            os.environ['no_proxy'] = '*'
-            
             from groq import Groq
             debug_info["groq_import"] = True
+            
+            # Monkey patch to remove proxies argument
+            original_init = Groq.__init__
+            def patched_init(self, *args, **kwargs):
+                if 'proxies' in kwargs:
+                    del kwargs['proxies']
+                return original_init(self, *args, **kwargs)
+            Groq.__init__ = patched_init
             
             # Test Groq client
             if Config.GROQ_API_KEY:

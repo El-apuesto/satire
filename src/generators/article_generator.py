@@ -16,13 +16,15 @@ logger = logging.getLogger(__name__)
 def create_ai_client():
     """Create AI client with Groq."""
     if Config.GROQ_API_KEY:
-        # Disable proxies at HTTP level
-        import os
-        os.environ['NO_PROXY'] = '*'
-        os.environ['no_proxy'] = '*'
-        
         try:
             from groq import Groq
+            # Monkey patch to remove proxies argument
+            original_init = Groq.__init__
+            def patched_init(self, *args, **kwargs):
+                if 'proxies' in kwargs:
+                    del kwargs['proxies']
+                return original_init(self, *args, **kwargs)
+            Groq.__init__ = patched_init
             return Groq(api_key=Config.GROQ_API_KEY)
         except ImportError as e:
             logger.error(f"Failed to import Groq: {e}")

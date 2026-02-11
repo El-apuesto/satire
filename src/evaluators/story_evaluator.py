@@ -21,10 +21,13 @@ class StoryEvaluator:
     
     def __init__(self):
         if Config.GROQ_API_KEY:
-            # Disable proxies at HTTP level
-            import os
-            os.environ['NO_PROXY'] = '*'
-            os.environ['no_proxy'] = '*'
+            # Monkey patch to remove proxies argument
+            original_init = Groq.__init__
+            def patched_init(self, *args, **kwargs):
+                if 'proxies' in kwargs:
+                    del kwargs['proxies']
+                return original_init(self, *args, **kwargs)
+            Groq.__init__ = patched_init
             
             self.client = Groq(api_key=Config.GROQ_API_KEY)
             self.model = "llama-3.1-8b-instant"
