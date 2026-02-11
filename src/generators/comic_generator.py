@@ -8,13 +8,18 @@ from config.settings import Config
 logger = logging.getLogger(__name__)
 
 def create_ai_client():
-    """Create AI client with Anthropic Claude."""
+    """Create AI client with Groq."""
     if Config.GROQ_API_KEY:
+        # Disable proxies at HTTP level
+        import os
+        os.environ['NO_PROXY'] = '*'
+        os.environ['no_proxy'] = '*'
+        
         try:
-            from anthropic import Anthropic
-            return Anthropic(api_key=Config.GROQ_API_KEY)
+            from groq import Groq
+            return Groq(api_key=Config.GROQ_API_KEY)
         except ImportError as e:
-            logger.error(f"Failed to import Anthropic: {e}")
+            logger.error(f"Failed to import Groq: {e}")
             return None
     return None
 
@@ -24,7 +29,7 @@ class ComicGenerator:
     def __init__(self):
         if Config.GROQ_API_KEY:
             self.client = create_ai_client()
-            self.model = "claude-3-5-sonnet-20241022"
+            self.model = "llama-3.1-8b-instant"
             self.last_request_time = 0
             self.min_delay = 0.5
         else:

@@ -1,7 +1,7 @@
 flask==2.3.3
 python-dotenv==1.0.0
 requests==2.31.0
-anthropic==0.7.8
+groq==0.4.2
 schedule
 gunicorn==21.2.0
 Pillow>=9.0.0

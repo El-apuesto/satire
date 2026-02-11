@@ -227,30 +227,31 @@ def debug():
             "env_vars": {
                 "NEWSDATA_API_KEY": bool(os.getenv('NEWSDATA_API_KEY')),
                 "GROQ_API_KEY": bool(os.getenv('GROQ_API_KEY')),
+                "ANTHROPIC_API_KEY": bool(os.getenv('ANTHROPIC_API_KEY')),
                 "PEXELS_API_KEY": bool(os.getenv('PEXELS_API_KEY')),
                 "REPLICATE_API_TOKEN": bool(os.getenv('REPLICATE_API_TOKEN'))
             },
             "config_loaded": bool(Config),
-            "anthropic_import": False,
-            "anthropic_client": False
+            "groq_import": False,
+            "groq_client": False
         }
         
-        # Test Anthropic import
+        # Test Groq import
         try:
             # Disable proxies at HTTP level
             import os
             os.environ['NO_PROXY'] = '*'
             os.environ['no_proxy'] = '*'
             
-            from anthropic import Anthropic
-            debug_info["anthropic_import"] = True
+            from groq import Groq
+            debug_info["groq_import"] = True
             
-            # Test Anthropic client
+            # Test Groq client
             if Config.GROQ_API_KEY:
-                client = Anthropic(api_key=Config.GROQ_API_KEY)
-                debug_info["anthropic_client"] = True
+                client = Groq(api_key=Config.GROQ_API_KEY)
+                debug_info["groq_client"] = True
         except Exception as e:
-            debug_info["anthropic_error"] = str(e)
+            debug_info["groq_error"] = str(e)
         
         return jsonify(debug_info)
         
