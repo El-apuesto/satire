@@ -1,0 +1,44 @@
+{% extends "mvp_base.html" %}
+
+{% block content %}
+    {% for category_key, category_articles in latest_by_category.items() %}
+        {% if category_articles %}
+            <div class="category-section">
+                <div class="category-header">
+                    <h2 class="category-title">{{ categories[category_key].name }}</h2>
+                    <a href="/category/{{ category_key }}" class="view-all">View All →</a>
+                </div>
+                
+                <div class="article-grid">
+                    {% for article in category_articles %}
+                        <div class="article-card">
+                            {% if article.image_url %}
+                                <img src="{{ article.image_url }}" alt="{{ article.title }}" class="article-image">
+                            {% endif %}
+                            <div class="article-content">
+                                <div class="article-category">{{ article.category_name }}</div>
+                                <h3 class="article-title">
+                                    <a href="/article/{{ article.id }}">{{ article.title }}</a>
+                                </h3>
+                                <div class="article-meta">
+                                    {{ article.published_at[:10] }} • {{ article.source }}
+                                </div>
+                                <div class="article-excerpt">
+                                    {{ article.content[:150] }}...
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    
+    {% if not latest_by_category %}
+        <div style="text-align: center; padding: 60px 0;">
+            <h2 style="margin-bottom: 20px;">Welcome to OK Crisis</h2>
+            <p style="color: #666; margin-bottom: 30px;">Click "Generate News" to create your first satirical articles.</p>
+            <button class="btn" onclick="generateArticles()">Generate Articles</button>
+        </div>
+    {% endif %}
+{% endblock %}

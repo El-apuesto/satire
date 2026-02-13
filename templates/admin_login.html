@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - LUXE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 60px;
+            border-radius: 8px;
+            width: 400px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #ffffff;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #ffffff;
+            color: #0a0a0a;
+            border: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #cccccc;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">LUXE</div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="error">{{ message }}</div>
+                {% endfor %}
+            {% endwith %}
+        {% endwith %}
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="password">Admin Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+services:
+  # Web Service
+  - type: web
+    name: okcrisis
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn admin_app:app
+    envVars:
+      - key: NEWSDATA_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: PEXELS_API_KEY
+        sync: false
+      - key: REPLICATE_API_TOKEN
+        sync: false
+      - key: NO_PROXY
+        value: "*"
+        sync: false
+      - key: no_proxy
+        value: "*"
+        sync: false
+      - key: HTTP_PROXY
+        value: ""
+        sync: false
+      - key: HTTPS_PROXY
+        value: ""
+        sync: false
+
+  # Background Worker for Automation
+  - type: worker
+    name: satire-scheduler
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m src.schedulers.automation_scheduler
+    envVars:
+      - key: NEWSDATA_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+        sync: false
+      - key: REPLICATE_API_TOKEN
+        sync: false
+      - key: PEXELS_API_KEY
+        sync: false
+      - key: UNSPLASH_API_KEY
+        sync: false

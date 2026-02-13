@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - LUXE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 8px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .upload-form {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 15px;
+            background: #333;
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #ff5252;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4caf50;
+            color: #4caf50;
+        }
+        
+        .info-box {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">LUXE</div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Admin Dashboard</h2>
+            <div class="info-box">
+                <p><strong>Status:</strong> System Operational</p>
+                <p><strong>Articles:</strong> {{ articles|length if articles else 0 }} generated</p>
+                <p><strong>Comics:</strong> {{ comics|length if comics else 0 }} uploaded</p>
+                <p><strong>Last Update:</strong> {{ "Just now" if articles else "Never" }}</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Quick Actions</h2>
+            <div class="upload-form">
+                <div class="form-group">
+                    <button class="btn" onclick="window.location.href='/run_cycle'">
+                        Generate News Cycle
+                    </button>
+                </div>
+                <div id="status" class="status" style="display: none;"></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Sample Comic Prompts</h2>
+            <div class="info-box">
+                <p><strong>Prompt 1:</strong> Create a comic about technology fails</p>
+                <p><strong>Status:</strong> <span class="success">ACTIVE</span></p>
+            </div>
+            <div class="info-box">
+                <p><strong>Prompt 2:</strong> Political satire cartoon</p>
+                <p><strong>Status:</strong> INACTIVE</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Recent Comics</h2>
+            <div class="info-box">
+                <p><strong>Comic 1:</strong> Tech Support Comic</p>
+                <p><strong>Description:</strong> When rebooting doesn't work</p>
+                <p><strong>Created:</strong> 2024-02-12</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
