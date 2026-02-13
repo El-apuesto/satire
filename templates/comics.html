@@ -1,13 +1,29 @@
-{% extends "base.html" %}
-
-{% block title %}Comics - OK Crisis{% endblock %}
+{% extends "mvp_luxury_base.html" %}
 
 {% block content %}
-<div class="text-center mb-3">
-    <h1>Comics</h1>
-</div>
-
-{% if comics %}
+    <div class="comics-section">
+        <h2 style="color: #e8e8e8; margin-bottom: 30px; font-size: 2rem;">OK Crisis Comics</h2>
+        
+        {% if comics %}
+            <div class="comic-grid">
+                {% for comic in comics %}
+                    <div class="comic-card">
+                        <img src="{{ comic.image_url }}" alt="{{ comic.title }}" class="comic-image">
+                        <div class="comic-content">
+                            <h3 class="comic-title">{{ comic.title }}</h3>
+                            <div class="comic-characters">{{ comic.characters }}</div>
+                            <div class="article-meta">{{ comic.created_at[:10] }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="text-align: center; padding: 60px 0; color: #888;">
+                <p>No comics yet. Check back soon!</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
 <div class="grid grid-2">
     {% for comic in comics %}
     <div class="comic-strip">

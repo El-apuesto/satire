@@ -11,6 +11,8 @@ app = Flask(__name__)
 # Configuration
 GROQ_API_KEY = os.getenv('GROQ_API_KEY', '')
 NEWSDATA_API_KEY = os.getenv('NEWSDATA_API_KEY', '')
+PEXELS_API_KEY = os.getenv('PEXELS_API_KEY', '')
+REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN', '')
 
 # Categories
 CATEGORIES = {
@@ -167,24 +169,60 @@ PANEL 3:
     return None
 
 def generate_comic_image(dialogue_text):
-    """Generate comic strip image."""
-    # For now, return a styled placeholder
-    return "https://via.placeholder.com/600x400/1a1a1a/ffffff?text=Comic+Strip"
+    """Generate comic strip image using Replicate."""
+    try:
+        import replicate
+        client = replicate.Client(api_token=REPLICATE_API_TOKEN)
+        
+        output = client.run(
+            "stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
+            input={
+                "prompt": f"Comic strip: {dialogue_text[:200]}",
+                "width": 600,
+                "height": 400,
+                "num_outputs": 1
+            }
+        )
+        return output[0]
+    except:
+        return "https://via.placeholder.com/600x400/1a1a1a/ffffff?text=Comic+Strip"
+
+def get_pexels_image(query):
+    """Get image from Pexels API."""
+    try:
+        url = f"https://api.pexels.com/v1/search?query={query}&per_page=1"
+        headers = {"Authorization": PEXELS_API_KEY}
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            return data['photos'][0]['src']['large']
+    except:
+        pass
+    return "https://via.placeholder.com/400x300/cccccc/666666?text=News+Image"
+
+def generate_comic_image(dialogue):
+    """Generate comic image using Replicate."""
+    try:
+        import replicate
+        client = replicate.Client(api_token=REPLICATE_API_TOKEN)
+        
+        output = client.run(
+            "stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
+            input={
+                "prompt": f"Comic strip: {dialogue[:200]}",
+                "width": 600,
+                "height": 400,
+                "num_outputs": 1
+            }
+        )
+        return output[0]
+    except:
+        return "https://via.placeholder.com/600x400/1a1a1a/ffffff?text=Comic+Strip"
 
 def get_article_image(article):
-    """Get image for article from free sources."""
-    # Try Unsplash first
-    try:
-        unsplash_url = f"https://source.unsplash.com/400x300/?{article['category']},news"
-        return unsplash_url
-    except:
-        # Fallback to Pexels
-        try:
-            pexels_url = f"https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=400"
-            return pexels_url
-        except:
-            # Final fallback
-            return "https://via.placeholder.com/400x300/cccccc/666666?text=News+Image"
+    """Get image for article using Pexels API."""
+    # Try Pexels first
+    return get_pexels_image(f"{article.get('category', 'news')},breaking news")
 
 def generate_articles():
     """Generate articles for all categories."""
@@ -265,6 +303,17 @@ def article_detail(article_id):
         return "Article not found", 404
     
     return render_template('mvp_article.html', article=article)
+
+@app.route('/comics')
+def comics_page():
+    """Comics page with all comic strips."""
+    comics = load_comics()
+    return render_template('comics.html', comics=comics)
+
+@app.route('/admin')
+def admin_page():
+    """Admin page for generating content."""
+    return render_template('admin.html')
 
 @app.route('/generate', methods=['POST'])
 def generate_articles_route():

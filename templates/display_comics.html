@@ -1,0 +1,29 @@
+{% extends "mvp_luxury_base.html" %}
+
+{% block content %}
+    <div class="comics-section">
+        <h2 style="color: #e8e8e8; margin-bottom: 30px; font-size: 2rem;">OK Crisis Comics</h2>
+        
+        {% if comics %}
+            <div class="comic-grid">
+                {% for comic in comics %}
+                    <div class="comic-card">
+                        {% if comic.image_url %}
+                            <img src="{{ comic.image_url }}" alt="{{ comic.title }}" class="comic-image">
+                        {% endif %}
+                        <div class="comic-content">
+                            <h3 class="comic-title">{{ comic.title }}</h3>
+                            <div class="comic-characters">{{ comic.characters }}</div>
+                            <div class="article-meta">{{ comic.created_at[:10] }}</div>
+                            <a href="/comic/{{ comic.id }}" class="view-all">View Comic →</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div style="text-align: center; padding: 60px 0; color: #888;">
+                <p>No comics yet. Check back soon!</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
