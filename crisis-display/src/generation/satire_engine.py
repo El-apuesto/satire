@@ -115,57 +115,42 @@ class SatireEngine:
         return satire_article
     
     def create_satire_headline(self, original_title: str, category: str) -> str:
-        """Create satirical headline from original title"""
-        templates = {
+        """Create deadpan absurd headline from original title"""
+        
+        # Extract key elements from original title
+        words = original_title.lower().split()
+        
+        # Deadpan absurd patterns
+        patterns = {
             'politics': [
-                "Local Government Announces Plans To Consider Thinking About Maybe Addressing Issues Someday",
-                "Politicians Promise To 'Strongly Consider' Taking Action On Issue They've Ignored For Years",
-                "Bipartisan Agreement Reached To Form Committee To Discuss Potential Future Considerations"
+                f"Local Officials Make {random.choice(['Bold', 'Historic', 'Unprecedented'])} Decision To {random.choice(['Consider', 'Think About', 'Ponder'])} {original_title.title()}",
+                f"In Move That Stunned {random.choice(['Absolutely No One', 'Experts', 'Local Residents'])}, Politicians {random.choice(['Announce', 'Declare', 'Proclaim'])} Plans Regarding {original_title.title()}",
+                f"{original_title.title()} Described As '{random.choice(['Most Important Issue Of Our Time', 'Game-Changer', 'Paradigm Shift'])}' By People Who Should Know Better"
             ],
             'technology': [
-                "Tech Startup Disrupts Industry By Making Things Slightly More Complicated",
-                "New App Promises To Revolutionize Daily Life By Adding Extra Steps To Simple Tasks",
-                "Innovation Unveiled: Company Solves Problem Nobody Had With Technology Nobody Understands"
+                f"New Technology Promises To {random.choice(['Revolutionize', 'Transform', 'Completely Change'])} How We {random.choice(['Think About', 'Interact With', 'Experience'])} {original_title.title()}",
+                f"Startup Raises {random.choice(['$50 Million', '$100 Million', 'Undisclosed Amount']) For {original_title.title()} - Something That Already Existed",
+                f"Experts Agree {original_title.title()} Is '{random.choice(['The Future', 'Disruptive Innovation', 'Game-Changer'])}' Despite Having No Idea What It Is"
             ],
             'science': [
-                "Study Finds People Who Read Studies Are More Likely To Be In Studies",
-                "Research Reveals Shocking Correlation Between Obvious Things And Other Obvious Things",
-                "Scientists Discover That Things Are, In Fact, The Way They Appear To Be"
+                f"Study Reveals {random.choice(['Shocking', 'Surprising', 'Mind-Blowing'])} Connection Between {original_title.title()} And {random.choice(['Things We Already Knew', 'Common Sense', 'Reality'])}",
+                f"Scientists Discover {original_title.title()} Is, In Fact, {random.choice(['Real', 'True', 'Actually A Thing'])}",
+                f"Research Shows {original_title.title()} {random.choice(['Matters', 'Is Important', 'Exists'])} In Findings That {random.choice(['Confirm Obvious', 'State The Obvious', 'Tell Us What We Already Know'])}"
             ],
             'sports': [
-                "Athletes Announce Plans To Possibly Consider Maybe Competing In Upcoming Games",
-                "Sports Study Reveals Teams Who Practice More Tend To Win More Games",
-                "League Officials Confirm Balls Are Round, Despite Earlier Speculation"
+                f"Athletes {random.choice(['Shocked', 'Amazed', 'Stunned'])} By Discovery That {original_title.title()} {random.choice(['Affects Performance', 'Is Important', 'Matters'])}",
+                f"Study Shows {original_title.title()} {random.choice(['Helps', 'Hurts', 'Changes'])} Athletic Performance In Ways Everyone Already Knew",
+                f"Sports World Reacts To {original_title.title()} With {random.choice(['Surprise', 'Shock', 'Complete Lack Of Surprise'])}"
             ],
-            'music': [
-                "Artists Planning To Possibly Consider Releasing Music At Some Point In Future",
-                "Music Industry Announces Technology That Revolutionizes How People Experience Songs",
-                "Silence Praised As Revolutionary Creative Element In Latest Album"
-            ],
-            'world': [
-                "Global Leaders Gather To Discuss Potentially Addressing Issues Someday",
-                "International Organizations Announce Initiative To Consider Forming Committees",
-                "Experts Reveal World Events Occurring In Multiple Locations Simultaneously"
-            ],
-            'advice': [
-                "Dear Abby Columnist Announces Plans To Actually Consider Answering Questions",
-                "Advice Column Reveals People Have Problems That Could Be Solved With Common Sense",
-                "Readers Write In With Questions That Could Be Answered By Simply Thinking"
-            ],
-            'mens_dating': [
-                "Study Finds Men Who Listen To Women Still Don't Understand What They Said",
-                "Research Reveals Men Think 'Nothing's Wrong' Means Something Is Actually Wrong",
-                "Scientists Discover Men Who Try To Fix Things Often Make Them Worse"
-            ],
-            'womens_dating': [
-                "Women Announce They're Fine When They're Actually Not Fine, Study Confirms",
-                "Research Shows Men Who Think They're Right Usually Aren't, Scientists Say",
-                "Dating Experts Confirm Women Always Right, Men Always Wrong"
+            'entertainment': [
+                f"{original_title.title()} {random.choice(['Changes Everything', 'Redefines Genre', 'Sets New Standard'])} According To People Who Get Paid To Say That",
+                f"Critics Describe {original_title.title()} As '{random.choice(['Masterpiece', 'Game-Changer', 'Revolutionary'])}' In Reviews That Sound Like Every Other Review",
+                f"Industry Insiders Agree {original_title.title()} Is '{random.choice(['The Future', 'What People Want', 'Revolutionary'])}' For Reasons That Remain Unclear"
             ]
         }
         
-        category_templates = templates.get(category, templates['science'])
-        return random.choice(category_templates)
+        category_patterns = patterns.get(category, patterns['science'])
+        return random.choice(category_patterns)
     
     def create_satire_opening(self, original_content: str, category: str) -> str:
         """Create satirical opening paragraph"""
@@ -183,23 +168,42 @@ class SatireEngine:
             return f"{base_template} The findings, published in a prestigious journal, have important implications for our understanding of things we already understood."
     
     def create_satire_body(self, original_content: str, category: str) -> List[str]:
-        """Create satirical body paragraphs"""
+        """Create deadpan absurd body paragraphs from original content"""
+        
+        # Extract key elements from original content
+        content_words = original_content.lower().split() if original_content else ["something", "happened"]
+        
         paragraphs = []
         
         if category == 'politics':
-            paragraphs.append("The announcement, which took approximately 45 minutes to deliver, was met with cautious optimism from residents who have grown accustomed to delayed responses to community needs.")
-            paragraphs.append("Mayor Thompson explained that this proactive approach to potentially addressing issues represents a bold step forward in municipal governance, even though no specific timeline was provided for when actual consideration might begin.")
-            paragraphs.append("Opposition parties criticized the plan as 'too ambitious,' suggesting that forming a committee to consider discussing issues might set an unrealistic precedent for taking action.")
+            paragraphs.append(f"The announcement, which took approximately {random.randint(30, 90)} minutes to deliver, was met with {random.choice(['cautious optimism', 'utter indifference', 'complete surprise'])} from residents who have grown accustomed to {random.choice(['delayed responses', 'empty promises', 'political theater'])}.")
+            paragraphs.append(f"Mayor Thompson explained that this proactive approach to potentially addressing {original_content[:50] if original_content else 'community issues'} represents a bold step forward in municipal governance, even though no specific timeline was provided for when actual consideration might begin.")
+            paragraphs.append(f"Opposition parties criticized the plan as '{random.choice(['too ambitious', 'not ambitious enough', 'exactly what you would expect'])}', suggesting that forming a committee to consider discussing issues might set an unrealistic precedent for taking action.")
             
         elif category == 'technology':
-            paragraphs.append("The new platform, which requires three separate apps and a monthly subscription, adds several additional steps to processes that previously took seconds to complete.")
-            paragraphs.append("Investors have poured $50 million into the venture, citing the enormous potential of convincing people they need solutions to problems they didn't know they had.")
-            paragraphs.append("Early adopters report being 'impressed' and 'confused' in equal measure, with many praising the innovation while struggling to understand what it actually does.")
+            paragraphs.append(f"The new platform, which requires {random.randint(2, 5)} separate apps and a monthly subscription, adds several additional steps to processes that previously took seconds to complete.")
+            paragraphs.append(f"Investors have poured ${random.randint(10, 100)} million into the venture, citing the enormous potential of convincing people they need solutions to problems they didn't know they had.")
+            paragraphs.append(f"Early adopters report being '{random.choice(['impressed', 'confused', 'both'])}' in equal measure, with many praising the innovation while struggling to understand what it actually does.")
             
-        else:  # science/general
-            paragraphs.append("The five-year study followed 10,000 participants, 87% of whom were included in at least one study during the research period.")
-            paragraphs.append("Researchers noted that participants who read the most studies were 300% more likely to be cited in subsequent studies about people who read studies.")
-            paragraphs.append("The scientific community has hailed the findings as 'revolutionary' and 'obvious,' with calls for additional funding to study why studies require so much funding.")
+        elif category == 'science':
+            paragraphs.append(f"The {random.randint(3, 10)}-year study followed {random.randint(1000, 10000)} participants, {random.randint(60, 95)}% of whom were included in at least one study during the research period.")
+            paragraphs.append(f"Researchers noted that participants who {random.choice(['read the most studies', 'breathed air', 'existed'])} were {random.randint(200, 500)}% more likely to be cited in subsequent studies about people who {random.choice(['read studies', 'breathe air', 'exist'])}.")
+            paragraphs.append(f"The scientific community has hailed the findings as '{random.choice(['revolutionary', 'obvious', 'both'])}' and '{random.choice(['groundbreaking', 'predictable', 'expected'])}', with calls for additional funding to study why studies require so much funding.")
+            
+        elif category == 'sports':
+            paragraphs.append(f"The discovery has sent shockwaves through the athletic community, with players reportedly {random.choice(['stunned', 'amazed', 'completely unfazed'])} by the revelation that {original_content[:50] if original_content else 'basic athletic principles'} might affect performance.")
+            paragraphs.append(f"Coaches are already incorporating these findings into training regimens, adding {random.randint(1, 4)} new drills to practice sessions that already last {random.randint(2, 6)} hours.")
+            paragraphs.append(f"League officials are considering rule changes based on the research, though insiders suggest any changes will be implemented {random.choice(['immediately', 'after extensive study', 'never'])}.")
+            
+        elif category == 'entertainment':
+            paragraphs.append(f"Industry insiders are calling the development '{random.choice(['game-changing', 'revolutionary', 'exactly like everything else'])}' in a field that desperately needs something to talk about.")
+            paragraphs.append(f"Experts predict this will {random.choice(['change everything', 'change nothing', 'change something slightly'])} for the next {random.randint(6, 24)} months, at which point something else will become the thing that changes everything.")
+            paragraphs.append(f"Fans have reacted with {random.choice(['enthusiasm', 'indifference', 'confusion')}', with many taking to social media to express opinions that will be completely forgotten by tomorrow.")
+            
+        else:  # general/fallback
+            paragraphs.append(f"The situation, which has been developing for {random.randint(1, 10)} years, has finally reached the point where people are talking about it, at least until something more interesting happens.")
+            paragraphs.append(f"Experts agree that this represents either a {random.choice(['major turning point', 'minor inconvenience', 'complete non-event'])} in the ongoing saga of things that happen.")
+            paragraphs.append(f"Further research is planned, though most expect the findings to confirm what everyone already suspected all along.")
         
         return paragraphs
     
