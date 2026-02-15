@@ -129,7 +129,7 @@ class SatireEngine:
             ],
             'technology': [
                 f"New Technology Promises To {random.choice(['Revolutionize', 'Transform', 'Completely Change'])} How We {random.choice(['Think About', 'Interact With', 'Experience'])} {original_title.title()}",
-                f"Startup Raises {random.choice(['$50 Million', '$100 Million', 'Undisclosed Amount']) For {original_title.title()} - Something That Already Existed",
+                f"Startup Raises {random.choice(['$50 Million', '$100 Million', 'Undisclosed Amount'])} For {original_title.title()} - Something That Already Existed",
                 f"Experts Agree {original_title.title()} Is '{random.choice(['The Future', 'Disruptive Innovation', 'Game-Changer'])}' Despite Having No Idea What It Is"
             ],
             'science': [
@@ -146,6 +146,26 @@ class SatireEngine:
                 f"{original_title.title()} {random.choice(['Changes Everything', 'Redefines Genre', 'Sets New Standard'])} According To People Who Get Paid To Say That",
                 f"Critics Describe {original_title.title()} As '{random.choice(['Masterpiece', 'Game-Changer', 'Revolutionary'])}' In Reviews That Sound Like Every Other Review",
                 f"Industry Insiders Agree {original_title.title()} Is '{random.choice(['The Future', 'What People Want', 'Revolutionary'])}' For Reasons That Remain Unclear"
+            ],
+            'business': [
+                f"CEOs {random.choice(['Stunned', 'Shocked', 'Completely Surprised'])} By Discovery That {original_title.title()} {random.choice(['Affects Profits', 'Matters To Shareholders', 'Changes Everything'])}",
+                f"Market Reacts To {original_title.title()} With {random.choice(['Wild Enthusiasm', 'Complete Indifference', 'Predictable Panic'])}",
+                f"Business Experts Agree {original_title.title()} Is '{random.choice(['Game-Changer', 'Paradigm Shift', 'Revolutionary'])}' Despite Nobody Understanding What It Is"
+            ],
+            'finance': [
+                f"Wall Street {random.choice(['Stunned', 'Shocked', 'Completely Amazed'])} By {original_title.title()} In Move That {random.choice(['Changes Everything', 'Changes Nothing', 'Changes Something Slightly'])}",
+                f"Financial Experts Describe {original_title.title()} As '{random.choice(['Historic', 'Unprecedented', 'Completely Expected'])}' Development In Market That Does What It Always Does",
+                f"Investors React To {original_title.title()} With {random.choice(['Optimism', 'Panic', 'Utter Confusion'])} Despite Having No Idea What Just Happened"
+            ],
+            'health': [
+                f"Medical Community {random.choice(['Stunned', 'Shocked', 'Completely Amazed'])} By Discovery That {original_title.title()} {random.choice(['Affects Health', 'Matters', 'Is Actually True'])}",
+                f"Study Shows {original_title.title()} {random.choice(['Helps', 'Hurts', 'Changes'])} Health In Ways Everyone Already Knew",
+                f"Health Experts Agree {original_title.title()} Is '{random.choice(['Revolutionary', 'Game-Changer', 'Exactly What We Expected'])}' In Findings That Surprise Absolutely No One"
+            ],
+            'world': [
+                f"Global Leaders {random.choice(['Stunned', 'Shocked', 'Completely Surprised'])} By {original_title.title()} In Development That {random.choice(['Changes Everything', 'Changes Nothing', 'Was Inevitable'])}",
+                f"International Community Reacts To {original_title.title()} With {random.choice(['Concern', 'Indifference', 'Complete Surprise'])}",
+                f"World Experts Agree {original_title.title()} Is '{random.choice(['Historic', 'Unprecedented', 'Business As Usual'])}' Despite It Happening Regularly"
             ]
         }
         
@@ -198,7 +218,27 @@ class SatireEngine:
         elif category == 'entertainment':
             paragraphs.append(f"Industry insiders are calling the development '{random.choice(['game-changing', 'revolutionary', 'exactly like everything else'])}' in a field that desperately needs something to talk about.")
             paragraphs.append(f"Experts predict this will {random.choice(['change everything', 'change nothing', 'change something slightly'])} for the next {random.randint(6, 24)} months, at which point something else will become the thing that changes everything.")
-            paragraphs.append(f"Fans have reacted with {random.choice(['enthusiasm', 'indifference', 'confusion')}', with many taking to social media to express opinions that will be completely forgotten by tomorrow.")
+            paragraphs.append(f"Fans have reacted with {random.choice(['enthusiasm', 'indifference', 'confusion'])}, with many taking to social media to express opinions that will be completely forgotten by tomorrow.")
+            
+        elif category == 'business':
+            paragraphs.append(f"The announcement, which took approximately {random.randint(15, 60)} minutes to deliver, was met with {random.choice(['wild enthusiasm', 'complete indifference', 'market panic'])} from investors who have grown accustomed to {random.choice(['corporate jargon', 'empty promises', 'quarterly earnings calls'])}.")
+            paragraphs.append(f"CEO Thompson explained that this proactive approach to potentially addressing {original_content[:50] if original_content else 'market conditions'} represents a bold step forward in corporate governance, even though no specific timeline was provided for when actual profits might begin.")
+            paragraphs.append(f"Market analysts criticized the plan as '{random.choice(['too ambitious', 'not ambitious enough', 'exactly what you would expect'])}', suggesting that forming a committee to consider discussing quarterly results might set an unrealistic precedent for taking action.")
+            
+        elif category == 'finance':
+            paragraphs.append(f"The financial markets reacted with {random.choice(['wild optimism', 'utter panic', 'complete confusion'])} to the development, with traders reportedly {random.choice(['buying everything', 'selling everything', 'doing nothing'])} in response to {original_content[:50] if original_content else 'market news'}.")
+            paragraphs.append(f"Wall Street experts explained that this represents either a {random.choice(['major turning point', 'minor inconvenience', 'complete non-event'])} in the ongoing saga of numbers going up and down for reasons nobody understands.")
+            paragraphs.append(f"Federal Reserve officials are considering policy changes based on the news, though insiders suggest any changes will be implemented {random.choice(['immediately', 'after extensive study', 'never'])}.")
+            
+        elif category == 'health':
+            paragraphs.append(f"The medical community was {random.choice(['stunned', 'shocked', 'completely amazed'])} by the discovery, with doctors reportedly {random.choice(['reconsidering everything', 'confirming what they already knew', 'asking for more funding'])}.")
+            paragraphs.append(f"The {random.randint(5, 15)}-year study followed {random.randint(500, 5000)} participants, {random.randint(60, 95)}% of whom were {random.choice(['surprised by the findings', 'not surprised at all', 'confused by the methodology'])}.")
+            paragraphs.append(f"Health experts are calling for {random.choice(['immediate action', 'more research', 'a balanced approach'])}, though most agree that {original_content[:50] if original_content else 'this health issue'} probably {random.choice(['matters', 'doesnt matter', 'might matter slightly'])}.")
+            
+        elif category == 'world':
+            paragraphs.append(f"Global leaders gathered to discuss the development, which has been described as '{random.choice(['historic', 'unprecedented', 'business as usual'])}' by people who get paid to describe things as historic.")
+            paragraphs.append(f"The international community reacted with {random.choice(['concern', 'indifference', 'complete surprise'])} to the news, with many nations {random.choice(['calling for action', 'ignoring it completely', 'forming committees'])}.")
+            paragraphs.append(f"United Nations officials are considering a resolution regarding {original_content[:50] if original_content else 'global issues'}, though insiders suggest any resolution will be {random.choice(['immediately implemented', 'ignored completely', 'vetoed by major powers'])}.")
             
         else:  # general/fallback
             paragraphs.append(f"The situation, which has been developing for {random.randint(1, 10)} years, has finally reached the point where people are talking about it, at least until something more interesting happens.")
@@ -278,6 +318,51 @@ class SatireEngine:
                 'quote': 'Global events are, in fact, occurring in various locations simultaneously, which suggests either unprecedented coordination or widespread coincidence.'
             })
         
+        elif category == 'business':
+            quotes.append({
+                'expert': 'Dr. Michael Thompson',
+                'affiliation': 'Harvard Business Review',
+                'quote': 'This represents a paradigm shift in corporate strategy. We\'re moving from ignoring market trends to actively ignoring them in a more structured way.'
+            })
+            quotes.append({
+                'expert': 'Jennifer Walsh',
+                'affiliation': 'Wall Street Analytics',
+                'quote': 'The beauty of this business model is that it creates problems that only it can solve, which is the essence of disruptive innovation.'
+            })
+        elif category == 'finance':
+            quotes.append({
+                'expert': 'Dr. Robert Chen',
+                'affiliation': 'Federal Reserve Institute',
+                'quote': 'This represents either unprecedented coordination or widespread coincidence in financial markets, depending on who you ask.'
+            })
+            quotes.append({
+                'expert': 'Sarah Martinez',
+                'affiliation': 'Investment Weekly',
+                'quote': 'The data suggests that money goes up and down for reasons that make sense only in retrospect, which is the essence of financial analysis.'
+            })
+        elif category == 'health':
+            quotes.append({
+                'expert': 'Dr. Emily Watson',
+                'affiliation': 'Medical Journal Today',
+                'quote': 'This research confirms what doctors suspected all along - health is, in fact, affected by things that affect health.'
+            })
+            quotes.append({
+                'expert': 'Dr. Richard Kim',
+                'affiliation': 'Global Health Organization',
+                'quote': 'Our findings suggest a self-perpetuating cycle of health advice that could revolutionize how we give health advice about giving health advice.'
+            })
+        elif category == 'world':
+            quotes.append({
+                'expert': 'Dr. James Wilson',
+                'affiliation': 'International Affairs Institute',
+                'quote': 'Global events are, in fact, occurring in various locations simultaneously, which suggests either unprecedented coordination or widespread coincidence.'
+            })
+            quotes.append({
+                'expert': 'Dr. Anna Petrova',
+                'affiliation': 'United Nations Policy Forum',
+                'quote': 'International diplomacy increasingly resembles a reality show where everyone knows the script but pretends to be improvising.'
+            })
+        
         return quotes
     
     def generate_byline(self, category: str) -> str:
@@ -289,6 +374,10 @@ class SatireEngine:
             'sports': ['Coach Michael Richardson', 'Jessica Martinez', 'Chris Johnson'],
             'music': ['Dr. David Chen', 'Maria Rodriguez', 'Emily Taylor', 'Justin Timberlake'],
             'world': ['Dr. James Wilson', 'Sarah Thompson', 'Michael Davis', 'Anna Petrova'],
+            'business': ['Dr. Michael Thompson', 'Jennifer Walsh', 'Tom Anderson'],
+            'finance': ['Dr. Robert Chen', 'Sarah Martinez', 'Mark Johnson'],
+            'health': ['Dr. Emily Watson', 'Dr. Richard Kim', 'Lisa Davis'],
+            'entertainment': ['Dr. David Chen', 'Maria Rodriguez', 'Emily Taylor'],
             'advice': ['Gabby Thompson'],
             'mens_dating': ['Guy Breux'],
             'womens_dating': ['Gabby Thompson']
@@ -333,6 +422,9 @@ class SatireEngine:
                 'music': ['music', 'concert', 'performance', 'studio'],
                 'world': ['world', 'global', 'international', 'news'],
                 'entertainment': ['entertainment', 'movie', 'celebrity', 'show'],
+                'business': ['business', 'finance', 'corporate', 'office'],
+                'finance': ['finance', 'money', 'market', 'trading'],
+                'health': ['health', 'medical', 'hospital', 'doctor'],
                 'lifestyle': ['lifestyle', 'health', 'wellness', 'living']
             }
             

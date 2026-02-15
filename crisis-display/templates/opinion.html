@@ -23,7 +23,35 @@
         </div>
         
         <div class="editorials-grid">
-            <!-- Editorial 1 -->
+            {% for editorial in editorials %}
+            <article class="editorial-card">
+                <div class="editorial-header">
+                    <div class="editorial-category">{{ editorial.category }}</div>
+                    <h3 class="editorial-title">{{ editorial.title }}</h3>
+                    <div class="editorial-meta">
+                        <span class="editorial-author">By {{ editorial.author }}</span>
+                        <span class="editorial-date">{{ editorial.date }}</span>
+                    </div>
+                </div>
+                <div class="editorial-content">
+                    <p class="editorial-excerpt">{{ editorial.excerpt }}</p>
+                    {% for paragraph in editorial.content %}
+                    <p>{{ paragraph }}</p>
+                    {% endfor %}
+                    {% if editorial.quote %}
+                    <blockquote class="editorial-quote">
+                        "{{ editorial.quote }}" - {{ editorial.expert }}, {{ editorial.affiliation }}
+                    </blockquote>
+                    {% endif %}
+                    <div class="editorial-actions">
+                        <a href="#" class="luxury-btn">Read Full Editorial</a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+            
+            {% if not editorials %}
+            <!-- Fallback static editorials if no dynamic content -->
             <article class="editorial-card">
                 <div class="editorial-header">
                     <div class="editorial-category">POLITICAL ANALYSIS</div>
@@ -41,37 +69,8 @@
                     </div>
                 </div>
             </article>
-
-            <!-- Editorial 2 -->
-            <article class="editorial-card">
-                <div class="editorial-header">
-                    <div class="editorial-category">CULTURAL CRITICISM</div>
-                    <h3 class="editorial-title">The Rise of Minimalism: Why Owning Nothing Is the New Having Everything</h3>
-                    <div class="editorial-meta">
-                        <span class="editorial-author">By Jessica Chen</span>
-                        <span class="editorial-date">January 14, 2024</span>
-                    </div>
-                </div>
-                <div class="editorial-content">
-                    <p class="editorial-excerpt">In a stunning reversal of human evolution, modern society has collectively decided that the peak of existence is having as little as possible while paying as much as possible for the privilege.</p>
-                    <p>Minimalism, once the domain of ascetics and people who couldn't afford furniture, has become the ultimate status symbol. Nothing says "I've made it" quite like explaining to your guests why they have to sit on the floor.</p>
-                    <div class="editorial-actions">
-                        <a href="#" class="luxury-btn">Read Full Editorial</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Editorial 3 -->
-            <article class="editorial-card">
-                <div class="editorial-header">
-                    <div class="editorial-category">TECHNOLOGY & SOCIETY</div>
-                    <h3 class="editorial-title">AI Will Save Humanity By Making Us Completely Obsolete</h3>
-                    <div class="editorial-meta">
-                        <span class="editorial-author">By Marcus Rodriguez</span>
-                        <span class="editorial-date">January 13, 2024</span>
-                    </div>
-                </div>
-                <div class="editorial-content">
+            {% endif %}
+        </div>
                     <p class="editorial-excerpt">Artificial Intelligence promises to solve all of humanity's problems by eliminating the most problematic variable of all: humans themselves.</p>
                     <p>Experts predict that within the next decade, AI will be capable of performing every human task more efficiently, from writing poetry to pretending to listen during family gatherings. The future is bright, assuming you're a machine.</p>
                     <div class="editorial-actions">
@@ -92,7 +91,24 @@
         </div>
         
         <div class="letters-grid">
-            <!-- Letter 1 -->
+            {% for letter in dear_gabby %}
+            <div class="letter-card">
+                <div class="letter-header">
+                    <div class="letter-category">DEAR GABBY</div>
+                    <h3 class="letter-subject">{{ letter.question }}</h3>
+                    <div class="letter-meta">
+                        <span class="letter-author">By {{ letter.author }}</span>
+                        <span class="letter-date">{{ letter.date }}</span>
+                    </div>
+                </div>
+                <div class="letter-content">
+                    <p>{{ letter.answer }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            
+            {% if not dear_gabby %}
+            <!-- Fallback static letters if no dynamic content -->
             <div class="letter-card">
                 <div class="letter-header">
                     <div class="letter-category">ANGRY RANT</div>
@@ -107,54 +123,7 @@
                     <p>P.S. Can you send me free copies for my book club?</p>
                 </div>
             </div>
-
-            <!-- Letter 2 -->
-            <div class="letter-card">
-                <div class="letter-header">
-                    <div class="letter-category">CONFUSED INQUIRY</div>
-                    <h3 class="letter-subject">Is This a Real Newspaper?</h3>
-                    <div class="letter-meta">
-                        <span class="letter-author">Robert from Ohio</span>
-                        <span class="letter-date">2 days ago</span>
-                    </div>
-                </div>
-                <div class="letter-content">
-                    <p>I've been reading your publication for three years and I just have to ask: is any of this real? My wife says it's satire but I'm pretty sure I saw that story about the city council meeting on the actual news last week.</p>
-                    <p>Please clarify before I show these articles to my grandchildren.</p>
-                </div>
-            </div>
-
-            <!-- Letter 3 -->
-            <div class="letter-card">
-                <div class="letter-header">
-                    <div class="letter-category">UNDESERVED PRAISE</div>
-                    <h3 class="letter-subject">You Changed My Life</h3>
-                    <div class="letter-meta">
-                        <span class="letter-author">Anonymous</span>
-                        <span class="letter-date">Last week</span>
-                    </div>
-                </div>
-                <div class="letter-content">
-                    <p>Your article about procrastination inspired me to finally get my life together. I read it three months ago and just got around to writing this letter. Thank you for teaching me that there's no time like the present to put things off until later.</p>
-                    <p>I've started a support group for people who mean to attend but never show up.</p>
-                </div>
-            </div>
-
-            <!-- Letter 4 -->
-            <div class="letter-card">
-                <div class="letter-header">
-                    <div class="letter-category">LEGAL THREAT</div>
-                    <h3 class="letter-subject">My Lawyer Will Be in Touch</h3>
-                    <div class="letter-meta">
-                        <span class="letter-author">Not Actually a Lawyer</span>
-                        <span class="letter-date">This morning</span>
-                    </div>
-                </div>
-                <div class="letter-content">
-                    <p>Your recent article about bears wearing hats has caused irreparable harm to my client, who is a bear that wears hats. We demand an immediate retraction and $10 million in damages, plus all the honey you can find.</p>
-                    <p>This is not a joke. My client is very real and very litigious.</p>
-                </div>
-            </div>
+            {% endif %}
         </div>
 
         <!-- Submit Letter -->

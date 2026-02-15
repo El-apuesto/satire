@@ -270,8 +270,46 @@ def category(category):
 
 @app.route('/opinion')
 def opinion():
-    """Opinion page with editorials and reader letters."""
-    return render_template('opinion.html')
+    """Opinion page with dynamic editorials and reader letters."""
+    if archive_manager and satire_engine:
+        # Generate political editorials from recent articles
+        political_articles = archive_manager.search_articles("", category="politics", limit=3)
+        
+        # Create editorial-style content from political articles
+        editorials = []
+        for article in political_articles:
+            # Transform into editorial format
+            editorial = {
+                'category': 'POLITICAL ANALYSIS',
+                'title': f"Why {article['headline'][:50]}... Is The Most Important Issue Of Our Time",
+                'author': article['byline'],
+                'date': article['timestamp'][:10] if article['timestamp'] else '',
+                'excerpt': article['opening_paragraph'],
+                'content': article['body_paragraphs'][:2] if article['body_paragraphs'] else [],
+                'quote': article['expert_quotes'][0]['quote'] if article['expert_quotes'] else "This represents a paradigm shift in how we think about things.",
+                'expert': article['expert_quotes'][0]['expert'] if article['expert_quotes'] else "Dr. Expert",
+                'affiliation': article['expert_quotes'][0]['affiliation'] if article['expert_quotes'] else "Institute of Studies"
+            }
+            editorials.append(editorial)
+        
+        # Generate Dear Gabby advice columns
+        advice_articles = archive_manager.search_articles("", category="advice", limit=3)
+        dear_gabby = []
+        for article in advice_articles:
+            letter = {
+                'question': article['headline'],
+                'answer': article['opening_paragraph'],
+                'author': 'Gabby Thompson',
+                'date': article['timestamp'][:10] if article['timestamp'] else ''
+            }
+            dear_gabby.append(letter)
+        
+        return render_template('opinion.html', 
+                             editorials=editorials,
+                             dear_gabby=dear_gabby)
+    else:
+        # Fallback to static content
+        return render_template('opinion.html')
 
 @app.route('/ask-gabby')
 def ask_gabby():
