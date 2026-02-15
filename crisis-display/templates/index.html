@@ -23,7 +23,11 @@
             <div class="top-story-image">
                 <div class="image-placeholder" style="height: 400px; background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold)); display: flex; align-items: center; justify-content: center;">
                     <div style="text-align: center; color: white;">
-                        <img src="{{ url_for('static', filename='images/1/hero-image.jpg') }}" alt="Featured Story" style="max-width: 100%; max-height: 350px; object-fit: cover;">
+                        {% if featured_article.image_url %}
+                        <img src="{{ featured_article.image_url }}" alt="Featured Story" style="max-width: 100%; max-height: 350px; object-fit: cover;">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='hero-image.jpg') }}" alt="Featured Story" style="max-width: 100%; max-height: 350px; object-fit: cover;">
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -37,7 +41,7 @@
         <div class="front-ad-content">
             <div style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 1rem; text-align: center;">Advertisement</div>
             <div style="background: white; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
-                <img src="{{ url_for('static', filename='images/3/front-page-ad.jpg') }}" alt="Advertisement" style="max-width: 100%; height: auto;">
+                <img src="{{ url_for('static', filename='front-page-ad.jpg') }}" alt="Advertisement" style="max-width: 100%; height: auto;">
             </div>
         </div>
     </div>
@@ -207,7 +211,7 @@
             <div class="ad-space" style="grid-column: 1 / -1; background: var(--light-gray); border: 2px dashed var(--primary-gold); padding: 2rem; text-align: center; margin: 1rem 0;">
                 <div style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 1rem;">Advertisement</div>
                 <div style="background: white; padding: 1.5rem; border-radius: 8px; min-height: 200px; display: flex; align-items: center; justify-content: center;">
-                    <img src="{{ url_for('static', filename='images/2/ad-placeholder.jpg') }}" alt="Advertisement" style="max-width: 100%; height: auto;">
+                    <img src="{{ url_for('static', filename='ad-placeholder.jpg') }}" alt="Advertisement" style="max-width: 100%; height: auto;">
                 </div>
             </div>
             {% endif %}

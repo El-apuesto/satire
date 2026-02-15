@@ -1,5 +1,6 @@
 import json
 import random
+import requests
 from datetime import datetime
 from typing import Dict, List, Any
 
@@ -93,6 +94,9 @@ class SatireEngine:
         # Generate expert quotes
         expert_quotes = self.create_expert_quotes(category)
         
+        # Generate related image
+        image_url = self.generate_related_image(headline, category)
+        
         # Create satire article
         satire_article = {
             'id': hash(original_article.get('title', '')) % 10000,
@@ -103,6 +107,7 @@ class SatireEngine:
             'timestamp': datetime.now().isoformat(),
             'body_paragraphs': body_paragraphs,
             'expert_quotes': expert_quotes,
+            'image_url': image_url,
             'source_url': original_article.get('url', ''),
             'original_title': original_article.get('title', '')
         }
@@ -287,6 +292,38 @@ class SatireEngine:
         
         category_authors = authors.get(category, authors['science'])
         return random.choice(category_authors)
+    
+    def generate_related_image(self, headline: str, category: str) -> str:
+        """Generate or find a related image for the article"""
+        try:
+            # For now, return placeholder - can be enhanced with actual image generation
+            image_keywords = {
+                'politics': ['government', 'politics', 'election', 'congress'],
+                'technology': ['tech', 'computer', 'innovation', 'digital'],
+                'science': ['science', 'research', 'laboratory', 'discovery'],
+                'sports': ['sports', 'athlete', 'competition', 'stadium'],
+                'music': ['music', 'concert', 'performance', 'studio'],
+                'world': ['world', 'global', 'international', 'news'],
+                'entertainment': ['entertainment', 'movie', 'celebrity', 'show'],
+                'lifestyle': ['lifestyle', 'health', 'wellness', 'living']
+            }
+            
+            # Extract keywords from headline
+            headline_words = headline.lower().split()
+            category_words = image_keywords.get(category.lower(), ['news'])
+            
+            # Find best matching keyword
+            for word in headline_words:
+                for cat_word in category_words:
+                    if word in cat_word or cat_word in word:
+                        return f"https://picsum.photos/800/400?random={random.randint(1,1000)}&blur=1"
+            
+            # Fallback to category-based image
+            return f"https://picsum.photos/800/400?random={random.randint(1,1000)}&blur=1"
+            
+        except Exception as e:
+            print(f"Error generating image: {e}")
+            return "https://picsum.photos/800/400?random=999&blur=1"
     
     def batch_generate_satire(self, articles: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Convert multiple articles to satire"""
