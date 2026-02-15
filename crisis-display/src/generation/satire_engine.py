@@ -295,8 +295,32 @@ class SatireEngine:
     
     def generate_related_image(self, headline: str, category: str) -> str:
         """Generate or find a related image for the article"""
+        return None  # Only generate images for featured story
+    
+    def batch_generate_satire(self, articles: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Convert multiple articles to satire"""
+        satire_articles = []
+        
+        for i, article in enumerate(articles):
+            try:
+                satire_article = self.generate_satire_article(article)
+                
+                # Only generate image for the first article (featured story)
+                if i == 0:
+                    satire_article['image_url'] = self.generate_featured_image(satire_article['headline'], satire_article['category'])
+                else:
+                    satire_article['image_url'] = None
+                    
+                satire_articles.append(satire_article)
+            except Exception as e:
+                print(f"Error generating satire for article: {e}")
+                continue
+        
+        return satire_articles
+    
+    def generate_featured_image(self, headline: str, category: str) -> str:
+        """Generate image only for featured story"""
         try:
-            # For now, return placeholder - can be enhanced with actual image generation
             image_keywords = {
                 'politics': ['government', 'politics', 'election', 'congress'],
                 'technology': ['tech', 'computer', 'innovation', 'digital'],
@@ -324,17 +348,3 @@ class SatireEngine:
         except Exception as e:
             print(f"Error generating image: {e}")
             return "https://picsum.photos/800/400?random=999&blur=1"
-    
-    def batch_generate_satire(self, articles: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Convert multiple articles to satire"""
-        satire_articles = []
-        
-        for article in articles:
-            try:
-                satire_article = self.generate_satire_article(article)
-                satire_articles.append(satire_article)
-            except Exception as e:
-                print(f"Error generating satire for article: {e}")
-                continue
-        
-        return satire_articles
