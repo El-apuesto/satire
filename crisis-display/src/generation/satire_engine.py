@@ -174,21 +174,42 @@ class SatireEngine:
     
     def create_satire_opening(self, original_content: str, category: str) -> str:
         """Create satirical opening paragraph"""
+        
+        # Filter out placeholder content
+        if original_content and "ONLY AVAILABLE IN PAID PLANS" in original_content:
+            original_content = "recent developments"
+        
         templates = self.satire_templates.get(category, self.satire_templates['science'])
         base_template = random.choice(templates)
         
-        # Add some random corporate/political speak
+        # Add category-specific opening
         if category == 'politics':
             buzzword = random.choice(self.bureaucratic_phrases)
             return f"{base_template} The initiative involves a {buzzword} that stakeholders believe will lead to optimal outcomes through synergistic engagement."
         elif category == 'technology':
             buzzword = random.choice(self.corporate_buzzwords)
             return f"{base_template} The {buzzword} solution leverages cutting-edge technology to disrupt traditional workflows while maximizing user engagement."
+        elif category == 'business':
+            return f"{base_template} The announcement sent shockwaves through Wall Street, with investors scrambling to adjust their portfolios in response to {original_content[:50] if original_content else 'market conditions'}."
+        elif category == 'finance':
+            return f"{base_template} Market analysts were completely stunned by the development, describing it as '{random.choice(['unprecedented', 'shocking', 'surprising'])}' in a sector that rarely sees {original_content[:50] if original_content else 'surprising developments'}."
+        elif category == 'health':
+            return f"{base_template} Medical researchers were amazed by the findings, which could revolutionize how we approach {original_content[:50] if original_content else 'healthcare'}."
+        elif category == 'world':
+            return f"{base_template} Global leaders scrambled to respond to the breaking news about {original_content[:50] if original_content else 'international developments'}, calling emergency meetings to address the situation."
+        elif category == 'sports':
+            return f"{base_template} The sports world was rocked by the revelation, with coaches and athletes alike struggling to comprehend how {original_content[:50] if original_content else 'this development'} might affect performance."
+        elif category == 'entertainment':
+            return f"{base_template} Industry insiders were buzzing about the news, with many calling it '{random.choice(['groundbreaking', 'revolutionary', 'game-changing'])}' in a field that desperately needs something to talk about."
         else:
             return f"{base_template} The findings, published in a prestigious journal, have important implications for our understanding of things we already understood."
     
     def create_satire_body(self, original_content: str, category: str) -> List[str]:
         """Create deadpan absurd body paragraphs from original content"""
+        
+        # Filter out placeholder content
+        if original_content and "ONLY AVAILABLE IN PAID PLANS" in original_content:
+            original_content = "recent developments that have captured public attention"
         
         # Extract key elements from original content
         content_words = original_content.lower().split() if original_content else ["something", "happened"]

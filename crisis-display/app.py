@@ -103,11 +103,22 @@ def home():
             }
         ]
     
-    # Get featured article (first one)
-    featured_article = latest_articles[0] if latest_articles else None
+    # Get featured article (first one with image or first one)
+    featured_article = None
+    for article in latest_articles:
+        if article.get('image_url'):
+            featured_article = article
+            break
+    
+    # If no article has an image, use the first one
+    if not featured_article and latest_articles:
+        featured_article = latest_articles[0]
+        # Ensure it has an image
+        if not featured_article.get('image_url'):
+            featured_article['image_url'] = "https://picsum.photos/800/400?random=999&blur=1"
     
     # Get remaining articles (excluding featured)
-    other_articles = latest_articles[1:] if len(latest_articles) > 1 else []
+    other_articles = [a for a in latest_articles if a != featured_article]
     
     return render_template('index.html', 
                         featured_article=featured_article,
