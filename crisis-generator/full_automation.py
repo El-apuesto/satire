@@ -175,6 +175,9 @@ class NewsSiteAutomation:
         # Generate politics articles
         self.generate_articles("politics")
         
+        # Generate world articles
+        self.generate_articles("world")
+        
         # Create morning comic
         self.create_comic()
         
@@ -268,7 +271,7 @@ class NewsSiteAutomation:
         schedule.every().day.at("23:00").do(self.nightly_routine)
         
         self.log("✅ Scheduler configured:")
-        self.log("  - 06:00: Morning routine (Politics + Comic)")
+        self.log("  - 06:00: Morning routine (Politics + World + Comic)")
         self.log("  - 12:00: Noon routine (Technology)")
         self.log("  - 18:00: Evening routine (Lifestyle + Comic)")
         self.log("  - 23:00: Nightly routine (Mixed + Report)")
