@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}What Women Want - OK Crisis{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="editorial-section">
+        <div class="editorial-header">
+            <h1 class="editorial-title">
+                <i class="fas fa-venus"></i>
+                What Women Want
+            </h1>
+            <div class="editorial-subtitle">A man's completely wrong perspective on female desires</div>
+        </div>
+        
+        <div class="editorial-content">
+            <div class="editorial-article">
+                <h2 class="article-title">This Week's Revelation: They Want Us to Read Minds</h2>
+                <div class="article-meta">
+                    <span class="author">By Some Guy</span>
+                    <span class="date">Obviously Today</span>
+                </div>
+                
+                <div class="article-body">
+                    <p>After extensive research (watching three romantic comedies and overhearing one conversation at Starbucks), I've finally cracked the code. Women don't want flowers, dinner, or meaningful conversation. They want us to read their minds.</p>
+                    
+                    <p>Think about it. How many times has your partner said "nothing's wrong" when clearly everything is wrong? That's not a communication problem - that's a telepathy test you're failing.</p>
+                    
+                    <p>The solution is simple: Men need to develop psychic abilities. Until then, here are some temporary mind-reading techniques:</p>
+                    
+                    <ul class="editorial-list">
+                        <li>When she says "I'm fine," she means the opposite of fine</li>
+                        <li>When she asks "do I look fat?" the answer is always no (this one I actually figured out)</li>
+                        <li>When she sighs, it means you forgot something important from 2007</li>
+                        <li>When she says "whatever," that's your cue to leave the country</li>
+                    </ul>
+                    
+                    <p>Ladies, if you want us to know what you want, just tell us. But where's the fun in that?</p>
+                </div>
+                
+                <div class="expert-quote">
+                    <blockquote>"If women wanted us to understand them, they would have been born men."</blockquote>
+                    <cite>- Relationship Expert Who Is Definitely Single</cite>
+                </div>
+            </div>
+            
+            <div class="previous-articles">
+                <h3>Previous Groundbreaking Discoveries:</h3>
+                <div class="article-grid">
+                    <div class="mini-article">
+                        <h4>Women Want Us to Notice Their Haircut</h4>
+                        <p>It's been three weeks. She still has the same hair. This is somehow your fault.</p>
+                    </div>
+                    <div class="mini-article">
+                        <h4>Women Want Us to Remember Dates</h4>
+                        <p>Anniversary, birthday, first kiss - apparently these matter. Who knew?</p>
+                    </div>
+                    <div class="mini-article">
+                        <h4>Women Want Us to Have Feelings</h4>
+                        <p>Complicated, expensive, and inconvenient feelings. This was not in the brochure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.editorial-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+
+.editorial-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.editorial-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--primary-gold);
+    margin-bottom: var(--spacing-md);
+}
+
+.editorial-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.editorial-article {
+    background: var(--rich-black);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.author, .date {
+    color: var(--text-secondary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+}
+
+.article-body {
+    line-height: 1.7;
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.article-body p {
+    margin-bottom: var(--spacing-md);
+}
+
+.editorial-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-lg) 0;
+}
+
+.editorial-list li {
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 3px solid var(--primary-gold);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    font-style: italic;
+}
+
+.expert-quote {
+    background: var(--deep-black);
+    border: 1px dashed rgba(212, 175, 55, 0.3);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+.expert-quote blockquote {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.expert-quote cite {
+    font-size: 0.9rem;
+    color: var(--primary-gold);
+}
+
+.previous-articles {
+    margin-top: var(--spacing-xl);
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.mini-article {
+    background: var(--deep-black);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+}
+
+.mini-article h4 {
+    color: var(--primary-gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.mini-article p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+</style>
+{% endblock %}

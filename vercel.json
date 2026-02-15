@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "web/app.py",
+      "src": "crisis-display/app.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "web/$1"
+      "dest": "crisis-display/app.py"
     }
   ]
 }

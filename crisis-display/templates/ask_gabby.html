@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Ask Gabby - OK Crisis{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="editorial-section">
+        <div class="editorial-header">
+            <h1 class="editorial-title">
+                <i class="fas fa-heart"></i>
+                Ask Gabby
+            </h1>
+            <div class="editorial-subtitle">Deadpan advice for people who should know better</div>
+        </div>
+        
+        <div class="editorial-content">
+            <div class="advice-column">
+                <div class="question">
+                    <h3>Dear Gabby,</h3>
+                    <p class="question-text">My boyfriend keeps leaving his socks everywhere. I've tried everything - sock baskets, sock drawers, even burning them. He just buys more socks. What should I do?</p>
+                    <p class="question-author">- Sockless in Seattle</p>
+                </div>
+                
+                <div class="response">
+                    <h4>Gabby Says:</h4>
+                    <p class="response-text">Dear Sockless, Have you considered that this isn't about socks? This is clearly a performance art piece about the ephemeral nature of human connection. Your boyfriend isn't messy; he's a postmodern philosopher using hosiery as metaphor for life's transient beauty. Either that or he's just lazy. Burn his shoes too and see what happens.</p>
+                </div>
+                
+                <div class="expert-quote">
+                    <blockquote>"Relationship advice is just guessing with more emotional baggage."</blockquote>
+                    <cite>- Dr. Rebecca Martinez, Institute of Obvious Relationship Studies</cite>
+                </div>
+            </div>
+            
+            <div class="submit-question">
+                <h3>Have Your Own Crisis?</h3>
+                <p>Submit your question for Gabby to ignore completely:</p>
+                <form class="question-form">
+                    <input type="email" placeholder="Your email (optional)" class="form-input">
+                    <textarea placeholder="Describe your relationship disaster..." class="form-textarea"></textarea>
+                    <button type="submit" class="luxury-btn">Submit for Judgment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.editorial-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+}
+
+.editorial-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.editorial-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--primary-gold);
+    margin-bottom: var(--spacing-md);
+}
+
+.editorial-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.advice-column {
+    background: var(--rich-black);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.question {
+    margin-bottom: var(--spacing-lg);
+}
+
+.question h3 {
+    color: var(--primary-gold);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: var(--spacing-sm);
+}
+
+.question-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+    font-style: italic;
+}
+
+.question-author {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: right;
+    font-weight: 600;
+}
+
+.response {
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 4px solid var(--primary-gold);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.response h4 {
+    color: var(--primary-gold);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: var(--spacing-md);
+}
+
+.response-text {
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.expert-quote {
+    background: var(--deep-black);
+    border: 1px dashed rgba(212, 175, 55, 0.3);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+.expert-quote blockquote {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.expert-quote cite {
+    font-size: 0.9rem;
+    color: var(--primary-gold);
+}
+
+.submit-question {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--deep-black);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-lg);
+}
+
+.question-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    background: var(--rich-black);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OK Crisis - Premium News Satire{% endblock %}</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="{% block description %}OK Crisis delivers premium news satire that reveals uncomfortable truths about power, hypocrisy, and systemic dysfunction.{% endblock %}">
+    <meta name="keywords" content="satire, news, politics, technology, science, premium, luxury">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}OK Crisis{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}OK Crisis delivers premium news satire that reveals uncomfortable truths about power, hypocrisy, and systemic dysfunction.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Breaking News Ticker -->
+    <div class="breaking-ticker">
+        <div class="ticker-content">
+            <span class="ticker-label">BREAKING:</span>
+            <span class="ticker-text">Local man discovers irony, immediately uses it incorrectly • Study finds 100% of statistics made up on spot • Weather continues to happen outside</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="/static/logo.png" alt="OK Crisis" class="logo-img">
+                    <span class="logo-text">OK Crisis</span>
+                </div>
+                
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('category', category='politics') }}" class="nav-link">Politics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('category', category='technology') }}" class="nav-link">Technology</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('category', category='science') }}" class="nav-link">Science</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('romance') }}" class="nav-link">Romance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('dear_gabby') }}" class="nav-link">Dear Gabby</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="subscribe-btn">Subscribe</button>
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="/static/logo.png" alt="OK Crisis" class="footer-logo-img">
+                        <h3 class="footer-title">OK Crisis</h3>
+                        <p class="footer-description">Premium news satire for the discerning reader who appreciates uncomfortable truths.</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">Sections</h4>
+                    <ul class="footer-links">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('category', category='politics') }}">Politics</a></li>
+                        <li><a href="{{ url_for('category', category='technology') }}">Technology</a></li>
+                        <li><a href="{{ url_for('category', category='science') }}">Science</a></li>
+                        <li><a href="{{ url_for('romance') }}">Romance</a></li>
+                        <li><a href="{{ url_for('dear_gabby') }}">Dear Gabby</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="{{ url_for('about') }}">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">Subscribe</h4>
+                    <p class="footer-description">Get the latest crisis delivered to your inbox.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email" class="newsletter-input">
+                        <button class="newsletter-btn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2024 OK Crisis. All rights reserved. Probably.</p>
+                <p class="disclaimer">This is satire. Any resemblance to actual persons, living or dead, or actual events is purely coincidental and absolutely hilarious.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Subscribe Modal -->
+    <div class="modal-overlay" id="subscribe-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Subscribe to OK Crisis</h3>
+                <button class="modal-close" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Get the latest premium satire delivered directly to your inbox. Because you deserve to laugh at the absurdity of modern life.</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="Enter your email" class="subscribe-input" required>
+                    <button type="submit" class="subscribe-submit">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -128,7 +128,7 @@ def article(article_id):
         # Fallback - find article in sample data
         sample_articles = [
             {
-                'id': 1,
+                'id': '1',
                 'headline': 'Local Government Announces Plans to Consider Thinking About Maybe Addressing Issues Someday',
                 'opening_paragraph': 'City officials held a press conference today to announce their intention to form a committee that will explore the possibility of discussing potential challenges that might need consideration at some point in the future.',
                 'category': 'politics',
@@ -147,7 +147,7 @@ def article(article_id):
                 ]
             },
             {
-                'id': 2,
+                'id': '2',
                 'headline': 'Tech Startup Disrupts Industry By Making Things Slightly More Complicated',
                 'opening_paragraph': 'Innovation Labs unveiled groundbreaking new technology today that promises to revolutionize how people interact with things they already knew how to use.',
                 'category': 'technology',
@@ -166,7 +166,7 @@ def article(article_id):
                 ]
             },
             {
-                'id': 3,
+                'id': '3',
                 'headline': 'Study Finds People Who Read Studies Are More Likely To Be In Studies',
                 'opening_paragraph': 'Groundbreaking research from the Institute of Obvious Conclusions reveals a strong correlation between reading studies and being included in future studies.',
                 'category': 'science',
@@ -186,7 +186,7 @@ def article(article_id):
             }
         ]
         
-        article = next((a for a in sample_articles if str(a['id']) == str(article_id)), None)
+        article = next((a for a in sample_articles if str(a['id']) == str(article_id) or a['id'] == article_id), None)
         if not article:
             return render_template('404.html'), 404
         
@@ -205,7 +205,7 @@ def category(category):
         # Fallback - filter sample articles by category
         all_articles = [
             {
-                'id': 1,
+                'id': '1',
                 'headline': 'Local Government Announces Plans to Consider Thinking About Maybe Addressing Issues Someday',
                 'opening_paragraph': 'City officials held a press conference today to announce their intention to form a committee that will explore the possibility of discussing potential challenges that might need consideration at some point in the future.',
                 'category': 'politics',
@@ -224,7 +224,7 @@ def category(category):
                 ]
             },
             {
-                'id': 2,
+                'id': '2',
                 'headline': 'Tech Startup Disrupts Industry By Making Things Slightly More Complicated',
                 'opening_paragraph': 'Innovation Labs unveiled groundbreaking new technology today that promises to revolutionize how people interact with things they already knew how to use.',
                 'category': 'technology',
@@ -243,7 +243,7 @@ def category(category):
                 ]
             },
             {
-                'id': 3,
+                'id': '3',
                 'headline': 'Study Finds People Who Read Studies Are More Likely To Be In Studies',
                 'opening_paragraph': 'Groundbreaking research from the Institute of Obvious Conclusions reveals a strong correlation between reading studies and being included in future studies.',
                 'category': 'science',
@@ -267,6 +267,26 @@ def category(category):
     return render_template('category.html',
                         category=category,
                         articles=articles)
+
+@app.route('/opinion')
+def opinion():
+    """Opinion page with editorials and reader letters."""
+    return render_template('opinion.html')
+
+@app.route('/ask-gabby')
+def ask_gabby():
+    """Ask Gabby advice column."""
+    return render_template('ask_gabby.html')
+
+@app.route('/ask-guy')
+def ask_guy():
+    """Ask Guy advice column."""
+    return render_template('ask_guy.html')
+
+@app.route('/what-women-want')
+def what_women_want():
+    """What Women Want editorial."""
+    return render_template('what_women_want.html')
 
 @app.route('/about')
 def about():
@@ -327,7 +347,7 @@ def api_latest():
         # Fallback sample data
         articles = [
             {
-                'id': 1,
+                'id': '1',
                 'headline': 'Local Government Announces Plans to Consider Thinking About Maybe Addressing Issues Someday',
                 'opening_paragraph': 'City officials held a press conference today to announce their intention to form a committee that will explore the possibility of discussing potential challenges that might need consideration at some point in the future.',
                 'category': 'politics',
@@ -335,7 +355,7 @@ def api_latest():
                 'timestamp': '2024-01-15T10:00:00Z'
             },
             {
-                'id': 2,
+                'id': '2',
                 'headline': 'Tech Startup Disrupts Industry By Making Things Slightly More Complicated',
                 'opening_paragraph': 'Innovation Labs unveiled groundbreaking new technology today that promises to revolutionize how people interact with things they already knew how to use.',
                 'category': 'technology',
@@ -343,7 +363,7 @@ def api_latest():
                 'timestamp': '2024-01-15T14:30:00Z'
             },
             {
-                'id': 3,
+                'id': '3',
                 'headline': 'Study Finds People Who Read Studies Are More Likely To Be In Studies',
                 'opening_paragraph': 'Groundbreaking research from the Institute of Obvious Conclusions reveals a strong correlation between reading studies and being included in future studies.',
                 'category': 'science',

@@ -1,0 +1,446 @@
+{% extends "base.html" %}
+
+{% block title %}Opinion - The Satire Standard{% endblock %}
+{% block description %}Editorials and reader perspectives on the absurdities of modern life.{% endblock %}
+
+{% block content %}
+<!-- Opinion Header -->
+<section class="opinion-header">
+    <div class="container">
+        <div class="opinion-header-content">
+            <h1 class="opinion-title">Opinion</h1>
+            <p class="opinion-subtitle">Where we pretend our opinions matter and you pretend to care</p>
+        </div>
+    </div>
+</section>
+
+<!-- Editorials Section -->
+<section class="editorials-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Editorials</h2>
+            <p class="section-subtitle">Our completely unbiased takes on everything</p>
+        </div>
+        
+        <div class="editorials-grid">
+            <!-- Editorial 1 -->
+            <article class="editorial-card">
+                <div class="editorial-header">
+                    <div class="editorial-category">POLITICAL ANALYSIS</div>
+                    <h3 class="editorial-title">Why We Should All Just Agree to Disagree and Then Never Speak Again</h3>
+                    <div class="editorial-meta">
+                        <span class="editorial-author">By Dr. Morgan Freeman</span>
+                        <span class="editorial-date">January 15, 2024</span>
+                    </div>
+                </div>
+                <div class="editorial-content">
+                    <p class="editorial-excerpt">In a groundbreaking development that has stunned political scientists and relationship counselors alike, researchers have discovered that the most effective form of political discourse is complete and total silence.</p>
+                    <p>The study, conducted over five years at the Institute of Obvious Conclusions, found that political discussions achieved optimal outcomes when participants simply stared at each other in uncomfortable silence until one person inevitably checked their phone.</p>
+                    <div class="editorial-actions">
+                        <a href="#" class="luxury-btn">Read Full Editorial</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Editorial 2 -->
+            <article class="editorial-card">
+                <div class="editorial-header">
+                    <div class="editorial-category">CULTURAL CRITICISM</div>
+                    <h3 class="editorial-title">The Rise of Minimalism: Why Owning Nothing Is the New Having Everything</h3>
+                    <div class="editorial-meta">
+                        <span class="editorial-author">By Jessica Chen</span>
+                        <span class="editorial-date">January 14, 2024</span>
+                    </div>
+                </div>
+                <div class="editorial-content">
+                    <p class="editorial-excerpt">In a stunning reversal of human evolution, modern society has collectively decided that the peak of existence is having as little as possible while paying as much as possible for the privilege.</p>
+                    <p>Minimalism, once the domain of ascetics and people who couldn't afford furniture, has become the ultimate status symbol. Nothing says "I've made it" quite like explaining to your guests why they have to sit on the floor.</p>
+                    <div class="editorial-actions">
+                        <a href="#" class="luxury-btn">Read Full Editorial</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Editorial 3 -->
+            <article class="editorial-card">
+                <div class="editorial-header">
+                    <div class="editorial-category">TECHNOLOGY & SOCIETY</div>
+                    <h3 class="editorial-title">AI Will Save Humanity By Making Us Completely Obsolete</h3>
+                    <div class="editorial-meta">
+                        <span class="editorial-author">By Marcus Rodriguez</span>
+                        <span class="editorial-date">January 13, 2024</span>
+                    </div>
+                </div>
+                <div class="editorial-content">
+                    <p class="editorial-excerpt">Artificial Intelligence promises to solve all of humanity's problems by eliminating the most problematic variable of all: humans themselves.</p>
+                    <p>Experts predict that within the next decade, AI will be capable of performing every human task more efficiently, from writing poetry to pretending to listen during family gatherings. The future is bright, assuming you're a machine.</p>
+                    <div class="editorial-actions">
+                        <a href="#" class="luxury-btn">Read Full Editorial</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Letters to the Editor -->
+<section class="letters-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Letters from Our Readers</h2>
+            <p class="section-subtitle">We print these because we're legally obligated to</p>
+        </div>
+        
+        <div class="letters-grid">
+            <!-- Letter 1 -->
+            <div class="letter-card">
+                <div class="letter-header">
+                    <div class="letter-category">ANGRY RANT</div>
+                    <h3 class="letter-subject">Re: Your Article About Something I Didn't Read</h3>
+                    <div class="letter-meta">
+                        <span class="letter-author">Karen from Florida</span>
+                        <span class="letter-date">Yesterday</span>
+                    </div>
+                </div>
+                <div class="letter-content">
+                    <p>I haven't actually read your publication, but my friend told me about something you might have written, and I'm OUTRAGED. This is exactly what's wrong with the media today. I'm canceling my subscription that I never had.</p>
+                    <p>P.S. Can you send me free copies for my book club?</p>
+                </div>
+            </div>
+
+            <!-- Letter 2 -->
+            <div class="letter-card">
+                <div class="letter-header">
+                    <div class="letter-category">CONFUSED INQUIRY</div>
+                    <h3 class="letter-subject">Is This a Real Newspaper?</h3>
+                    <div class="letter-meta">
+                        <span class="letter-author">Robert from Ohio</span>
+                        <span class="letter-date">2 days ago</span>
+                    </div>
+                </div>
+                <div class="letter-content">
+                    <p>I've been reading your publication for three years and I just have to ask: is any of this real? My wife says it's satire but I'm pretty sure I saw that story about the city council meeting on the actual news last week.</p>
+                    <p>Please clarify before I show these articles to my grandchildren.</p>
+                </div>
+            </div>
+
+            <!-- Letter 3 -->
+            <div class="letter-card">
+                <div class="letter-header">
+                    <div class="letter-category">UNDESERVED PRAISE</div>
+                    <h3 class="letter-subject">You Changed My Life</h3>
+                    <div class="letter-meta">
+                        <span class="letter-author">Anonymous</span>
+                        <span class="letter-date">Last week</span>
+                    </div>
+                </div>
+                <div class="letter-content">
+                    <p>Your article about procrastination inspired me to finally get my life together. I read it three months ago and just got around to writing this letter. Thank you for teaching me that there's no time like the present to put things off until later.</p>
+                    <p>I've started a support group for people who mean to attend but never show up.</p>
+                </div>
+            </div>
+
+            <!-- Letter 4 -->
+            <div class="letter-card">
+                <div class="letter-header">
+                    <div class="letter-category">LEGAL THREAT</div>
+                    <h3 class="letter-subject">My Lawyer Will Be in Touch</h3>
+                    <div class="letter-meta">
+                        <span class="letter-author">Not Actually a Lawyer</span>
+                        <span class="letter-date">This morning</span>
+                    </div>
+                </div>
+                <div class="letter-content">
+                    <p>Your recent article about bears wearing hats has caused irreparable harm to my client, who is a bear that wears hats. We demand an immediate retraction and $10 million in damages, plus all the honey you can find.</p>
+                    <p>This is not a joke. My client is very real and very litigious.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Letter -->
+        <div class="submit-letter">
+            <div class="submit-letter-content">
+                <h3>Have an Opinion? We'll Probably Ignore It</h3>
+                <p>Send us your letters, rants, and barely coherent thoughts. We might publish them, we might use them as coasters, we might print them out just to set them on fire.</p>
+                <button class="luxury-btn" onclick="alert('Please write your letter on a piece of paper, fold it into a paper airplane, and throw it out your window. If the winds are right, we might receive it.')">
+                    Submit Letter
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+<style>
+/* Opinion Header */
+.opinion-header {
+    background: linear-gradient(135deg, var(--deep-black) 0%, var(--rich-black) 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.opinion-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: var(--primary-gold);
+}
+
+.opinion-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--deep-black);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--primary-gold);
+}
+
+.section-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+/* Editorials Section */
+.editorials-section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.editorials-grid {
+    display: grid;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.editorial-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.editorial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.editorial-header {
+    padding: 2rem;
+    background: var(--light-gray);
+    border-bottom: 3px solid var(--primary-gold);
+}
+
+.editorial-category {
+    background: var(--red-accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.editorial-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: var(--deep-black);
+}
+
+.editorial-meta {
+    display: flex;
+    gap: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.editorial-content {
+    padding: 2rem;
+}
+
+.editorial-excerpt {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.editorial-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--deep-black);
+}
+
+.editorial-actions {
+    margin-top: 2rem;
+}
+
+/* Letters Section */
+.letters-section {
+    padding: 4rem 0;
+    background: var(--light-gray);
+}
+
+.letters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.letter-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.letter-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.letter-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.letter-category {
+    background: var(--primary-gold);
+    color: var(--deep-black);
+    padding: 0.4rem 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+}
+
+.letter-subject {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+    color: var(--deep-black);
+}
+
+.letter-meta {
+    display: flex;
+    gap: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.letter-content {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--deep-black);
+}
+
+.letter-content p {
+    margin-bottom: 1rem;
+}
+
+/* Submit Letter */
+.submit-letter {
+    background: var(--deep-black);
+    color: white;
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+}
+
+.submit-letter h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-gold);
+}
+
+.submit-letter p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .opinion-title {
+        font-size: 2.5rem;
+    }
+    
+    .editorials-grid {
+        gap: 2rem;
+    }
+    
+    .letters-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .editorial-title {
+        font-size: 1.5rem;
+    }
+    
+    .letter-subject {
+        font-size: 1.1rem;
+    }
+    
+    .submit-letter {
+        padding: 2rem;
+    }
+}
+</style>

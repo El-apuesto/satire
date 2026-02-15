@@ -223,6 +223,17 @@
         
         {% for paragraph in article.body_paragraphs %}
         <p>{{ paragraph }}</p>
+        
+        <!-- Ad Space - After 2nd paragraph -->
+        {% if loop.index == 2 %}
+        <div style="margin: 2rem 0; padding: 1.5rem; background: var(--soft-gray); border: 1px dashed var(--primary-gold); text-align: center;">
+            <div style="font-family: 'Montserrat', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 0.5rem;">Advertisement</div>
+            <div style="background: white; padding: 1rem; border-radius: 4px;">
+                <p style="font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--deep-black); margin: 0.5rem 0;">Support Premium Satire</p>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">Your brand here • ads@okcrisis.com</p>
+            </div>
+        </div>
+        {% endif %}
         {% endfor %}
         
         {% if article.expert_quotes %}

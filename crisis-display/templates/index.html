@@ -4,69 +4,118 @@
 {% block description %}OK Crisis delivers premium news satire that reveals uncomfortable truths about power, hypocrisy, and systemic dysfunction.{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero-section">
+<!-- Top Story Section -->
+<section class="top-story-section">
     <div class="container">
-        <div class="hero-content">
-            <div class="hero-logo">
-                <img src="/static/logo.png" alt="OK Crisis" class="hero-logo-img">
+        <div class="top-story-grid">
+            <div class="top-story-content">
+                <div class="story-category">BREAKING</div>
+                <h1 class="top-story-headline">{{ featured_article.headline if featured_article else "Local Government Announces Plans to Consider Thinking About Maybe Addressing Issues Someday" }}</h1>
+                <p class="top-story-excerpt">{{ featured_article.opening_paragraph if featured_article else "City officials held a press conference today to announce their intention to form a committee that will explore the possibility of discussing potential challenges that might need consideration at some point in the future." }}</p>
+                <div class="top-story-meta">
+                    <span>By {{ featured_article.byline if featured_article else "Sarah Johnson" }}</span>
+                    <span>{{ featured_article.timestamp[:10] if featured_article else "2024-01-15" }}</span>
+                </div>
+                <div class="top-story-actions">
+                    <a href="/article/{{ featured_article.id if featured_article else '1' }}" class="luxury-btn">Read Full Story</a>
+                </div>
             </div>
-            <h1 class="hero-title">OK Crisis</h1>
-            <p class="hero-subtitle">Where Truth Meets Absurdity</p>
-            <p class="hero-description">Premium satire for the discerning reader who appreciates uncomfortable truths about modern life.</p>
+            <div class="top-story-image">
+                <div class="image-placeholder" style="height: 400px; background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold)); display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; color: white;">
+                        <img src="{{ url_for('static', filename='images/1/hero-image.jpg') }}" alt="Featured Story" style="max-width: 100%; max-height: 350px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Content Sections -->
-<section class="content-sections">
+<!-- Front Page Ad -->
+<section class="front-page-ad">
     <div class="container">
-        <div class="sections-grid">
-            <!-- Romance Section -->
-            <div class="content-section">
-                <h2 class="section-title">
-                    <i class="fas fa-heart"></i>
-                    Romance & Dating
+        <div class="front-ad-content">
+            <div style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 1rem; text-align: center;">Advertisement</div>
+            <div style="background: white; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+                <img src="{{ url_for('static', filename='images/3/front-page-ad.jpg') }}" alt="Advertisement" style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Category Sections -->
+<section class="category-sections">
+    <div class="container">
+        <div class="category-grid">
+            <!-- World News Section -->
+            <div class="category-card">
+                <h2 class="category-title">
+                    <i class="fas fa-globe"></i>
+                    World News
                 </h2>
-                <p class="section-description">Because modern love is a crisis waiting to happen.</p>
-                <div class="section-links">
-                    <a href="{{ url_for('romance') }}" class="section-link">Read Romance Articles</a>
+                <p class="category-description">Global absurdity, international hypocrisy.</p>
+                <div class="category-links">
+                    <a href="/category/world-news" class="category-link">Read World News</a>
                 </div>
             </div>
             
-            <!-- Dear Gabby Section -->
-            <div class="content-section">
-                <h2 class="section-title">
+            <!-- National News Section -->
+            <div class="category-card">
+                <h2 class="category-title">
+                    <i class="fas fa-flag-usa"></i>
+                    National News
+                </h2>
+                <p class="category-description">Domestic disasters and political theater.</p>
+                <div class="category-links">
+                    <a href="/category/national-news" class="category-link">Read National News</a>
+                </div>
+            </div>
+            
+            <!-- Entertainment Section -->
+            <div class="category-card">
+                <h2 class="category-title">
+                    <i class="fas fa-film"></i>
+                    Entertainment
+                </h2>
+                <p class="category-description">TV, Film, Music, and celebrity chaos.</p>
+                <div class="category-links">
+                    <a href="/category/entertainment" class="category-link">Read Entertainment</a>
+                </div>
+            </div>
+            
+            <!-- Sports Section -->
+            <div class="category-card">
+                <h2 class="category-title">
+                    <i class="fas fa-football-ball"></i>
+                    Sports
+                </h2>
+                <p class="category-description">Athletic absurdity and competitive comedy.</p>
+                <div class="category-links">
+                    <a href="/category/sports" class="category-link">Read Sports</a>
+                </div>
+            </div>
+            
+            <!-- Lifestyle & Culture Section -->
+            <div class="category-card">
+                <h2 class="category-title">
+                    <i class="fas fa-palette"></i>
+                    Lifestyle & Culture
+                </h2>
+                <p class="category-description">Modern living and cultural contradictions.</p>
+                <div class="category-links">
+                    <a href="/category/lifestyle-culture" class="category-link">Read Lifestyle</a>
+                </div>
+            </div>
+            
+            <!-- Opinion Section -->
+            <div class="category-card">
+                <h2 class="category-title">
                     <i class="fas fa-comment-dots"></i>
-                    Dear Gabby
+                    Opinion
                 </h2>
-                <p class="section-description">Deadpan advice for people who should know better.</p>
-                <div class="section-links">
-                    <a href="{{ url_for('dear_gabby') }}" class="section-link">Get Advice</a>
-                </div>
-            </div>
-            
-            <!-- Politics Section -->
-            <div class="content-section">
-                <h2 class="section-title">
-                    <i class="fas fa-landmark"></i>
-                    Politics
-                </h2>
-                <p class="section-description">Where hypocrisy meets opportunity.</p>
-                <div class="section-links">
-                    <a href="{{ url_for('category', category='politics') }}" class="section-link">Political Satire</a>
-                </div>
-            </div>
-            
-            <!-- Technology Section -->
-            <div class="content-section">
-                <h2 class="section-title">
-                    <i class="fas fa-microchip"></i>
-                    Technology
-                </h2>
-                <p class="section-description">Innovation that makes life more complicated.</p>
-                <div class="section-links">
-                    <a href="{{ url_for('category', category='technology') }}" class="section-link">Tech Satire</a>
+                <p class="category-description">Editorials and reader perspectives.</p>
+                <div class="category-links">
+                    <a href="/opinion" class="category-link">Read Opinions</a>
                 </div>
             </div>
         </div>
@@ -151,6 +200,16 @@
                     </div>
                 </div>
             </article>
+            
+            <!-- Ad Space - Every 2nd article -->
+            {% if loop.index == 2 %}
+            <div class="ad-space" style="grid-column: 1 / -1; background: var(--light-gray); border: 2px dashed var(--primary-gold); padding: 2rem; text-align: center; margin: 1rem 0;">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); margin-bottom: 1rem;">Advertisement</div>
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                    <img src="{{ url_for('static', filename='images/2/ad-placeholder.jpg') }}" alt="Advertisement" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
         
@@ -198,115 +257,134 @@
 {% endblock %}
 
 <style>
-/* Hero Section Styles */
-.hero-section {
-    background: linear-gradient(135deg, var(--deep-black) 0%, var(--rich-black) 100%);
-    color: white;
-    padding: 6rem 0;
-    text-align: center;
+/* Front Page Ad */
+.front-page-ad {
+    padding: 2rem 0;
+    background: var(--light-gray);
 }
 
-.hero-content {
+.front-ad-content {
     max-width: 800px;
     margin: 0 auto;
 }
 
-.hero-logo {
-    margin-bottom: var(--spacing-lg);
+/* Top Story Section */
+.top-story-section {
+    padding: 3rem 0;
+    background: var(--deep-black);
+    color: white;
 }
 
-.hero-logo-img {
-    height: 80px;
-    width: auto;
-    filter: brightness(0) invert(1);
+.top-story-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: center;
 }
 
-.hero-title {
-    font-family: var(--font-serif);
-    font-size: 4rem;
-    font-weight: 900;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.1;
-    color: var(--red-accent);
+.top-story-content {
+    max-width: 800px;
 }
 
-.hero-subtitle {
-    font-family: var(--font-sans);
-    font-size: 1.2rem;
-    font-weight: 300;
-    letter-spacing: 2px;
+.story-category {
+    background: var(--red-accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
     text-transform: uppercase;
-    color: var(--primary-gold);
-    margin-bottom: var(--spacing-lg);
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
 }
 
-.hero-description {
-    font-family: var(--font-sans);
-    font-size: 1.3rem;
+.top-story-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.top-story-excerpt {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
     line-height: 1.6;
+    margin-bottom: 1.5rem;
     opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
 }
 
-/* Content Sections */
-.content-sections {
-    padding: var(--spacing-xl) 0;
+.top-story-meta {
+    display: flex;
+    gap: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--primary-gold);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Category Sections */
+.category-sections {
+    padding: 4rem 0;
     background: var(--light-gray);
 }
 
-.sections-grid {
+.category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-xl);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
-.content-section {
-    background: var(--pure-white);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-xl);
+.category-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
-.content-section:hover {
+.category-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
-.section-title {
-    font-family: var(--font-serif);
+.category-title {
+    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--soft-black);
-    margin-bottom: var(--spacing-md);
+    color: var(--deep-black);
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-sm);
+    gap: 0.75rem;
 }
 
-.section-title i {
+.category-title i {
     color: var(--red-accent);
     font-size: 1.25rem;
 }
 
-.section-description {
-    font-family: var(--font-sans);
+.category-description {
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
-    color: var(--medium-gray);
-    margin-bottom: var(--spacing-lg);
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
     line-height: 1.5;
 }
 
-.section-link {
+.category-link {
     background: var(--red-accent);
-    color: var(--pure-white);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--radius-sm);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
     text-decoration: none;
-    font-family: var(--font-sans);
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -314,23 +392,28 @@
     display: inline-block;
 }
 
-.section-link:hover {
+.category-link:hover {
     background: var(--soft-black);
     transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
-    .sections-grid {
+    .top-story-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-lg);
+        gap: 2rem;
     }
     
-    .hero-title {
-        font-size: 2.5rem;
+    .top-story-headline {
+        font-size: 2rem;
     }
     
-    .content-section {
-        padding: var(--spacing-lg);
+    .category-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .category-card {
+        padding: 2rem;
     }
 }
 </style>
