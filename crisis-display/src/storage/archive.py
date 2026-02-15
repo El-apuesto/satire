@@ -79,11 +79,12 @@ class ArchiveManager:
             print(f"Error searching articles: {e}")
             return []
     
-    def get_article_by_id(self, article_id: int) -> Optional[Dict[str, Any]]:
+    def get_article_by_id(self, article_id) -> Optional[Dict[str, Any]]:
         """Get a specific article by ID"""
         try:
             for article in self.articles:
-                if article.get('id') == article_id:
+                # Convert both to string for comparison
+                if str(article.get('id')) == str(article_id):
                     return article
             return None
         except Exception as e:
