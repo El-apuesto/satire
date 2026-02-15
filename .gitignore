@@ -1,1 +1,4 @@
 .vercel
+crisis-display/data/
+automation.log
+*.log
