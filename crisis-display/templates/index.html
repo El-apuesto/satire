@@ -181,7 +181,7 @@
 <section class="featured-section" style="background: var(--soft-gray);">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Latest Dispatches</h2>
+            <h2 class="section-title">Latest Stories</h2>
             <p class="section-subtitle">Fresh Satire Daily</p>
         </div>
         
@@ -189,6 +189,7 @@
             {% for article in latest_articles %}
             <article class="article-card">
                 <div class="article-content">
+                    <div class="article-category">{{ article.category|title }}</div>
                     <h3 class="article-headline">{{ article.headline }}</h3>
                     <p class="article-excerpt">{{ article.opening_paragraph }}</p>
                     <div class="article-meta">
@@ -196,7 +197,7 @@
                         <span>{{ article.timestamp[:10] }}</span>
                     </div>
                     <div style="margin-top: 1.5rem;">
-                        <a href="/article/{{ article.id }}" class="luxury-btn" style="font-size: 0.85rem; padding: 8px 20px;">Read More</a>
+                        <a href="/article/{{ article.id }}" class="luxury-btn" style="font-size: 0.85rem; padding: 8px 20px;">Read Full Story</a>
                     </div>
                 </div>
             </article>
@@ -214,7 +215,7 @@
         </div>
         
         <div style="text-align: center; margin-top: 3rem;">
-            <a href="#" class="luxury-btn">View All Articles</a>
+            <a href="/category/all" class="luxury-btn">View All Articles</a>
         </div>
     </div>
 </section>
@@ -257,6 +258,19 @@
 {% endblock %}
 
 <style>
+.article-category {
+    background: var(--red-accent);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
 /* Front Page Ad */
 .front-page-ad {
     padding: 2rem 0;
