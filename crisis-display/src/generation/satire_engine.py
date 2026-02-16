@@ -1,6 +1,7 @@
 import json
 import random
 import requests
+import uuid
 from datetime import datetime
 from typing import Dict, List, Any
 
@@ -97,19 +98,18 @@ class SatireEngine:
         # Generate related image
         image_url = self.generate_related_image(headline, category)
         
-        # Create satire article
+        # Create satire article with source attribution
         satire_article = {
-            'id': hash(original_article.get('title', '')) % 10000,
+            'id': str(uuid.uuid4()),
             'headline': headline,
             'opening_paragraph': opening_paragraph,
-            'category': category,
-            'byline': self.generate_byline(category),
-            'timestamp': datetime.now().isoformat(),
             'body_paragraphs': body_paragraphs,
             'expert_quotes': expert_quotes,
-            'image_url': image_url,
-            'source_url': original_article.get('url', ''),
-            'original_title': original_article.get('title', '')
+            'byline': self.generate_byline(category),
+            'category': category,
+            'timestamp': datetime.now().isoformat(),
+            'original_title': original_article.get('title', ''),  # Add original headline for attribution
+            'original_source': original_article.get('source', 'News API')  # Add source
         }
         
         return satire_article

@@ -347,8 +347,11 @@ def refresh_news():
     """Refresh news content and generate new satire articles."""
     if news_api and satire_engine and archive_manager:
         try:
+            # Get category from query parameter
+            category = request.args.get('category', None)
+            
             # Fetch latest real news
-            real_news = news_api.fetch_latest_news(limit=10)
+            real_news = news_api.fetch_latest_news(category=category, limit=10)
             
             if real_news:
                 # Generate satire articles

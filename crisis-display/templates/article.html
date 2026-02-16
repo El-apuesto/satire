@@ -267,7 +267,13 @@
         </div>
         
         <div style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: var(--text-secondary);">
-            <p>This article is satire. Any resemblance to actual events, persons, or reality is purely coincidental and deeply concerning.</p>
+            {% if article.original_title %}
+            <p style="margin-bottom: 0.5rem;"><strong>Original Story:</strong> {{ article.original_title }}</p>
+            {% endif %}
+            {% if article.original_source %}
+            <p style="margin-bottom: 0.5rem;"><strong>Source:</strong> {{ article.original_source }}</p>
+            {% endif %}
+            <p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--soft-gray);">This article is satire. Any resemblance to actual events, persons, or reality is purely coincidental and deeply concerning.</p>
         </div>
     </footer>
 </main>

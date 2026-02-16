@@ -41,15 +41,26 @@ class ArchiveManager:
         try:
             # Check if article already exists
             existing_ids = [a.get('id') for a in self.articles]
-            if article.get('id') in existing_ids:
+            article_id = article.get('id')
+            
+            if article_id in existing_ids:
+                print(f"⚠️  Article {article_id} already exists, skipping")
                 return False
             
             # Add timestamp if not present
             if 'timestamp' not in article:
                 article['timestamp'] = datetime.now().isoformat()
             
+            print(f"➕ Adding article: {article.get('headline', 'No headline')[:50]}...")
             self.articles.append(article)
-            return self.save_articles()
+            
+            success = self.save_articles()
+            if success:
+                print(f"✅ Article saved. Total articles: {len(self.articles)}")
+            else:
+                print(f"❌ Failed to save article")
+                
+            return success
         except Exception as e:
             print(f"Error adding article: {e}")
             return False
